@@ -35,10 +35,17 @@ describe("The <Form /> Component Testing", () => {
                     {
                         name: usernameName,
                         label: usernameLabel,
+                        errors: [
+                            {
+                                validator: (value: string) => value.length <= 5,
+                                message: usernameMustHaveMoreThanFiveCharactersErrorMessage
+                            },
+                        ],
                     },
                     {
                         name: passwordName,
                         label: passwordLabel,
+                        errors: [],
                     }
                 ]}
                 onSubmit={onSubmitStub}

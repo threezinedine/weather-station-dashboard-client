@@ -2,6 +2,7 @@ import React, {useState} from "react"
 
 import FormProps, {
     FormFieldProps,
+    FormFieldErrorProps,
     FormFieldResponseProps,
 } from "./FormProps"
 
@@ -22,6 +23,8 @@ const Form: React.FC<FormProps> = ({
         }, response)
         return response
     })
+
+    const [errorMessages, setErrorMessages] = useState(new Array(response.length).fill(""))
 
     const updateValue = (name: string, value: string): void => {
         const newResponse = JSON.parse(JSON.stringify(response))
@@ -48,8 +51,22 @@ const Form: React.FC<FormProps> = ({
                                 onChange={(evt): void => {
                                     updateValue(field.name, evt.target.value)  
                                 }}
+                                onBlur={(): void => {
+                                    const { errors } = fields[index]
+
+                                    errors.forEach((error: FormFieldErrorProps) => {
+                                        if (error.validator(response[index].value)) {
+                                            const newErrorMessages = [...errorMessages]
+                                            newErrorMessages[index] = error.message
+                                            setErrorMessages(newErrorMessages)
+                                        }
+                                    })
+                                }}
                                 data-testid={field.name} 
                             /> 
+                            <div>
+                                { errorMessages[index] }
+                            </div>
                         </div>
                     ))
             }

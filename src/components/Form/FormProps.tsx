@@ -1,6 +1,13 @@
+interface FormFieldErrorProps {
+    validator: (value: string) => boolean
+    message: string
+}
+
+
 interface FormFieldProps {
     name: string 
     label: string
+    errors: FormFieldErrorProps[]
 }
 
 
@@ -18,5 +25,6 @@ export default interface FormProps {
 
 export type {
     FormFieldProps,
+    FormFieldErrorProps,
     FormFieldResponseProps,
 }
