@@ -50,7 +50,7 @@ const Form: React.FC<FormProps> = ({
             }
             <div>
                 <button
-                    data-testid="loginBtn"
+                    data-testid="submitBtn"
                     onClick={() => {
                         const data: FormFieldResponseProps[] = []
                         onSubmit(data)
