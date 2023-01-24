@@ -53,7 +53,7 @@ describe("The <Form /> Component Testing", () => {
         expect(screen.getByTestId(usernameName)).toHaveAttribute(valueAttribute, testUsername)
     })
 
-    it.skip("should run the onSubmit component when the loginBtn is clicked", () => {
+    it("should run the onSubmit component when the loginBtn is clicked", () => {
         userEvent.type(screen.getByTestId(usernameName), testUsername)
         userEvent.type(screen.getByTestId(usernameName), testPassword)
         userEvent.click(screen.getByTestId(submitButtonTestId))
