@@ -12,6 +12,7 @@ import {
 
 describe("The <Form /> Component Testing", () => {
     const onSubmitStub = jest.fn()
+    const onSubmitErrorStub = jest.fn()
 
     const valueAttribute = "value"
 
@@ -55,6 +56,7 @@ describe("The <Form /> Component Testing", () => {
                     }
                 ]}
                 onSubmit={onSubmitStub}
+                onSubmitError={onSubmitErrorStub}
             />
         )
     })
@@ -94,11 +96,27 @@ describe("The <Form /> Component Testing", () => {
         expect(screen.getByText(usernameMustHaveMoreThanFiveCharactersErrorMessage))
     })
 
-    it('should appear the max characters when the > 10 characters value is enter into the input then be blurred.', () => {
-        userEvent.type(screen.getByTestId(usernameName), testUsernameWithMoreThanTenCharacters)
+    it('should call the onSubmitError when the min characters when the < 5 characters value is enter into the input then be blurred.', () => {
+        userEvent.type(screen.getByTestId(usernameName), testUsernameWithLessThanFiveCharacters)
         userEvent.tab()
 
-        expect(screen.getByText(usernameMustHaveLessThanTenCharactersErrorMesssage))
+        expect(screen.getByText(usernameMustHaveMoreThanFiveCharactersErrorMessage))
+    })
+
+    it('should appear the max characters when the > 10 characters value is enter into the input then be blurred.', () => {
+        userEvent.type(screen.getByTestId(usernameName), testUsernameWithMoreThanTenCharacters)
+        userEvent.click(screen.getByTestId(submitButtonTestId))
+
+        expect(onSubmitErrorStub).toHaveBeenCalledWith([
+            {
+                name: usernameName,
+                errorMessage: [usernameMustHaveMoreThanFiveCharactersErrorMessage,],
+            },
+            {
+                name: passwordName,
+                errorMessage: [],
+            },
+        ])
     })
 
     const enterUsernameAndPassword = (): void => {
