@@ -1,6 +1,6 @@
 import {
     getComponentByTestId, 
-} from '../utils'
+} from "../utils"
 
 
 describe("Login page testing", () => {
