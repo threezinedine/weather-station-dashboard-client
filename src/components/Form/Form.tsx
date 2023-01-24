@@ -51,6 +51,9 @@ const Form: React.FC<FormProps> = ({
                                 value={field.value}
                                 onChange={(evt): void => {
                                     updateValue(field.name, evt.target.value)  
+                                    const newErrorMessages = [...errorMessages]
+                                    newErrorMessages[index] = ""
+                                    setErrorMessages(newErrorMessages)
                                 }}
                                 onBlur={(): void => {
                                     const { errors } = fields[index]
