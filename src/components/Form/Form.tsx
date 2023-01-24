@@ -52,8 +52,7 @@ const Form: React.FC<FormProps> = ({
                 <button
                     data-testid="submitBtn"
                     onClick={() => {
-                        const data: FormFieldResponseProps[] = []
-                        onSubmit(data)
+                        onSubmit(response)
                     }}
                 >
                     Login

@@ -55,7 +55,7 @@ describe("The <Form /> Component Testing", () => {
 
     it("should run the onSubmit component when the loginBtn is clicked", () => {
         userEvent.type(screen.getByTestId(usernameName), testUsername)
-        userEvent.type(screen.getByTestId(usernameName), testPassword)
+        userEvent.type(screen.getByTestId(passwordName), testPassword)
         userEvent.click(screen.getByTestId(submitButtonTestId))
     
         expect(onSubmitStub).toHaveBeenCalledWith([
