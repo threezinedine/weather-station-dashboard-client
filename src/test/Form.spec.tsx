@@ -49,25 +49,28 @@ describe("The <Form /> Component Testing", () => {
     })
 
     it("should update the username input when the user typing into the document", () => {
-        userEvent.type(screen.getByTestId(usernameName), testUsername)
+        enterUsernameAndPassword()
         expect(screen.getByTestId(usernameName)).toHaveAttribute(valueAttribute, testUsername)
     })
 
     it("should run the onSubmit component when the loginBtn is clicked", () => {
-        userEvent.type(screen.getByTestId(usernameName), testUsername)
-        userEvent.type(screen.getByTestId(passwordName), testPassword)
-        userEvent.click(screen.getByTestId(submitButtonTestId))
-    
+        enterUsernameAndPassword()
         expect(onSubmitStub).toHaveBeenCalledWith([
             {
-                name: "username",
-                value: "threezinedine"
+                name: usernameName,
+                value: testUsername 
             },
             {
-                name: "password",
-                value: "threezinedine"
+                name: passwordName,
+                value: testPassword 
             }
         ])
 
     })
+
+    const enterUsernameAndPassword = (): void => {
+        userEvent.type(screen.getByTestId(usernameName), testUsername)
+        userEvent.type(screen.getByTestId(passwordName), testPassword)
+        userEvent.click(screen.getByTestId(submitButtonTestId))
+    }
 })
