@@ -8,6 +8,7 @@ module.exports = {
         "plugin:react/recommended",
         "plugin:@typescript-eslint/recommended"
 	   ],
+    "ignorePatterns": ["src/App.tsx", "src/index.tsx", "src/reportWebVitals.ts"],
 	   "overrides": [
 	   ],
 	   "parser": "@typescript-eslint/parser",
