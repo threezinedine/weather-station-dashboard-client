@@ -8,6 +8,9 @@ import userEvent from "@testing-library/user-event"
 import { 
     Form,
 } from "components"
+import {
+    FORM_SUBMIT_BUTTON_TEST_ID,
+} from 'const'
 
 
 describe("The <Form /> Component Testing", () => {
@@ -20,7 +23,6 @@ describe("The <Form /> Component Testing", () => {
     const usernameLabel = "Username"
     const passwordName = "password"
     const passwordLabel = "Password"
-    const submitButtonTestId = "submitBtn"
 
     const testUsername = "threezinedine"
     const testPassword = "threezinedine"
@@ -64,7 +66,7 @@ describe("The <Form /> Component Testing", () => {
     it("should display the 2 components that have data-testid (that match with the input parameters)", () => {
         expect(screen.getByTestId(usernameName)).toBeInTheDocument()
         expect(screen.getByTestId(usernameName)).toBeInTheDocument()
-        expect(screen.getByTestId(submitButtonTestId)).toBeInTheDocument()
+        expect(screen.getByTestId(FORM_SUBMIT_BUTTON_TEST_ID)).toBeInTheDocument()
         expect(screen.getByText(usernameLabel)).toBeInTheDocument()
         expect(screen.getByText(passwordLabel)).toBeInTheDocument()
     })
@@ -116,6 +118,6 @@ describe("The <Form /> Component Testing", () => {
     const enterUsernameAndPasswordThenSubmit = (username: string, password: string): void => {
         userEvent.type(screen.getByTestId(usernameName), username)
         userEvent.type(screen.getByTestId(passwordName), password)
-        userEvent.click(screen.getByTestId(submitButtonTestId))
+        userEvent.click(screen.getByTestId(FORM_SUBMIT_BUTTON_TEST_ID))
     }
 })

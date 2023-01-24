@@ -6,6 +6,11 @@ import FormProps, {
     FormFieldResponseProps,
 } from "./FormProps"
 
+import {
+    EMPTY_STRING,
+    FORM_SUBMIT_BUTTON_TEST_ID,
+} from 'const'
+
 
 const Form: React.FC<FormProps> = ({
     fields, 
@@ -17,7 +22,7 @@ const Form: React.FC<FormProps> = ({
         fields.reduce((prev: FormFieldResponseProps[], curr: FormFieldProps): FormFieldResponseProps[] => {
             prev.push({
                 name: curr.name,
-                value: ""
+                value: EMPTY_STRING
             })
             
             return prev
@@ -25,7 +30,7 @@ const Form: React.FC<FormProps> = ({
         return response
     })
 
-    const [errorMessages, setErrorMessages] = useState(new Array(response.length).fill(""))
+    const [errorMessages, setErrorMessages] = useState(new Array(response.length).fill(EMPTY_STRING))
 
     const updateValue = (name: string, value: string): void => {
         const newResponse = JSON.parse(JSON.stringify(response))
@@ -35,6 +40,18 @@ const Form: React.FC<FormProps> = ({
             }
         }
         setResponse(newResponse)
+    }
+
+    const removeErrorMessageByIndex = (index: number): void => {
+        const newErrorMessages = [...errorMessages]
+        newErrorMessages[index] = EMPTY_STRING
+        setErrorMessages(newErrorMessages)
+    }
+
+    const setErrorMessageByIndex = (index: number, message: string): void => {
+        const newErrorMessages = [...errorMessages]
+        newErrorMessages[index] = message
+        setErrorMessages(newErrorMessages)
     }
 
     return (
@@ -51,18 +68,14 @@ const Form: React.FC<FormProps> = ({
                                 value={field.value}
                                 onChange={(evt): void => {
                                     updateValue(field.name, evt.target.value)  
-                                    const newErrorMessages = [...errorMessages]
-                                    newErrorMessages[index] = ""
-                                    setErrorMessages(newErrorMessages)
+                                    removeErrorMessageByIndex(index)
                                 }}
                                 onBlur={(): void => {
                                     const { errors } = fields[index]
 
                                     errors.forEach((error: FormFieldErrorProps) => {
                                         if (error.validator(response[index].value)) {
-                                            const newErrorMessages = [...errorMessages]
-                                            newErrorMessages[index] = error.message
-                                            setErrorMessages(newErrorMessages)
+                                            setErrorMessageByIndex(index, error.message)
                                         }
                                     })
                                 }}
@@ -76,12 +89,12 @@ const Form: React.FC<FormProps> = ({
             }
             <div>
                 <button
-                    data-testid="submitBtn"
+                    data-testid={FORM_SUBMIT_BUTTON_TEST_ID}
                     onClick={() => {
-                        if (errorMessages.every((errorMessage: string) => errorMessage === "")) {
+                        if (checkWhetherAllMessagesAreNotEmptyString(errorMessages)) {
                             onSubmit(response)
                         } else {
-                            onSubmitError(errorMessages.filter((errorMessage: string) => errorMessage !== ""))
+                            onSubmitError(filterAllEmtryStringMessagesInTheArray(errorMessages))
                         }
                     }}
                 >
@@ -90,6 +103,15 @@ const Form: React.FC<FormProps> = ({
             </div>
         </div>
     )
+}
+
+
+const checkWhetherAllMessagesAreNotEmptyString = (messages: string[]): boolean => {
+    return messages.every((message: string) => message === EMPTY_STRING)
+}
+
+const filterAllEmtryStringMessagesInTheArray = (messages: string[]): string[] => {
+    return messages.filter((message: string) => message !== EMPTY_STRING)
 }
 
 
