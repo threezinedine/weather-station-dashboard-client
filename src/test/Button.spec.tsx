@@ -10,7 +10,7 @@ import {
 
 
 describe("Testing button", () => {
-    it('should have the button text', () => {
+    it("should have the button text", () => {
         render(<Button />)
 
         expect(screen.getByText("Button")).toBeInTheDocument()

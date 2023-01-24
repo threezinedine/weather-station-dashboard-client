@@ -22,7 +22,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "e2e": "cypress open",
-    "eslint": "eslint src/components --ext .ts,.tsx"
+    "eslint": "eslint src/components src/test --ext .ts,.tsx"
   },
   "eslintConfig": {
     "extends": [
