@@ -25,8 +25,10 @@ describe("The <Form /> Component Testing", () => {
     const testPassword = "threezinedine"
 
     const testUsernameWithLessThanFiveCharacters = "thre"
+    const testUsernameWithMoreThanTenCharacters = "threezinedinetesting"
 
     const usernameMustHaveMoreThanFiveCharactersErrorMessage = "Username must have more than five characters."
+    const usernameMustHaveLessThanTenCharactersErrorMesssage = "Username must have less than ten characters."
 
     beforeEach(() => {
         render(
@@ -39,6 +41,10 @@ describe("The <Form /> Component Testing", () => {
                             {
                                 validator: (value: string) => value.length <= 5,
                                 message: usernameMustHaveMoreThanFiveCharactersErrorMessage
+                            },
+                            {
+                                validator: (value: string) => value.length >= 10,
+                                message: usernameMustHaveLessThanTenCharactersErrorMesssage
                             },
                         ],
                     },
@@ -86,6 +92,13 @@ describe("The <Form /> Component Testing", () => {
         userEvent.tab()
 
         expect(screen.getByText(usernameMustHaveMoreThanFiveCharactersErrorMessage))
+    })
+
+    it('should appear the max characters when the > 10 characters value is enter into the input then be blurred.', () => {
+        userEvent.type(screen.getByTestId(usernameName), testUsernameWithMoreThanTenCharacters)
+        userEvent.tab()
+
+        expect(screen.getByText(usernameMustHaveLessThanTenCharactersErrorMesssage))
     })
 
     const enterUsernameAndPassword = (): void => {
