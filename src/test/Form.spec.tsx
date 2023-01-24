@@ -70,12 +70,12 @@ describe("The <Form /> Component Testing", () => {
     })
 
     it("should update the username input when the user typing into the document", () => {
-        enterUsernameAndPassword()
+        enterUsernameAndPasswordThenSubmit(testUsername, testPassword)
         expect(screen.getByTestId(usernameName)).toHaveAttribute(valueAttribute, testUsername)
     })
 
     it("should run the onSubmit component when the loginBtn is clicked", () => {
-        enterUsernameAndPassword()
+        enterUsernameAndPasswordThenSubmit(testUsername, testPassword)
         expect(onSubmitStub).toHaveBeenCalledWith([
             {
                 name: usernameName,
@@ -89,40 +89,33 @@ describe("The <Form /> Component Testing", () => {
 
     })
 
-    it('should appear the min characters when the < 5 characters value is enter into the input then be blurred.', () => {
-        userEvent.type(screen.getByTestId(usernameName), testUsernameWithLessThanFiveCharacters)
-        userEvent.tab()
-
+    it("should appear the min characters when the < 5 characters value is enter into the input then be blurred.", () => {
+        enterUsernameAndPasswordThenSubmit(testUsernameWithLessThanFiveCharacters, testPassword)
         expect(screen.getByText(usernameMustHaveMoreThanFiveCharactersErrorMessage))
     })
 
-    it('should call the onSubmitError when the min characters when the < 5 characters value is enter into the input then be blurred.', () => {
-        userEvent.type(screen.getByTestId(usernameName), testUsernameWithLessThanFiveCharacters)
-        userEvent.tab()
-
-        expect(screen.getByText(usernameMustHaveMoreThanFiveCharactersErrorMessage))
+    it("should call onSubmitError when the > 20 characters value is enter into the input then be blurred.", () => {
+        enterUsernameAndPasswordThenSubmit(testUsernameWithMoreThanTwentyCharacters, testPassword)
+        expect(screen.getByText(usernameMustHaveLessThanTwentyCharactersErrorMesssage))
     })
 
-    it('should call onSubmitError when the > 20 characters value is enter into the input then be blurred.', () => {
-        userEvent.type(screen.getByTestId(usernameName), testUsernameWithLessThanFiveCharacters)
-        userEvent.click(screen.getByTestId(submitButtonTestId))
-
+    it("should call the onSubmitError when the min characters when the < 5 characters value is enter into the input then be blurred.", () => {
+        enterUsernameAndPasswordThenSubmit(testUsernameWithLessThanFiveCharacters, testPassword)
         expect(onSubmitErrorStub).toHaveBeenCalledWith([
             usernameMustHaveMoreThanFiveCharactersErrorMessage,
         ])
     })
 
-    it('should not display the error when the input value is valid again', () => {
-        userEvent.type(screen.getByTestId(usernameName), testUsernameWithMoreThanTwentyCharacters)
-        userEvent.click(screen.getByTestId(submitButtonTestId))
-        userEvent.type(screen.getByTestId(usernameName), testUsername)
+    it("should not display the error when the input value is valid again", () => {
+        enterUsernameAndPasswordThenSubmit(testUsernameWithLessThanFiveCharacters, testPassword)
+        enterUsernameAndPasswordThenSubmit(testUsername, testPassword)
 
         expect(screen.queryByText((usernameMustHaveLessThanTwentyCharactersErrorMesssage))).toBeNull()
     })
 
-    const enterUsernameAndPassword = (): void => {
-        userEvent.type(screen.getByTestId(usernameName), testUsername)
-        userEvent.type(screen.getByTestId(passwordName), testPassword)
+    const enterUsernameAndPasswordThenSubmit = (username: string, password: string): void => {
+        userEvent.type(screen.getByTestId(usernameName), username)
+        userEvent.type(screen.getByTestId(passwordName), password)
         userEvent.click(screen.getByTestId(submitButtonTestId))
     }
 })
