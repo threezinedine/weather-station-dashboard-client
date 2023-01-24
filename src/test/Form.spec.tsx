@@ -46,6 +46,8 @@ describe("The <Form /> Component Testing", () => {
         expect(screen.getByTestId(usernameName)).toBeInTheDocument()
         expect(screen.getByTestId(usernameName)).toBeInTheDocument()
         expect(screen.getByTestId(submitButtonTestId)).toBeInTheDocument()
+        expect(screen.getByTestId(usernameLabel)).toBeInTheDocument()
+        expect(screen.getByTestId(passwordLabel)).toBeInTheDocument()
     })
 
     it("should update the username input when the user typing into the document", () => {
