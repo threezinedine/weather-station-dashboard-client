@@ -18,6 +18,13 @@ const Form: React.FC<FormProps> = ({
                             data-testid={field.name} /> 
                     ))
             }
+            <div>
+                <button
+                    data-testid="loginBtn"
+                >
+                    Login
+                </button>  
+            </div>
         </div>
     )
 }
