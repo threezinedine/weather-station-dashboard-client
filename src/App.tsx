@@ -8,7 +8,18 @@ import {
 const App: React.FC = () => {
     return (
         <div>
-            <Form />
+            <Form 
+                fields={[
+                    {
+                        name: "username",
+                        label: "Username",
+                    },
+                    {
+                        name: "password",
+                        label: "Password",
+                    }
+                ]}
+            />
         </div>
     )
 }

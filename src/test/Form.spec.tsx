@@ -28,5 +28,6 @@ describe('The <Form /> Component Testing', () => {
 
         expect(screen.getByTestId("username")).toBeInTheDocument()
         expect(screen.getByTestId("password")).toBeInTheDocument()
+        expect(screen.getByTestId("loginBtn")).toBeInTheDocument()
     })
 })
