@@ -38,14 +38,19 @@ const Form: React.FC<FormProps> = ({
             { 
                 response.map((field: FormFieldResponseProps, index: number) => 
                     (
-                        <input 
+                        <div
                             key={index}
-                            value={field.value}
-                            onChange={(evt): void => {
-                                updateValue(field.name, evt.target.value)  
-                            }}
-                            data-testid={field.name} 
-                        /> 
+                        >
+                            <label htmlFor={field.name}>{ fields[index].label }</label>
+                            <input 
+                                name={field.name}
+                                value={field.value}
+                                onChange={(evt): void => {
+                                    updateValue(field.name, evt.target.value)  
+                                }}
+                                data-testid={field.name} 
+                            /> 
+                        </div>
                     ))
             }
             <div>
