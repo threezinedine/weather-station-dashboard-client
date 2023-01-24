@@ -1,14 +1,19 @@
+import {
+    getComponentByTestId, 
+} from '../utils'
+
+
 describe("Login page testing", () => {
     it("should have the login page", () => {
         cy.visit("http://localhost:3000/login")
         
-        cy.get("[data-testid=\"username\"]")
+        getComponentByTestId("username")
             .type("threezinedine")
 
-        cy.get("[data-testid=\"password\"]")
+        getComponentByTestId("password")
             .type("threezinedine")
 
-        cy.get("[data-testid=\"loginBtn\"]")
+        getComponentByTestId("loginBtn")
             .click()
     })
 })
