@@ -103,13 +103,21 @@ describe("The <Form /> Component Testing", () => {
         expect(screen.getByText(usernameMustHaveMoreThanFiveCharactersErrorMessage))
     })
 
-    it('should appear the max characters when the > 10 characters value is enter into the input then be blurred.', () => {
+    it('should call onSubmitError when the > 20 characters value is enter into the input then be blurred.', () => {
         userEvent.type(screen.getByTestId(usernameName), testUsernameWithLessThanFiveCharacters)
         userEvent.click(screen.getByTestId(submitButtonTestId))
 
         expect(onSubmitErrorStub).toHaveBeenCalledWith([
             usernameMustHaveMoreThanFiveCharactersErrorMessage,
         ])
+    })
+
+    it('should not display the error when the input value is valid again', () => {
+        userEvent.type(screen.getByTestId(usernameName), testUsernameWithMoreThanTwentyCharacters)
+        userEvent.click(screen.getByTestId(submitButtonTestId))
+        userEvent.type(screen.getByTestId(usernameName), testUsername)
+
+        expect(screen.queryByText((usernameMustHaveLessThanTwentyCharactersErrorMesssage))).toBeNull()
     })
 
     const enterUsernameAndPassword = (): void => {
