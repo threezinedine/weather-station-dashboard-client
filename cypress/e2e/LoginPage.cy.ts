@@ -8,7 +8,7 @@ describe("Login page testing", () => {
         cy.get("[data-testid=\"password\"]")
             .type("threezinedine")
 
-        cy.get("[data-testid=\"login\"]")
+        cy.get("[data-testid=\"loginBtn\"]")
             .click()
     })
 })
