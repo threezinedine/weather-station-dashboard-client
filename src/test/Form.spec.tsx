@@ -32,6 +32,29 @@ describe('The <Form /> Component Testing', () => {
         expect(screen.getByTestId("loginBtn")).toBeInTheDocument()
     })
 
+    it('should update the username input when the user typing into the document', () => {
+        const onSubmitStub = jest.fn()
+
+        render(
+            <Form 
+                fields={[
+                    {
+                        name: "username",
+                        label: "Username",
+                    },
+                    {
+                        name: "password",
+                        label: "Password",
+                    }
+                ]}
+                onSubmit={onSubmitStub}
+            />
+        )
+        userEvent.type(screen.getByTestId("username"), "threezinedine")
+
+        expect(screen.getByTestId("username")).toHaveAttribute("value", "threezinedine")
+    })
+
     it.skip('should run the onSubmit component when the loginBtn is clicked', () => {
         const onSubmitStub = jest.fn()
 

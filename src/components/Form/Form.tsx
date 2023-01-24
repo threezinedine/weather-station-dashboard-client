@@ -1,4 +1,4 @@
-import React from "react"
+import React, {useState} from "react"
 
 import FormProps, {
     FormFieldProps,
@@ -10,13 +10,40 @@ const Form: React.FC<FormProps> = ({
     fields, 
     onSubmit,
 }) => {
+    const [response, setResponse] = useState((): FormFieldResponseProps[] => {
+        const response: FormFieldResponseProps[] = []
+        fields.reduce((prev: FormFieldResponseProps[], curr: FormFieldProps): FormFieldResponseProps[] => {
+            prev.push({
+                name: curr.name,
+                value: ""
+            })
+            
+            return prev
+        }, response)
+        return response
+    })
+
+    const updateValue = (name: string, value: string): void => {
+        const newResponse = JSON.parse(JSON.stringify(response))
+        for (let i=0; i<newResponse.length; i++) {
+            if (newResponse[i].name === name) {
+                newResponse[i].value = value
+            }
+        }
+        setResponse(newResponse)
+    }
+
     return (
         <div>
             { 
-                fields.map((field: FormFieldProps, index: number) => 
+                response.map((field: FormFieldResponseProps, index: number) => 
                     (
                         <input 
                             key={index}
+                            value={field.value}
+                            onChange={(evt): void => {
+                                updateValue(field.name, evt.target.value)  
+                            }}
                             data-testid={field.name} 
                         /> 
                     ))
