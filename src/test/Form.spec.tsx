@@ -24,6 +24,10 @@ describe("The <Form /> Component Testing", () => {
     const testUsername = "threezinedine"
     const testPassword = "threezinedine"
 
+    const testUsernameWithLessThanFiveCharacters = "thre"
+
+    const usernameMustHaveMoreThanFiveCharactersErrorMessage = "Username must have more than five characters."
+
     beforeEach(() => {
         render(
             <Form 
@@ -68,6 +72,13 @@ describe("The <Form /> Component Testing", () => {
             }
         ])
 
+    })
+
+    it('should appear the min characters when the < 5 characters value is enter into the input then be blurred.', () => {
+        userEvent.type(screen.getByTestId(usernameName), testUsernameWithLessThanFiveCharacters)
+        userEvent.tab()
+
+        expect(screen.getByText(usernameMustHaveMoreThanFiveCharactersErrorMessage))
     })
 
     const enterUsernameAndPassword = (): void => {
