@@ -10,6 +10,7 @@ import FormProps, {
 const Form: React.FC<FormProps> = ({
     fields, 
     onSubmit,
+    onSubmitError,
 }) => {
     const [response, setResponse] = useState((): FormFieldResponseProps[] => {
         const response: FormFieldResponseProps[] = []
@@ -74,7 +75,11 @@ const Form: React.FC<FormProps> = ({
                 <button
                     data-testid="submitBtn"
                     onClick={() => {
-                        onSubmit(response)
+                        if (errorMessages.every((errorMessage: string) => errorMessage === "")) {
+                            onSubmit(response)
+                        } else {
+                            onSubmitError(errorMessages.filter((errorMessage: string) => errorMessage !== ""))
+                        }
                     }}
                 >
                     Login

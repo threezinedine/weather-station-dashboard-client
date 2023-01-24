@@ -26,10 +26,10 @@ describe("The <Form /> Component Testing", () => {
     const testPassword = "threezinedine"
 
     const testUsernameWithLessThanFiveCharacters = "thre"
-    const testUsernameWithMoreThanTenCharacters = "threezinedinetesting"
+    const testUsernameWithMoreThanTwentyCharacters = "threezinedinetesting"
 
     const usernameMustHaveMoreThanFiveCharactersErrorMessage = "Username must have more than five characters."
-    const usernameMustHaveLessThanTenCharactersErrorMesssage = "Username must have less than ten characters."
+    const usernameMustHaveLessThanTwentyCharactersErrorMesssage = "Username must have less than twenty characters."
 
     beforeEach(() => {
         render(
@@ -44,8 +44,8 @@ describe("The <Form /> Component Testing", () => {
                                 message: usernameMustHaveMoreThanFiveCharactersErrorMessage
                             },
                             {
-                                validator: (value: string) => value.length >= 10,
-                                message: usernameMustHaveLessThanTenCharactersErrorMesssage
+                                validator: (value: string) => value.length >= 20,
+                                message: usernameMustHaveLessThanTwentyCharactersErrorMesssage
                             },
                         ],
                     },
@@ -104,18 +104,11 @@ describe("The <Form /> Component Testing", () => {
     })
 
     it('should appear the max characters when the > 10 characters value is enter into the input then be blurred.', () => {
-        userEvent.type(screen.getByTestId(usernameName), testUsernameWithMoreThanTenCharacters)
+        userEvent.type(screen.getByTestId(usernameName), testUsernameWithLessThanFiveCharacters)
         userEvent.click(screen.getByTestId(submitButtonTestId))
 
         expect(onSubmitErrorStub).toHaveBeenCalledWith([
-            {
-                name: usernameName,
-                errorMessage: [usernameMustHaveMoreThanFiveCharactersErrorMessage,],
-            },
-            {
-                name: passwordName,
-                errorMessage: [],
-            },
+            usernameMustHaveMoreThanFiveCharactersErrorMessage,
         ])
     })
 

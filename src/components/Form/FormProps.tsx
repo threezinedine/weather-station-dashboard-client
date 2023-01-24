@@ -20,6 +20,7 @@ interface FormFieldResponseProps {
 export default interface FormProps {
     fields: FormFieldProps[]
     onSubmit: (data: FormFieldResponseProps[]) => void
+    onSubmitError: (errorMessages: string[]) => void
 }
 
 
