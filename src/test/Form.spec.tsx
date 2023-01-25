@@ -59,6 +59,7 @@ describe("The <Form /> Component Testing", () => {
                     {
                         name: passwordName,
                         label: passwordLabel,
+                        password: true,
                         errors: [
                             {
                                 validator: (value: string, fields: FormFieldResponseProps[]): boolean => {
@@ -87,6 +88,10 @@ describe("The <Form /> Component Testing", () => {
         expect(screen.getByTestId(FORM_SUBMIT_BUTTON_TEST_ID)).toBeInTheDocument()
         expect(screen.getByText(usernameLabel)).toBeInTheDocument()
         expect(screen.getByText(passwordLabel)).toBeInTheDocument()
+    })
+
+    it("should display the type of the password is password", () => {
+        expect(screen.getByText(passwordLabel)).toHaveAttribute("type", "password")
     })
 
     it("should update the username input when the user typing into the document", () => {
