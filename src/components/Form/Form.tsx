@@ -66,6 +66,7 @@ const Form: React.FC<FormProps> = ({
                             <input 
                                 name={field.name}
                                 value={field.value}
+                                type={ fields[index].password ? "password" : "text" }
                                 onChange={(evt): void => {
                                     updateValue(field.name, evt.target.value)  
                                     removeErrorMessageByIndex(index)

@@ -91,7 +91,7 @@ describe("The <Form /> Component Testing", () => {
     })
 
     it("should display the type of the password is password", () => {
-        expect(screen.getByText(passwordLabel)).toHaveAttribute("type", "password")
+        expect(screen.getByTestId(passwordName)).toHaveAttribute("type", "password")
     })
 
     it("should update the username input when the user typing into the document", () => {

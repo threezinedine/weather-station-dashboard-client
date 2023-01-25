@@ -8,6 +8,7 @@ interface FormFieldProps {
     name: string 
     label: string
     errors: FormFieldErrorProps[]
+    password?: boolean
 }
 
 
