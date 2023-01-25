@@ -31,6 +31,7 @@ const App: React.FC = () => {
                     {
                         name: "password",
                         label: "Password",
+                        password: true,
                         errors: [
                             {
                                 validator: (value: string) => value.length <= 5,
