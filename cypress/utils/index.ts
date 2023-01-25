@@ -18,3 +18,8 @@ export const typeWithTestId = (testid: string, text: string) => {
         .type(`{selectall}${text}`)
         .blur()
 }
+
+
+export const visitRoute = (route: string) => {
+    cy.visit(route)
+}

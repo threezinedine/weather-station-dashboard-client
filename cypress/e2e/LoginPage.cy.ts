@@ -1,4 +1,5 @@
 import {
+    visitRoute,
     typeWithTestId,
     checkTextExist,
     checkTextNotExist,
@@ -23,12 +24,14 @@ import {
     TEST_PASSWORD_WITH_SPECIAL_CHARACTER,
     PASSWORD_CANNOT_CONTAIN_THE_SPECIAL_CHARACTERS,
     TEST_PASSWORD,
+    LOGIN_ERROR_MESSAGE,
+    WAITING_TIME,
 } from "../constants"
 
 
 describe("Login page testing", () => {
     it("should have the login page", () => {
-        cy.visit(LOGIN_ROUTE)
+        visitRoute(LOGIN_ROUTE)
 
         typeWithTestId(USERNAME_DATA_TEST_ID, TEST_USERNAME_WITH_LESS_THAN_FIVE_CHARACTERS)
         checkTextExist(USERNAME_MUST_HAVE_MORE_THAN_FIVE_CHARACTERS_ERROR_MESSAGE)
@@ -46,6 +49,15 @@ describe("Login page testing", () => {
 
         typeWithTestId(PASSWORD_DATA_TEST_ID, TEST_PASSWORD_WITH_LESS_THAN_FIVE_CHARACTERS)
         checkTextExist(PASSWORD_MUST_HAVE_MORE_THAN_FIVE_CHARACTERS_ERROR_MESSAGE)
+
+        getComponentByTestId(SUBMIT_BUTTON_DATA_TEST_ID)
+            .click()
+
+        checkTextExist(LOGIN_ERROR_MESSAGE)
+        cy.wait(WAITING_TIME)
+            .then(() => {
+                checkTextNotExist(LOGIN_ERROR_MESSAGE)
+            })
 
         typeWithTestId(PASSWORD_DATA_TEST_ID, TEST_PASSWORD_WITH_MORE_THAN_TWENTY_CHARACTERS)
         checkTextNotExist(PASSWORD_MUST_HAVE_MORE_THAN_FIVE_CHARACTERS_ERROR_MESSAGE)

@@ -1,4 +1,6 @@
-import React from 'react'
+import React, {
+    useState,
+} from 'react'
 
 import { 
     Form,
@@ -6,6 +8,8 @@ import {
 
 
 const App: React.FC = () => {
+    const [errorMessage, setErrorMessage] = useState("")
+
     return (
         <div>
             <Form 
@@ -48,13 +52,19 @@ const App: React.FC = () => {
                         ],
                     }
                 ]}
+                submitLabel="Login"
                 onSubmit={() => {
                     console.log("Here")
                 }}
                 onSubmitError={() => {
-                    console.log("Here")
+                    setErrorMessage("Login error")
+
+                    setTimeout(() => {
+                        setErrorMessage("")
+                    }, 2000)
                 }}
             />
+            { errorMessage }
         </div>
     )
 }

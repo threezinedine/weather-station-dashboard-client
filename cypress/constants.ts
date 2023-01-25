@@ -24,3 +24,6 @@ export const PASSWORD_CANNOT_CONTAIN_THE_SPECIAL_CHARACTERS = "Password cannot c
 
 export const TEST_USERNAME = "threezinedine"
 export const TEST_PASSWORD = "threezinedine"
+
+export const LOGIN_ERROR_MESSAGE = "Login error"
+export const WAITING_TIME = 2000
