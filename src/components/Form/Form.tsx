@@ -74,7 +74,7 @@ const Form: React.FC<FormProps> = ({
                                     const { errors } = fields[index]
 
                                     errors.forEach((error: FormFieldErrorProps) => {
-                                        if (error.validator(response[index].value)) {
+                                        if (error.validator(response[index].value, response)) {
                                             setErrorMessageByIndex(index, error.message)
                                         }
                                     })

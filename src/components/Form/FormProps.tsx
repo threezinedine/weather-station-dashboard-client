@@ -1,5 +1,5 @@
 interface FormFieldErrorProps {
-    validator: (value: string) => boolean
+    validator: (value: string, fields: FormFieldResponseProps[]) => boolean
     message: string
 }
 

@@ -65,11 +65,12 @@ describe("The <Form /> Component Testing", () => {
                                     let result = false
                                     fields.forEach((field:FormFieldResponseProps) => {
                                         if (field.name === usernameName) {
-                                            result = value === field.value
+                                            result = value !== field.value
                                         }
                                     })
                                     return result
-                                }
+                                },
+                                message: passwordDoesNotMatchErrorMessage,
                             }
                         ],
                     }
@@ -119,7 +120,7 @@ describe("The <Form /> Component Testing", () => {
     })
 
     it("should call the onSubmitError when the min characters when the < 5 characters value is enter into the input then be blurred.", () => {
-        enterUsernameAndPasswordThenSubmit(testUsernameWithLessThanFiveCharacters, testPassword)
+        enterUsernameAndPasswordThenSubmit(testUsernameWithLessThanFiveCharacters, testUsernameWithLessThanFiveCharacters)
         expect(onSubmitErrorStub).toHaveBeenCalledWith([
             usernameMustHaveMoreThanFiveCharactersErrorMessage,
         ])
@@ -135,7 +136,7 @@ describe("The <Form /> Component Testing", () => {
     it("should display the not match error when the password is not same with the username", () => {
         enterUsernameAndPasswordThenSubmit(testUsername, testPasswordThatDoesNotMatchTheUsername)
 
-        expect(screen.queryByText((passwordDoesNotMatchErrorMessage))).toBeNull()
+        expect(screen.queryByText((passwordDoesNotMatchErrorMessage))).toBeInTheDocument()
     })
 
     const enterUsernameAndPasswordThenSubmit = (username: string, password: string): void => {
