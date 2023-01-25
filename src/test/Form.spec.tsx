@@ -8,6 +8,9 @@ import userEvent from "@testing-library/user-event"
 import { 
     Form,
 } from "components"
+import { 
+    FormFieldResponseProps,
+} from "components/Form"
 import {
     FORM_SUBMIT_BUTTON_TEST_ID,
 } from 'const'
@@ -28,10 +31,12 @@ describe("The <Form /> Component Testing", () => {
     const testPassword = "threezinedine"
 
     const testUsernameWithLessThanFiveCharacters = "thre"
+    const testPasswordThatDoesNotMatchTheUsername = "threezinedine1"
     const testUsernameWithMoreThanTwentyCharacters = "threezinedinetesting"
 
     const usernameMustHaveMoreThanFiveCharactersErrorMessage = "Username must have more than five characters."
     const usernameMustHaveLessThanTwentyCharactersErrorMesssage = "Username must have less than twenty characters."
+    const passwordDoesNotMatchErrorMessage = "Password does not match."
 
     beforeEach(() => {
         render(
@@ -54,7 +59,19 @@ describe("The <Form /> Component Testing", () => {
                     {
                         name: passwordName,
                         label: passwordLabel,
-                        errors: [],
+                        errors: [
+                            {
+                                validator: (value: string, fields: FormFieldResponseProps[]): boolean => {
+                                    let result = false
+                                    fields.forEach((field:FormFieldResponseProps) => {
+                                        if (field.name === usernameName) {
+                                            result = value === field.value
+                                        }
+                                    })
+                                    return result
+                                }
+                            }
+                        ],
                     }
                 ]}
                 onSubmit={onSubmitStub}
@@ -113,6 +130,12 @@ describe("The <Form /> Component Testing", () => {
         enterUsernameAndPasswordThenSubmit(testUsername, testPassword)
 
         expect(screen.queryByText((usernameMustHaveLessThanTwentyCharactersErrorMesssage))).toBeNull()
+    })
+
+    it("should display the not match error when the password is not same with the username", () => {
+        enterUsernameAndPasswordThenSubmit(testUsername, testPasswordThatDoesNotMatchTheUsername)
+
+        expect(screen.queryByText((passwordDoesNotMatchErrorMessage))).toBeNull()
     })
 
     const enterUsernameAndPasswordThenSubmit = (username: string, password: string): void => {
