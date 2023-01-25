@@ -26,6 +26,7 @@ describe("The <Form /> Component Testing", () => {
     const usernameLabel = "Username"
     const passwordName = "password"
     const passwordLabel = "Password"
+    const loginButtonText = "Submit"
 
     const testUsername = "threezinedine"
     const testPassword = "threezinedine"
@@ -86,6 +87,7 @@ describe("The <Form /> Component Testing", () => {
         expect(screen.getByTestId(usernameName)).toBeInTheDocument()
         expect(screen.getByTestId(usernameName)).toBeInTheDocument()
         expect(screen.getByTestId(FORM_SUBMIT_BUTTON_TEST_ID)).toBeInTheDocument()
+        expect(screen.getByText(loginButtonText)).toBeInTheDocument()
         expect(screen.getByText(usernameLabel)).toBeInTheDocument()
         expect(screen.getByText(passwordLabel)).toBeInTheDocument()
     })
