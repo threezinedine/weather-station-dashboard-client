@@ -15,6 +15,7 @@ import {
 const Form: React.FC<FormProps> = ({
     fields, 
     onSubmit,
+    submitLabel,
     onSubmitError,
 }) => {
     const [response, setResponse] = useState((): FormFieldResponseProps[] => {
@@ -99,7 +100,7 @@ const Form: React.FC<FormProps> = ({
                         }
                     }}
                 >
-                    Login
+                    { submitLabel }
                 </button>  
             </div>
         </div>

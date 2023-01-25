@@ -77,6 +77,7 @@ describe("The <Form /> Component Testing", () => {
                         ],
                     }
                 ]}
+                submitLabel={loginButtonText}
                 onSubmit={onSubmitStub}
                 onSubmitError={onSubmitErrorStub}
             />
