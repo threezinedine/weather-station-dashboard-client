@@ -31,4 +31,17 @@ describe('ErrorReducer test', () => {
 
         expect(finalState.errorMessages).toStrictEqual([firstErrorMessage, secondErrorMessage])
     })
+
+    it('should have remove the first errorMessage when have 2 errorMessages are stored in the errorMessages.', () => {
+        const firstErrorMessage = "Login error."
+        const secondErrorMessage = "Register error."
+
+        const initState: ErrorState = {
+            errorMessages: [firstErrorMessage, secondErrorMessage]
+        } 
+
+        const newState = ErrorReducer(initState, popErrorAction())
+
+        expect(newState.errorMessages).toStrictEqual([secondErrorMessage])
+    })
 })
