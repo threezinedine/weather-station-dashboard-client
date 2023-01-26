@@ -5,16 +5,27 @@ import {
 
 import LoginPage from "./LoginPage"
 import RegisterPage from "./RegisterPage"
+import { 
+    Wrapper,
+} from "./layouts"
 
 
 const router = createBrowserRouter([
     {
         path: "/login",
-        element: <LoginPage />,
+        element: (
+            <Wrapper>
+                <LoginPage /> 
+            </Wrapper>
+        ),
     },
     {
         path: "/register",
-        element: <RegisterPage />,
+        element: (
+            <Wrapper>
+                <RegisterPage />
+            </Wrapper>
+        ),
     }
 ])
 
