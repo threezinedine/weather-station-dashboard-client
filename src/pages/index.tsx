@@ -5,12 +5,21 @@ import {
 
 import LoginPage from "./LoginPage"
 import RegisterPage from "./RegisterPage"
+import HomePage from "./HomePage"
 import { 
     Wrapper,
 } from "./layouts"
 
 
 const router = createBrowserRouter([
+    {
+        path: "/",
+        element: (
+            <Wrapper>
+                <HomePage /> 
+            </Wrapper>
+        ),
+    },
     {
         path: "/login",
         element: (
