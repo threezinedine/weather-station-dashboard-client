@@ -4,7 +4,8 @@ import {
 
 
 export enum ErrorActionType {
-    ADD_ERROR_ACTION = "Add Error Action"
+    ADD_ERROR_ACTION = "Add Error Action",
+    POP_ERROR_ACTION = "Pop Error Action",
 }
 
 
@@ -14,4 +15,9 @@ export interface AddErrorAction extends Action {
 }
 
 
-export type ErrorAction = AddErrorAction
+export interface PopErrorAction extends Action {
+    type: ErrorActionType.POP_ERROR_ACTION
+}
+
+
+export type ErrorAction = AddErrorAction | PopErrorAction

@@ -3,6 +3,7 @@ import ErrorReducer, {
 } from "stores/Error"
 import { 
     addErrorAction,
+    popErrorAction,
 } from "stores/Error/actions"
 
 

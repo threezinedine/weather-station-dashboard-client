@@ -17,6 +17,11 @@ const reducer = (state: ErrorState = initialState, action: ErrorAction): ErrorSt
             ...state,
             errorMessages: [...state.errorMessages, action.payload]
         }
+    case ErrorActionType.POP_ERROR_ACTION:
+        return {
+            ...state,
+            errorMessages: state.errorMessages.slice(1)
+        }
     default:
         return state
     }
