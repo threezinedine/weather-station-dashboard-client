@@ -1,14 +1,19 @@
-import React, {
-    useState,
-} from "react"
+import React from "react"
+import {
+    useDispatch,
+} from "react-redux"
 
 import { 
     Form,
 } from "components"
+import { 
+    addErrorAction,
+    popErrorAction,
+} from "stores/Error/actions"
 
 
 const LoginPage: React.FC = () => {
-    const [errorMessage, setErrorMessage] = useState("")
+    const dispatch = useDispatch()
 
     return (
         <div>
@@ -57,14 +62,13 @@ const LoginPage: React.FC = () => {
                     console.log("Here")
                 }}
                 onSubmitError={() => {
-                    setErrorMessage("Login error")
+                    dispatch(addErrorAction("Login error"))
 
                     setTimeout(() => {
-                        setErrorMessage("")
+                        dispatch(popErrorAction())
                     }, 2000)
                 }}
             />
-            { errorMessage }
         </div>
     )
 }

@@ -1,6 +1,7 @@
-import React, {
-    useState,
-} from "react"
+import React from "react"
+import {
+    useDispatch,
+} from "react-redux"
 
 import { 
     Form,
@@ -8,10 +9,14 @@ import {
 import {
     FormFieldResponseProps,
 } from "components/Form"
+import { 
+    addErrorAction,
+    popErrorAction,
+} from "stores/Error/actions"
 
 
 const RegisterPage: React.FC = () => {
-    const [errorMessage, setErrorMessage] = useState("")
+    const dispath = useDispatch()
 
     return (
         <div>
@@ -79,14 +84,13 @@ const RegisterPage: React.FC = () => {
                     console.log("Here")
                 }}
                 onSubmitError={() => {
-                    setErrorMessage("Register error")
+                    dispath(addErrorAction("Register error"))
 
                     setTimeout(() => {
-                        setErrorMessage("")
+                        dispath(popErrorAction())
                     }, 2000)
                 }}
             />
-            { errorMessage }
         </div>
     )
 }
