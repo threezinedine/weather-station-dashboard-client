@@ -1,4 +1,5 @@
 export const LOGIN_ROUTE = "http://localhost:3000/login"
+export const HOME_ROUTE = "http://localhost:3000/"
 export const REGISTER_ROUTE = "http://localhost:3000/register"
 
 export const USERNAME_DATA_TEST_ID = "username"
