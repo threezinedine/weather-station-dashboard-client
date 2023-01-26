@@ -45,4 +45,14 @@ describe('ErrorReducer test', () => {
 
         expect(newState.errorMessages).toStrictEqual([secondErrorMessage])
     })
+
+    it('should do nothing when no error message in the reducer', () => {
+        const initState: ErrorState = {
+            errorMessages: []
+        } 
+
+        const newState = ErrorReducer(initState, popErrorAction())
+
+        expect(newState.errorMessages).toStrictEqual([])
+    })
 })
