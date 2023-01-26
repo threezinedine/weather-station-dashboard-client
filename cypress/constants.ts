@@ -31,4 +31,5 @@ export const TEST_USERNAME = "threezinedine"
 export const TEST_PASSWORD = "threezinedine"
 
 export const LOGIN_ERROR_MESSAGE = "Login error"
+export const REGISTER_ERROR_MESSAGE = "Register error"
 export const WAITING_TIME = 2000

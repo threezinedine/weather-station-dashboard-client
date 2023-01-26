@@ -28,6 +28,7 @@ import {
     VALID_PASSWORD_DOES_NOT_MATCH_ERROR_MESSAGE,
     TEST_PASSWORD,
     LOGIN_ERROR_MESSAGE,
+    REGISTER_ERROR_MESSAGE,
     WAITING_TIME,
 } from "../constants"
 
@@ -56,10 +57,10 @@ describe("Register page testing", () => {
         getComponentByTestId(SUBMIT_BUTTON_DATA_TEST_ID)
             .click()
 
-        checkTextExist(LOGIN_ERROR_MESSAGE)
+        checkTextExist(REGISTER_ERROR_MESSAGE)
         cy.wait(WAITING_TIME)
             .then(() => {
-                checkTextNotExist(LOGIN_ERROR_MESSAGE)
+                checkTextNotExist(REGISTER_ERROR_MESSAGE)
             })
 
         typeWithTestId(PASSWORD_DATA_TEST_ID, TEST_PASSWORD_WITH_MORE_THAN_TWENTY_CHARACTERS)

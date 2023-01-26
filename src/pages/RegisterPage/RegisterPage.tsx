@@ -5,6 +5,9 @@ import React, {
 import { 
     Form,
 } from "components"
+import {
+    FormFieldResponseProps,
+} from "components/Form"
 
 
 const RegisterPage: React.FC = () => {
@@ -50,6 +53,25 @@ const RegisterPage: React.FC = () => {
                                 message: "Password cannot contain the specical characters.",
                             },
                         ],
+                    },
+                    {
+                        name: "valid",
+                        label: "Password Validator",
+                        password: true,
+                        errors: [
+                            {
+                                validator: (value: string, fields: FormFieldResponseProps[]): boolean => {
+                                    let result = false 
+                                    fields.forEach((field: FormFieldResponseProps) => {
+                                        if (field.name === "password") {
+                                            result = field.value !== value
+                                        }
+                                    })
+                                    return result
+                                },
+                                message: "Valid password does not match.",
+                            },
+                        ],
                     }
                 ]}
                 submitLabel="Login"
@@ -57,7 +79,7 @@ const RegisterPage: React.FC = () => {
                     console.log("Here")
                 }}
                 onSubmitError={() => {
-                    setErrorMessage("Login error")
+                    setErrorMessage("Register error")
 
                     setTimeout(() => {
                         setErrorMessage("")
