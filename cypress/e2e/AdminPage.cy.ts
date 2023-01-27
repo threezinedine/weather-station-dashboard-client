@@ -112,6 +112,8 @@ describe("Admin page testing", () => {
         getComponentByTestId(ADD_STATION_TEST_ID)
             .click()
         typeWithTestId(ADD_STATION_KEY_TEST_ID, THIRD_STATION_STATION_KEY) 
+        getComponentByTestId(SUBMIT_ADD_STATION_KEY_TEST_ID)
+            .click()
 
         checkTextExist(STATION_KEY_DOES_NOT_EXIST_ERROR_MESSAGE)
     })

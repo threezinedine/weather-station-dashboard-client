@@ -5,6 +5,9 @@ import React, {
 import { 
     useNavigate,
 } from "react-router-dom"
+import {
+    useDispatch,
+} from "react-redux"
 
 import {
     StationType,
@@ -12,16 +15,22 @@ import {
     ADD_STATION_KEY_TEST_ID,
     SUBMIT_ADD_STATION_KEY_TEST_ID,
     ADD_STATION_TEST_ID,
+    ERROR_MESSAGE_TIME_OUT,
 } from "const"
 import {
     addStationByStationId,
     fetchAllStations,
     loadToken,
 } from "utils"
+import {
+    addErrorAction, 
+    popErrorAction,
+} from "stores/Error/actions"
 
 
 const AdminPage: React.FC = () => {
     const navigate = useNavigate()
+    const dispatch = useDispatch() 
     const [stations, setStations] = useState([])
     const [addStation, setAddStation] = useState(false)
     const [stationKey, setStationKey] = useState("")
@@ -78,7 +87,11 @@ const AdminPage: React.FC = () => {
                                     const token = loadToken()
                                     addStationByStationId(token, stationKey)
                                         .catch(err => {
-                                            console.log(err)
+                                            dispatch(addErrorAction(err.response.data.detail.msg))
+
+                                            setTimeout(() => {
+                                                dispatch(popErrorAction())
+                                            }, ERROR_MESSAGE_TIME_OUT)
                                         })
                                     setAddStation(!addStation)
                                 }}
