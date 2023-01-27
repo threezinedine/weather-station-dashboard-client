@@ -13,10 +13,7 @@ import {
     addErrorAction,
     popErrorAction,
 } from "stores/Error/actions"
-import api from "stores/api"
 import {
-    POST_METHOD,
-    LOGIN_API_ROUTE,
     HOME_ROUTE,
     HTTP_200_OK,
     ERROR_MESSAGE_TIME_OUT,
@@ -25,6 +22,7 @@ import {
 } from "const"
 import {
     getLoginFormFromFields,
+    handleErrorResponse,
     saveToken, sendLoginFormData,
 } from "utils"
 
@@ -84,12 +82,8 @@ const LoginPage: React.FC = () => {
                             }
                             navigate(HOME_ROUTE)
                         })
-                        .catch(() => {
-                            dispatch(addErrorAction(LOGIN_ERROR_MESSAGE))
-
-                            setTimeout(() => {
-                                dispatch(popErrorAction())
-                            }, ERROR_MESSAGE_TIME_OUT)
+                        .catch(err => {
+                            handleErrorResponse(err, dispatch)
                         })
 
                 }}

@@ -1,4 +1,6 @@
-import {FormFieldResponseProps} from "components/Form"
+import {
+    FormFieldResponseProps,
+} from "components/Form"
 import { 
     GET_METHOD,
     PUT_METHOD,
@@ -9,8 +11,13 @@ import {
     LOGIN_API_ROUTE,
     TOKEN_VALIDATE_API_ROUTE,
     GET_ALL_STATIONS_API_ROUTE,
+    ERROR_MESSAGE_TIME_OUT,
 } from "const"
 import api from "stores/api"
+import { 
+    addErrorAction,
+    popErrorAction,
+} from "stores/Error/actions"
 
 
 export const validateToken = async (token: string | null) => {
@@ -82,4 +89,13 @@ export const getLoginFormFromFields = (fields: FormFieldResponseProps[]): FormDa
     data.append("password", password)
 
     return data
+}
+
+
+export const handleErrorResponse = (err: any, dispatch: any) => {
+    dispatch(addErrorAction(err.response.data.detail.msg))
+
+    setTimeout(() => {
+        dispatch(popErrorAction())
+    }, ERROR_MESSAGE_TIME_OUT)
 }

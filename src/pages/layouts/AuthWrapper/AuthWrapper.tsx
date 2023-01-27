@@ -10,17 +10,13 @@ import {
 
 import AuthWrapperProps from "./AuthWrapperProps"
 import { 
-    TOKEN_ITEM,
     LOGIN_ROUTE,
 } from "const"
 import { 
     validateToken,
     loadToken,
+    handleErrorResponse,
 } from "utils"
-import { 
-    addErrorAction,
-    popErrorAction,
-} from "stores/Error/actions"
 
 
 const AuthWrapper: React.FC<AuthWrapperProps> = ({
@@ -33,11 +29,8 @@ const AuthWrapper: React.FC<AuthWrapperProps> = ({
         const token: string | null = loadToken()
         if (token) {
             validateToken(token)
-                .catch(() => {
-                    dispatch(addErrorAction("Session expired"))
-                    setTimeout(() => {
-                        dispatch(popErrorAction())
-                    }, 2000)
+                .catch(err => {
+                    handleErrorResponse(err, dispatch)
                     navigate(LOGIN_ROUTE)
                 })
         } else {

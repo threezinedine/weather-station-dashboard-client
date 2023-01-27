@@ -20,6 +20,7 @@ import {
 import {
     addStationByStationId,
     fetchAllStations,
+    handleErrorResponse,
     loadToken,
 } from "utils"
 import {
@@ -87,11 +88,7 @@ const AdminPage: React.FC = () => {
                                     const token = loadToken()
                                     addStationByStationId(token, stationKey)
                                         .catch(err => {
-                                            dispatch(addErrorAction(err.response.data.detail.msg))
-
-                                            setTimeout(() => {
-                                                dispatch(popErrorAction())
-                                            }, ERROR_MESSAGE_TIME_OUT)
+                                            handleErrorResponse(err, dispatch)
                                         })
                                     setAddStation(!addStation)
                                 }}

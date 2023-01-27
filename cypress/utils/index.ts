@@ -32,6 +32,8 @@ import {
     THIRD_STATION_PUBLISHING_TIME,
     THIRD_STATION_STATION_ID,
     THIRD_STATION_STATION_KEY,
+    LOGIN_ERROR_MESSAGE,
+    SESSION_EXPIRED_ERROR_MESSAGE,
 } from '../constants'
 
 
@@ -99,6 +101,12 @@ export const setupInvalidToken = () => {
     },
     {
         statusCode: HTTP_401_UNAUTHORIZED,
+        body: {
+            detail: {
+                loc: [],
+                msg: SESSION_EXPIRED_ERROR_MESSAGE,
+            }
+        }
     })
     window.localStorage.setItem(TOKEN_ITEM, TESTING_TOKEN)
 }
@@ -130,6 +138,12 @@ export const setupInvalidUsernamePassword = () => {
     },
     {
         statusCode: HTTP_404_NOT_FOUND,
+        body: {
+            detail: {
+                loc: [],
+                msg: LOGIN_ERROR_MESSAGE,
+            }
+        }
     })
 }
 
