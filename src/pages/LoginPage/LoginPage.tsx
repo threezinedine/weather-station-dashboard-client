@@ -2,6 +2,9 @@ import React from "react"
 import {
     useDispatch,
 } from "react-redux"
+import { 
+    useNavigate,
+} from "react-router-dom"
 
 import { 
     Form,
@@ -10,10 +13,19 @@ import {
     addErrorAction,
     popErrorAction,
 } from "stores/Error/actions"
+import api from "stores/api"
+import {
+    POST_METHOD,
+    LOGIN_API_ROUTE,
+    HOME_ROUTE,
+} from "const"
+import store from "stores"
+import {saveToken} from "utils"
 
 
 const LoginPage: React.FC = () => {
     const dispatch = useDispatch()
+    const navigate = useNavigate()
 
     return (
         <div>
@@ -58,8 +70,28 @@ const LoginPage: React.FC = () => {
                     }
                 ]}
                 submitLabel="Login"
-                onSubmit={() => {
-                    console.log("Here")
+                onSubmit={(fields) => {
+                    const username = fields.filter(field => field.name === "username")[0].value
+                    const password = fields.filter(field => field.name === "password")[0].value
+
+                    api({
+                        method: POST_METHOD,
+                        url: LOGIN_API_ROUTE,
+                        data: {
+                            username: username,
+                            password: password
+                        }
+                    })           
+                        .then((response) => {
+                            if (response.status === 200) {
+                                saveToken(response.data.token)
+                            }
+                            navigate(HOME_ROUTE)
+                        })
+                        .catch(err => {
+                            console.log(err)
+                        })
+
                 }}
                 onSubmitError={() => {
                     dispatch(addErrorAction("Login error"))

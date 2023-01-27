@@ -12,3 +12,4 @@ export const POST_METHOD = "POST"
 export const AUTHORIZATION_KEY = "Authorization"
 
 export const TOKEN_VALIDATE_API_ROUTE = "users/validate"
+export const LOGIN_API_ROUTE = "/users/login"

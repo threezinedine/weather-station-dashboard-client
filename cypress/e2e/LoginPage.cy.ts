@@ -3,7 +3,9 @@ import {
     typeWithTestId,
     checkTextExist,
     checkTextNotExist,
-    getComponentByTestId, 
+    getComponentByTestId,
+    validateRoute,
+    setupValidUsernamePassword, 
 } from "../utils"
 import {
     LOGIN_ROUTE,
@@ -26,6 +28,8 @@ import {
     TEST_PASSWORD,
     LOGIN_ERROR_MESSAGE,
     WAITING_TIME,
+    SMALL_WAITING_TIME,
+    HOME_ROUTE,
 } from "../constants"
 
 
@@ -72,5 +76,21 @@ describe("Login page testing", () => {
 
         getComponentByTestId(SUBMIT_BUTTON_DATA_TEST_ID)
             .click()
+    })
+
+    it("should can navigate to the home page when loggin successfully", () => {
+        setupValidUsernamePassword()
+        visitRoute(LOGIN_ROUTE)
+
+        typeWithTestId(USERNAME_DATA_TEST_ID, TEST_USERNAME)
+        typeWithTestId(PASSWORD_DATA_TEST_ID, TEST_PASSWORD)
+        
+        getComponentByTestId(SUBMIT_BUTTON_DATA_TEST_ID)
+            .click()
+
+        cy.wait(SMALL_WAITING_TIME)
+            .then(() => {
+                validateRoute(HOME_ROUTE) 
+            })
     })
 })

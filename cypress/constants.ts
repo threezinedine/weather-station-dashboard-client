@@ -40,6 +40,7 @@ export const WAITING_TIME = 2000
 export const SMALL_WAITING_TIME = 100
 
 export const VALIDATE_API_ROUTE = "/users/validate"
+export const LOGIN_API_ROUTE = "/users/login"
 
 export const GET_METHOD = "GET"
 export const POST_METHOD = "POST"

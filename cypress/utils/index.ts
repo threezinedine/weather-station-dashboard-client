@@ -5,7 +5,10 @@ import {
     LOCAL_HOST,
     TOKEN_ITEM,
     TESTING_TOKEN,
-    HTTP_401_UNAUTHORIZED
+    HTTP_401_UNAUTHORIZED,
+    LOGIN_API_ROUTE,
+    POST_METHOD,
+    TEST_USERNAME
 } from '../constants'
 
 
@@ -62,4 +65,23 @@ export const setupInvalidToken = () => {
         statusCode: HTTP_401_UNAUTHORIZED,
     })
     window.localStorage.setItem(TOKEN_ITEM, TESTING_TOKEN)
+}
+
+
+export const setupValidUsernamePassword = () => {
+    cy.intercept({
+        method: POST_METHOD,
+        url: LOGIN_API_ROUTE,
+        hostname: LOCAL_HOST,
+    },
+    {
+        statusCode: HTTP_200_OK,
+        body: {
+            user: {
+                userId: 1,
+                username: TEST_USERNAME,
+            },
+            token: TESTING_TOKEN,
+        }
+    })
 }
