@@ -70,6 +70,11 @@ const AdminPage: React.FC = () => {
                             <input 
                                 data-testid="addStationKey"
                                 type="text" />
+                            <button
+                                data-testid="submitAddStationKey"
+                            >
+                                Submit
+                            </button>
                         </div>
                     )
                 }
