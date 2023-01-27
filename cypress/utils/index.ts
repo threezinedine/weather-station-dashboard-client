@@ -4,7 +4,8 @@ import {
     HTTP_200_OK,
     LOCAL_HOST,
     TOKEN_ITEM,
-    TESTING_TOKEN
+    TESTING_TOKEN,
+    HTTP_401_UNAUTHORIZED
 } from '../constants'
 
 
@@ -39,7 +40,7 @@ export const validateRoute = (route: string) => {
     cy.url().should("eq", route)
 }
 
-export const setupValidateToken = () => {
+export const setupValidToken = () => {
     cy.intercept({
         method: GET_METHOD,
         url: VALIDATE_API_ROUTE,
@@ -47,6 +48,18 @@ export const setupValidateToken = () => {
     },
     {
         statusCode: HTTP_200_OK,
+    })
+    window.localStorage.setItem(TOKEN_ITEM, TESTING_TOKEN)
+}
+
+export const setupInvalidToken = () => {
+    cy.intercept({
+        method: GET_METHOD,
+        url: VALIDATE_API_ROUTE,
+        hostname: LOCAL_HOST,
+    },
+    {
+        statusCode: HTTP_401_UNAUTHORIZED,
     })
     window.localStorage.setItem(TOKEN_ITEM, TESTING_TOKEN)
 }

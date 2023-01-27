@@ -34,6 +34,8 @@ export const TEST_PASSWORD = "threezinedine"
 
 export const LOGIN_ERROR_MESSAGE = "Login error"
 export const REGISTER_ERROR_MESSAGE = "Register error"
+export const SESSION_EXPIRED_ERROR_MESSAGE = "Session expired"
+
 export const WAITING_TIME = 2000
 export const SMALL_WAITING_TIME = 100
 
@@ -42,7 +44,9 @@ export const VALIDATE_API_ROUTE = "/users/validate"
 export const GET_METHOD = "GET"
 export const POST_METHOD = "POST"
 export const LOCAL_HOST = "localhost"
+
 export const HTTP_200_OK = 200
+export const HTTP_401_UNAUTHORIZED = 401
 
 export const TOKEN_ITEM = "token_item"
 export const TESTING_TOKEN = "testing_token"
