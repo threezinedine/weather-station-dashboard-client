@@ -89,7 +89,11 @@ const LoginPage: React.FC = () => {
                             navigate(HOME_ROUTE)
                         })
                         .catch(err => {
-                            console.log(err)
+                            dispatch(addErrorAction("Login error"))
+
+                            setTimeout(() => {
+                                dispatch(popErrorAction())
+                            }, 2000)
                         })
 
                 }}
