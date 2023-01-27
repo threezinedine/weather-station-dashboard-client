@@ -35,6 +35,8 @@ import {
     LOGIN_ERROR_MESSAGE,
     SESSION_EXPIRED_ERROR_MESSAGE,
     FIRST_STATION_API_ROUTE,
+    RESET_PUT_ALIAS,
+    RESET_STATION_KEY_API_ROUTE,
 } from '../constants'
 
 
@@ -232,6 +234,14 @@ export const setupFirstStation = () => {
             stationKey: FIRST_STATION_STATION_KEY,
         }
     })
+}
+
+
+export const setupResetStationKey = () => {
+    cy.intercept({
+        method: PUT_METHOD,
+        url: RESET_STATION_KEY_API_ROUTE,
+    }).as(RESET_PUT_ALIAS)
 }
 
 

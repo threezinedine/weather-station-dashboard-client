@@ -20,6 +20,7 @@ import {
     getComponentByTestId,
     getTheBearerToken,
     setupFirstStation,
+    setupResetStationKey,
     setupValidToken, 
     visitRoute,
 } from "../utils"
@@ -40,11 +41,7 @@ describe("Station Page test", () => {
     it("should have the button to reset the station key", () => {
         setupValidToken()
         setupFirstStation()
-
-        cy.intercept({
-            method: PUT_METHOD,
-            url: RESET_STATION_KEY_API_ROUTE,
-        }).as(RESET_PUT_ALIAS)
+        setupResetStationKey()
 
         visitRoute(FIRST_STATION_PAGE_ROUTE)
         

@@ -12,6 +12,7 @@ import {
     TOKEN_VALIDATE_API_ROUTE,
     GET_ALL_STATIONS_API_ROUTE,
     ERROR_MESSAGE_TIME_OUT,
+    RESET_STATOIN_KEY_API_ROUTE,
 } from "const"
 import api from "stores/api"
 import { 
@@ -45,6 +46,26 @@ export const addStationByStationId = async (token: string | null, stationKey: st
             stationKey: stationKey,
         }
     }) 
+}
+
+export const resetStationKey = async (token: string | null, stationName: string) => {
+    return api({
+        method: PUT_METHOD,
+        url: RESET_STATOIN_KEY_API_ROUTE,
+        headers: generateAuthorizationHeader(token),
+        data: {
+            stationName: stationName,
+        }
+    })
+}
+
+
+export const fetchStationInformation = async (token: string | null, stationName: string) => {
+    return api({
+        method: GET_METHOD,
+        url: `/stations/${stationName}`,
+        headers: generateAuthorizationHeader(token),
+    })
 }
 
 export const sendLoginFormData = async (data: FormData) => {

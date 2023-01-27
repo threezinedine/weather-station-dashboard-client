@@ -1,4 +1,6 @@
 export const EMPTY_STRING = ""
+export const ZERO_NUMBER = 0
+
 export const FORM_SUBMIT_BUTTON_TEST_ID = "submitBtn"
 export const LOGOUT_BUTTON_TEST_ID = "logoutBtn"
 export const BRAND_DATA_TEST_ID = "brand"
@@ -6,6 +8,7 @@ export const USER_DATA_TEST_ID = "user"
 export const SUBMIT_ADD_STATION_KEY_TEST_ID = "submitAddStationKey"
 export const ADD_STATION_KEY_TEST_ID = "addStationKey"
 export const ADD_STATION_TEST_ID = "addStation"
+export const RESET_KEY_TEST_ID = "resetKey"
 
 export const LOGIN_ROUTE = "/login"
 export const HOME_ROUTE = "/"
@@ -26,6 +29,7 @@ export const TOKEN_VALIDATE_API_ROUTE = "users/validate"
 export const LOGIN_API_ROUTE = "/users/login"
 export const GET_ALL_STATIONS_API_ROUTE = "/stations"
 export const ADD_STATION_API_ROUTE = "/stations"
+export const RESET_STATOIN_KEY_API_ROUTE = "/stations/reset" 
 
 export const HTTP_200_OK = 200
 

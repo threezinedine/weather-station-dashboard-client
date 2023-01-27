@@ -10,37 +10,33 @@ import {
 } from "react-redux"
 
 import {
-    GET_METHOD,
-    PUT_METHOD,
+    EMPTY_STRING,
+    RESET_KEY_TEST_ID,
     StationType,
+    ZERO_NUMBER,
 } from "const"
-import api from "stores/api"
 import {
-    generateAuthorizationHeader,
+    fetchStationInformation,
     handleErrorResponse,
     loadToken,
+    resetStationKey,
 } from "utils"
 
 
 const StationPage: React.FC = () => {
     const dispatch = useDispatch()
     const [stationInformation, setStationInformation] = useState((): StationType => ({
-        stationId: 0,
-        stationName: "",
-        stationPosition: "",
-        pushingDataIntervalInSeconds: 0,
-        stationKey: "",
+        stationId: ZERO_NUMBER,
+        stationName: EMPTY_STRING,
+        stationPosition: EMPTY_STRING,
+        pushingDataIntervalInSeconds: ZERO_NUMBER,
+        stationKey: EMPTY_STRING,
     }))
     const { stationName } = useParams()
 
     useEffect(() => {
         const token = loadToken()
-            
-        api({
-            method: GET_METHOD,
-            url: `/stations/${stationName}`,
-            headers: generateAuthorizationHeader(token),
-        })
+        fetchStationInformation(token, stationName || EMPTY_STRING)            
             .then(response => {
                 setStationInformation(response.data)
             })
@@ -58,18 +54,11 @@ const StationPage: React.FC = () => {
                 <div>
                     Station Key: { stationInformation.stationKey }
                     <button
-                        data-testid="resetKey"
+                        data-testid={RESET_KEY_TEST_ID}
                         onClick={() => {
                             const token = loadToken()
-
-                            api({
-                                method: PUT_METHOD,
-                                url: "/stations/reset",
-                                headers: generateAuthorizationHeader(token),
-                                data: {
-                                    stationName: stationInformation.stationName
-                                }
-                            })
+                            
+                            resetStationKey(token, stationInformation.stationName)
                                 .catch(err => {
                                     handleErrorResponse(err, dispatch)
                                 })
