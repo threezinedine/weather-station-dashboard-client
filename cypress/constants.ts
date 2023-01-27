@@ -14,7 +14,7 @@ export const ADD_STATION_TEST_ID = "addStation"
 export const ADD_STATION_KEY_TEST_ID = "addStationKey"
 export const SUBMIT_ADD_STATION_KEY_TEST_ID = "submitAddStationKey"
 
-export const AUTHORIZATION_KEY = "Authorization"
+export const AUTHORIZATION_KEY = "authorization"
 
 export const TEST_USERNAME_WITH_LESS_THAN_FIVE_CHARACTERS = "thre"
 export const USERNAME_MUST_HAVE_MORE_THAN_FIVE_CHARACTERS_ERROR_MESSAGE = "Username must have more than 5 characters."

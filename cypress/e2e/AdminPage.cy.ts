@@ -76,8 +76,8 @@ describe("Admin page testing", () => {
 
         cy.wait(['@addStation'])
             .then(intercept => {
-                expect(intercept.request.header[AUTHORIZATION_KEY]).toStrictEqual(TESTING_TOKEN)
-                expect(intercept.request.body.stationKey).toStrictEqual(THIRD_STATION_STATION_KEY)
+                expect(intercept.request.headers[AUTHORIZATION_KEY]).to.equal(`Bearer ${TESTING_TOKEN}`)
+                expect(intercept.request.body.stationKey).to.equal(THIRD_STATION_STATION_KEY)
             })
     })
 })
