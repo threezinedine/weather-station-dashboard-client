@@ -77,6 +77,7 @@ const AdminPage: React.FC = () => {
                                 onClick={() => {
                                     const token = loadToken()
                                     addStationByStationId(token, stationKey)
+                                    setAddStation(!addStation)
                                 }}
                             >
                                 Submit
