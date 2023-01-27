@@ -16,6 +16,8 @@ import {
     setupValidToken,
     validateRoute,
     visitRoute,
+    checkComponentNotExistByTestId,
+    checkComponentExistByTestId,
 } from "../utils"
 
 
@@ -50,11 +52,11 @@ describe("Admin page testing", () => {
 
         visitRoute(ADMIN_ROUTE)
         
-        getComponentByTestId(ADD_STATION_KEY_TEST_ID).should("not.exist")
-
+        checkComponentNotExistByTestId(ADD_STATION_KEY_TEST_ID)
+            
         getComponentByTestId(ADD_STATION_TEST_ID)
             .click()
 
-        getComponentByTestId(ADD_STATION_KEY_TEST_ID).should("exist")
+        checkComponentExistByTestId(ADD_STATION_KEY_TEST_ID)
     })
 })

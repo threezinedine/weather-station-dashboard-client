@@ -43,6 +43,15 @@ export const checkTextNotExist = (text: string) => {
 }
 
 
+export const checkComponentExistByTestId = (testId: string) => {
+    getComponentByTestId(testId).should("exist")
+}
+
+
+export const checkComponentNotExistByTestId = (testId: string) => {
+    getComponentByTestId(testId).should("not.exist")
+}
+
 export const typeWithTestId = (testid: string, text: string) => {
     getComponentByTestId(testid)
         .type(`{selectall}${text}`)
