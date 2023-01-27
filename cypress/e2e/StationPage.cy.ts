@@ -5,12 +5,17 @@ import {
     FIRST_STATION_STATION_KEY, 
     FIRST_STATION_STATION_NAME,
     FIRST_STATION_STATION_POSITION,
-    GET_METHOD,
-    HTTP_200_OK,
-    FIRST_STATION_API_ROUTE,
+    RESET_KEY_TEST_ID,
+    PUT_METHOD,
+    RESET_STATION_KEY_API_ROUTE,
+    RESET_PUT_ALIAS,
+    AUTHORIZATION_KEY,
+    TESTING_TOKEN,
 } from "../constants"
 import {
     checkTextExist,
+    getComponentByTestId,
+    getTheBearerToken,
     setupFirstStation,
     setupValidToken, 
     visitRoute,
@@ -27,5 +32,26 @@ describe("Station Page test", () => {
         checkTextExist(FIRST_STATION_STATION_POSITION)
         checkTextExist(FIRST_STATION_STATION_KEY)
         checkTextExist(FIRST_STATION_PUBLISHING_TIME.toString())
+    })
+
+    it("should have the button to reset the station key", () => {
+        setupValidToken()
+        setupFirstStation()
+
+        cy.intercept({
+            method: PUT_METHOD,
+            url: RESET_STATION_KEY_API_ROUTE,
+        }).as(RESET_PUT_ALIAS)
+
+        visitRoute(FIRST_STATION_PAGE_ROUTE)
+        
+        getComponentByTestId(RESET_KEY_TEST_ID)
+            .click()
+
+        cy.wait(`@${RESET_PUT_ALIAS}`)
+            .then(intercept => {
+                expect(intercept.request.headers[AUTHORIZATION_KEY]).to.equal(getTheBearerToken(TESTING_TOKEN))
+                expect(intercept.request.body.stationName).to.equal(FIRST_STATION_STATION_NAME)
+            })
     })
 })

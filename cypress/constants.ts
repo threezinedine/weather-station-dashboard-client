@@ -8,6 +8,7 @@ export const USER_DATA_TEST_ID = "user"
 export const ADD_STATION_TEST_ID = "addStation"
 export const ADD_STATION_KEY_TEST_ID = "addStationKey"
 export const SUBMIT_ADD_STATION_KEY_TEST_ID = "submitAddStationKey"
+export const RESET_KEY_TEST_ID = "resetKey"
 
 export const AUTHORIZATION_KEY = "authorization"
 export const USERNAME_KEY = "username"
@@ -53,6 +54,7 @@ export const LOGIN_API_ROUTE = "/users/login"
 export const GET_ALL_STATIONS_API_ROUTE = "/stations"
 export const ADD_STATION_BY_STATION_KEY_API_ROUTE = "/stations"
 export const FIRST_STATION_API_ROUTE = "/stations/Ha%20Noi"
+export const RESET_STATION_KEY_API_ROUTE = "stations/reset"
 
 export const GET_METHOD = "GET"
 export const POST_METHOD = "POST"
@@ -87,6 +89,7 @@ export const THIRD_STATION_STATION_KEY = "kjoihasdofijasdfhewoinvasdfav"
 
 export const ADD_STATION_FETCH_ALIAS = "addStation"
 export const LOGIN_POST_ALIAS = "login"
+export const RESET_PUT_ALIAS = "reset"
 
 export const LOGIN_ROUTE = "http://localhost:3000/login"
 export const HOME_ROUTE = "http://localhost:3000/"
