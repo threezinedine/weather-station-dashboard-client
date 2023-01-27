@@ -21,7 +21,8 @@ import {
     SECOND_STATION_PUBLISHING_TIME,
     SECOND_STATION_STATION_ID,
     SECOND_STATION_STATION_KEY,
-    AUTHORIZATION_KEY
+    AUTHORIZATION_KEY,
+    LOGIN_POST_ALIAS
 } from '../constants'
 
 
@@ -109,7 +110,7 @@ export const setupValidUsernamePassword = () => {
             },
             token: TESTING_TOKEN,
         }
-    })
+    }).as(LOGIN_POST_ALIAS)
 }
 
 export const setupInvalidUsernamePassword = () => {

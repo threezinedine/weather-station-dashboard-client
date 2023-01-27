@@ -31,6 +31,9 @@ import {
     WAITING_TIME,
     SMALL_WAITING_TIME,
     HOME_ROUTE,
+    USERNAME_KEY,
+    PASSWORD_KEY,
+    LOGIN_POST_ALIAS,
 } from "../constants"
 
 
@@ -92,6 +95,15 @@ describe("Login page testing", () => {
         cy.wait(SMALL_WAITING_TIME)
             .then(() => {
                 validateRoute(HOME_ROUTE) 
+            })
+
+        cy.wait(`@${LOGIN_POST_ALIAS}`)
+            .then(intercept => {
+                console.log(intercept)
+                expect(intercept.request.body).to.have.string(USERNAME_KEY)
+                expect(intercept.request.body).to.have.string(PASSWORD_KEY)
+                expect(intercept.request.body).to.have.string(TEST_USERNAME)
+                expect(intercept.request.body).to.have.string(TEST_PASSWORD)
             })
     })
 

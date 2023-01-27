@@ -15,6 +15,8 @@ export const ADD_STATION_KEY_TEST_ID = "addStationKey"
 export const SUBMIT_ADD_STATION_KEY_TEST_ID = "submitAddStationKey"
 
 export const AUTHORIZATION_KEY = "authorization"
+export const USERNAME_KEY = "username"
+export const PASSWORD_KEY = "password"
 
 export const TEST_USERNAME_WITH_LESS_THAN_FIVE_CHARACTERS = "thre"
 export const USERNAME_MUST_HAVE_MORE_THAN_FIVE_CHARACTERS_ERROR_MESSAGE = "Username must have more than 5 characters."
@@ -85,3 +87,4 @@ export const THIRD_STATION_STATION_ID = 3
 export const THIRD_STATION_STATION_KEY = "kjoihasdofijasdfhewoinvasdfav"
 
 export const ADD_STATION_FETCH_ALIAS = "addStation"
+export const LOGIN_POST_ALIAS = "login"
