@@ -30,6 +30,8 @@ import {
     checkComponentExistByTestId,
     typeWithTestId,
     getTheBearerToken,
+    setupAddStationByValidStationKey,
+    setupAddStationByInvalidStationKey,
 } from "../utils"
 
 
@@ -60,11 +62,7 @@ describe("Admin page testing", () => {
         setupValidToken()
         setupAllStation()
 
-        cy.intercept({
-            method: PUT_METHOD,
-            url: ADD_STATION_BY_STATION_KEY_API_ROUTE,
-            hostname: LOCAL_HOST,
-        }).as(ADD_STATION_FETCH_ALIAS)
+        setupAddStationByValidStationKey()
 
         visitRoute(ADMIN_ROUTE)
         checkComponentNotExistByTestId(ADD_STATION_KEY_TEST_ID)
@@ -91,21 +89,7 @@ describe("Admin page testing", () => {
     it("should display the error when the add station api call is wrong.", () => {
         setupValidToken()
         setupAllStation()
-
-        cy.intercept({
-            method: PUT_METHOD,
-            url: ADD_STATION_BY_STATION_KEY_API_ROUTE,
-            hostname: LOCAL_HOST,
-        },
-        {
-            statusCode: HTTP_404_NOT_FOUND,
-            body: {
-                detail: {
-                    loc: [],
-                    msg: STATION_KEY_DOES_NOT_EXIST_ERROR_MESSAGE,
-                }
-            }
-        }).as(ADD_STATION_FETCH_ALIAS)
+        setupAddStationByInvalidStationKey()
 
         visitRoute(ADMIN_ROUTE)
 

@@ -1,5 +1,6 @@
 import {
     GET_METHOD,
+    PUT_METHOD,
     VALIDATE_API_ROUTE,
     HTTP_200_OK,
     LOCAL_HOST,
@@ -22,7 +23,15 @@ import {
     SECOND_STATION_STATION_ID,
     SECOND_STATION_STATION_KEY,
     AUTHORIZATION_KEY,
-    LOGIN_POST_ALIAS
+    LOGIN_POST_ALIAS,
+    ADD_STATION_BY_STATION_KEY_API_ROUTE,
+    ADD_STATION_FETCH_ALIAS,
+    STATION_KEY_DOES_NOT_EXIST_ERROR_MESSAGE,
+    THIRD_STATION_STATION_NAME,
+    THIRD_STATION_STATION_POSITION,
+    THIRD_STATION_PUBLISHING_TIME,
+    THIRD_STATION_STATION_ID,
+    THIRD_STATION_STATION_KEY,
 } from '../constants'
 
 
@@ -151,6 +160,43 @@ export const setupAllStation = () => {
             }
         ]
     })
+}
+
+
+export const setupAddStationByInvalidStationKey = () => {
+    cy.intercept({
+        method: PUT_METHOD,
+        url: ADD_STATION_BY_STATION_KEY_API_ROUTE,
+        hostname: LOCAL_HOST,
+    },
+    {
+        statusCode: HTTP_404_NOT_FOUND,
+        body: {
+            detail: {
+                loc: [],
+                msg: STATION_KEY_DOES_NOT_EXIST_ERROR_MESSAGE,
+            }
+        }
+    }).as(ADD_STATION_FETCH_ALIAS)
+}
+
+
+export const setupAddStationByValidStationKey = () => {
+    cy.intercept({
+        method: PUT_METHOD,
+        url: ADD_STATION_BY_STATION_KEY_API_ROUTE,
+        hostname: LOCAL_HOST,
+    },
+    {
+        statusCode: HTTP_200_OK,
+        body: {
+            stationName: THIRD_STATION_STATION_NAME,
+            stationPosition: THIRD_STATION_STATION_POSITION,
+            pushingDataIntervalInSeconds: THIRD_STATION_PUBLISHING_TIME,
+            stationId: THIRD_STATION_STATION_ID,
+            stationKey: THIRD_STATION_STATION_KEY,
+}
+    }).as(ADD_STATION_FETCH_ALIAS)
 }
 
 
