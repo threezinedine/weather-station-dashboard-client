@@ -11,6 +11,7 @@ import {
     SMALL_WAITING_TIME,
     BRAND_DATA_TEST_ID,
     ADMIN_ROUTE,
+    USERNAME_DATA_TEST_ID,
 } from "../constants"
 
 
@@ -54,6 +55,19 @@ describe("HeaderWrapper testing", () => {
         cy.wait(SMALL_WAITING_TIME)
             .then(() => {
                 validateRoute(HOME_ROUTE)
+            })
+    })
+
+    it("should contain the user data-testid and navigate to the admin page when click it", () => {
+        setupValidToken()
+        visitRoute(HOME_ROUTE)
+
+        getComponentByTestId(USERNAME_DATA_TEST_ID)
+            .click()
+
+        cy.wait(SMALL_WAITING_TIME)
+            .then(() => {
+                validateRoute(ADMIN_ROUTE)
             })
     })
 })

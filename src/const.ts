@@ -2,6 +2,7 @@ export const EMPTY_STRING = ""
 export const FORM_SUBMIT_BUTTON_TEST_ID = "submitBtn"
 export const LOGOUT_BUTTON_TEST_ID = "logoutBtn"
 export const BRAND_DATA_TEST_ID = "brand"
+export const USER_DATA_TEST_ID = "user"
 
 export const LOGIN_ROUTE = "/login"
 export const HOME_ROUTE = "/"
