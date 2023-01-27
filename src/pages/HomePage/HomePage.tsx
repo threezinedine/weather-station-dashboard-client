@@ -1,35 +1,19 @@
-import React, {
-    useEffect,
-} from "react"
+import React from "react"
 import { 
     useNavigate,
 } from "react-router-dom"
 
 import { 
-    TOKEN_ITEM,
     LOGIN_ROUTE,
     LOGOUT_BUTTON_TEST_ID,
 } from "const"
 import { 
-    validateToken,
+    clearToken,
 } from "utils"
 
 
 const HomePage: React.FC = () => {
     const navigate = useNavigate()
-
-    useEffect(() => {
-        const token: string | null = localStorage.getItem(TOKEN_ITEM)
-
-        if (token) {
-            validateToken(token)
-                .catch(() => {
-                    navigate(LOGIN_ROUTE)
-                })
-        } else {
-            navigate(LOGIN_ROUTE)
-        }
-    }, [])
 
     return (
         <div>
@@ -37,7 +21,7 @@ const HomePage: React.FC = () => {
                 <button
                     data-testid={LOGOUT_BUTTON_TEST_ID}
                     onClick={() => {
-                        localStorage.removeItem(TOKEN_ITEM)
+                        clearToken()
                         navigate(LOGIN_ROUTE)
                     }}
                 >

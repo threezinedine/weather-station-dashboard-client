@@ -8,6 +8,7 @@ import RegisterPage from "./RegisterPage"
 import HomePage from "./HomePage"
 import { 
     Wrapper,
+    AuthWrapper,
 } from "./layouts"
 
 
@@ -16,7 +17,9 @@ const router = createBrowserRouter([
         path: "/",
         element: (
             <Wrapper>
-                <HomePage /> 
+                <AuthWrapper>
+                    <HomePage /> 
+                </AuthWrapper>
             </Wrapper>
         ),
     },
