@@ -12,6 +12,8 @@ import {
     GET_METHOD,
     AUTHORIZATION_KEY,
     StationType,
+    PUT_METHOD,
+    ADD_STATION_API_ROUTE,
 } from "const"
 import {
     loadToken,
@@ -22,6 +24,7 @@ const AdminPage: React.FC = () => {
     const navigate = useNavigate()
     const [stations, setStations] = useState([])
     const [addStation, setAddStation] = useState(false)
+    const [stationKey, setStationKey] = useState("")
 
     useEffect(() => {
         const token = loadToken()
@@ -69,9 +72,27 @@ const AdminPage: React.FC = () => {
                         <div>
                             <input 
                                 data-testid="addStationKey"
+                                value={stationKey}
+                                onChange={(evt) => {
+                                    setStationKey(evt.target.value)
+                                }}
                                 type="text" />
                             <button
                                 data-testid="submitAddStationKey"
+                                onClick={() => {
+                                    const token = loadToken()
+
+                                    api({
+                                        method: PUT_METHOD,
+                                        url: ADD_STATION_API_ROUTE,
+                                        headers: {
+                                            [AUTHORIZATION_KEY]: `Bearer ${token}`
+                                        },
+                                        data: {
+                                            stationKey: stationKey,
+                                        }
+                                    }) 
+                                }}
                             >
                                 Submit
                             </button>

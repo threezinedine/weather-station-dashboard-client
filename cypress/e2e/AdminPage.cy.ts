@@ -9,6 +9,11 @@ import {
     ADD_STATION_KEY_TEST_ID,
     THIRD_STATION_STATION_KEY,
     SUBMIT_ADD_STATION_KEY_TEST_ID,
+    PUT_METHOD,
+    GET_ALL_STATIONS_API_ROUTE,
+    AUTHORIZATION_KEY,
+    TESTING_TOKEN,
+    LOCAL_HOST,
 } from "../constants"
 import {
     checkTextExist,
@@ -51,6 +56,12 @@ describe("Admin page testing", () => {
         setupValidToken()
         setupAllStation()
 
+        cy.intercept({
+            method: PUT_METHOD,
+            url: "/stations",
+            hostname: LOCAL_HOST,
+        }).as('addStation')
+
         visitRoute(ADMIN_ROUTE)
         checkComponentNotExistByTestId(ADD_STATION_KEY_TEST_ID)
         getComponentByTestId(ADD_STATION_TEST_ID)
@@ -60,5 +71,13 @@ describe("Admin page testing", () => {
         typeWithTestId(ADD_STATION_KEY_TEST_ID, THIRD_STATION_STATION_KEY) 
 
         checkComponentExistByTestId(SUBMIT_ADD_STATION_KEY_TEST_ID)
+        getComponentByTestId(SUBMIT_ADD_STATION_KEY_TEST_ID)
+            .click()
+
+        cy.wait(['@addStation'])
+            .then(intercept => {
+                expect(intercept.request.header[AUTHORIZATION_KEY]).toStrictEqual(TESTING_TOKEN)
+                expect(intercept.request.body.stationKey).toStrictEqual(THIRD_STATION_STATION_KEY)
+            })
     })
 })
