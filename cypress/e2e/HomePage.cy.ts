@@ -24,6 +24,7 @@ describe("Home page testing", () => {
         {
             statusCode: 200,
         })
+        window.localStorage.setItem("token_item", "testing_token")
 
         visitRoute(HOME_ROUTE)
         cy.wait(SMALL_WAITING_TIME)
