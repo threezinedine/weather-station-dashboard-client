@@ -18,9 +18,12 @@ import {
     POST_METHOD,
     LOGIN_API_ROUTE,
     HOME_ROUTE,
+    HTTP_200_OK,
+    ERROR_MESSAGE_TIME_OUT,
 } from "const"
-import store from "stores"
-import {saveToken} from "utils"
+import {
+    saveToken,
+} from "utils"
 
 
 const LoginPage: React.FC = () => {
@@ -71,29 +74,32 @@ const LoginPage: React.FC = () => {
                 ]}
                 submitLabel="Login"
                 onSubmit={(fields) => {
+                    const data = new FormData()
+
                     const username = fields.filter(field => field.name === "username")[0].value
+                    data.append("username", username)
+
                     const password = fields.filter(field => field.name === "password")[0].value
+                    data.append("password", password)
 
                     api({
                         method: POST_METHOD,
                         url: LOGIN_API_ROUTE,
-                        data: {
-                            username: username,
-                            password: password
-                        }
+                        data: data,
+                        headers: { "Content-Type": "multipart/form-data" }
                     })           
                         .then((response) => {
-                            if (response.status === 200) {
+                            if (response.status === HTTP_200_OK) {
                                 saveToken(response.data.token)
                             }
                             navigate(HOME_ROUTE)
                         })
-                        .catch(err => {
+                        .catch(() => {
                             dispatch(addErrorAction("Login error"))
 
                             setTimeout(() => {
                                 dispatch(popErrorAction())
-                            }, 2000)
+                            }, ERROR_MESSAGE_TIME_OUT)
                         })
 
                 }}
@@ -102,7 +108,7 @@ const LoginPage: React.FC = () => {
 
                     setTimeout(() => {
                         dispatch(popErrorAction())
-                    }, 2000)
+                    }, ERROR_MESSAGE_TIME_OUT)
                 }}
             />
         </div>

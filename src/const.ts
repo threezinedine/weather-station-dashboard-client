@@ -13,3 +13,7 @@ export const AUTHORIZATION_KEY = "Authorization"
 
 export const TOKEN_VALIDATE_API_ROUTE = "users/validate"
 export const LOGIN_API_ROUTE = "/users/login"
+
+export const HTTP_200_OK = 200
+
+export const ERROR_MESSAGE_TIME_OUT = 2000

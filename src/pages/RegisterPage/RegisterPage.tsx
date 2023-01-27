@@ -13,6 +13,7 @@ import {
     addErrorAction,
     popErrorAction,
 } from "stores/Error/actions"
+import {ERROR_MESSAGE_TIME_OUT} from "const"
 
 
 const RegisterPage: React.FC = () => {
@@ -79,7 +80,7 @@ const RegisterPage: React.FC = () => {
                         ],
                     }
                 ]}
-                submitLabel="Login"
+                submitLabel="Register"
                 onSubmit={() => {
                     console.log("Here")
                 }}
@@ -88,7 +89,7 @@ const RegisterPage: React.FC = () => {
 
                     setTimeout(() => {
                         dispath(popErrorAction())
-                    }, 2000)
+                    }, ERROR_MESSAGE_TIME_OUT)
                 }}
             />
         </div>
