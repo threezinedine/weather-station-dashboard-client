@@ -12,11 +12,17 @@ import {
     AuthWrapper,
     HeaderWrapper,
 } from "./layouts"
+import {
+    LOGIN_ROUTE,
+    REGISTER_ROUTE,
+    HOME_ROUTE,
+    ADMIN_ROUTE,
+} from "const"
 
 
 const router = createBrowserRouter([
     {
-        path: "/",
+        path: HOME_ROUTE,
         element: (
             <Wrapper>
                 <AuthWrapper>
@@ -28,7 +34,7 @@ const router = createBrowserRouter([
         ),
     },
     {
-        path: "/admin",
+        path: ADMIN_ROUTE,
         element: (
             <Wrapper>
                 <AuthWrapper>
@@ -40,7 +46,7 @@ const router = createBrowserRouter([
         )
     },
     {
-        path: "/login",
+        path: LOGIN_ROUTE,
         element: (
             <Wrapper>
                 <LoginPage /> 
@@ -48,7 +54,7 @@ const router = createBrowserRouter([
         ),
     },
     {
-        path: "/register",
+        path: REGISTER_ROUTE,
         element: (
             <Wrapper>
                 <RegisterPage />
