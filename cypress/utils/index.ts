@@ -9,7 +9,18 @@ import {
     LOGIN_API_ROUTE,
     POST_METHOD,
     TEST_USERNAME,
-    HTTP_404_NOT_FOUND
+    HTTP_404_NOT_FOUND,
+    GET_ALL_STATIONS_API_ROUTE,
+    FIRST_STATION_STATION_NAME,
+    FIRST_STATION_STATION_POSITION,
+    FIRST_STATION_PUBLISHING_TIME,
+    FIRST_STATION_STATION_ID,
+    FIRST_STATION_STATION_KEY,
+    SECOND_STATION_STATION_NAME,
+    SECOND_STATION_STATION_POSITION,
+    SECOND_STATION_PUBLISHING_TIME,
+    SECOND_STATION_STATION_ID,
+    SECOND_STATION_STATION_KEY
 } from '../constants'
 
 
@@ -95,5 +106,34 @@ export const setupInvalidUsernamePassword = () => {
     },
     {
         statusCode: HTTP_404_NOT_FOUND,
+    })
+}
+
+
+export const setupAllStation = () => {
+    cy.intercept({
+        method: GET_METHOD,
+        url: GET_ALL_STATIONS_API_ROUTE,
+        hostname: LOCAL_HOST,
+    },
+    {
+        statusCode: HTTP_200_OK,
+        body: 
+        [
+            {
+                stationName: FIRST_STATION_STATION_NAME,
+                stationPosition: FIRST_STATION_STATION_POSITION,
+                pushingDataIntervalInSeconds: FIRST_STATION_PUBLISHING_TIME,
+                stationId: FIRST_STATION_STATION_ID,
+                stationKey: FIRST_STATION_STATION_KEY,
+            },
+            {
+                stationName: SECOND_STATION_STATION_NAME,
+                stationPosition: SECOND_STATION_STATION_POSITION,
+                pushingDataIntervalInSeconds: SECOND_STATION_PUBLISHING_TIME,
+                stationId: SECOND_STATION_STATION_ID,
+                stationKey: SECOND_STATION_STATION_KEY,
+            }
+        ]
     })
 }

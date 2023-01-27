@@ -44,6 +44,7 @@ export const SMALL_WAITING_TIME = 100
 
 export const VALIDATE_API_ROUTE = "/users/validate"
 export const LOGIN_API_ROUTE = "/users/login"
+export const GET_ALL_STATIONS_API_ROUTE = "/stations"
 
 export const GET_METHOD = "GET"
 export const POST_METHOD = "POST"
@@ -55,3 +56,15 @@ export const HTTP_404_NOT_FOUND = 404
 
 export const TOKEN_ITEM = "token_item"
 export const TESTING_TOKEN = "testing_token"
+
+export const FIRST_STATION_STATION_NAME = "Ha Noi"
+export const FIRST_STATION_STATION_POSITION = "Hai Ba Trung, Ha Noi"
+export const FIRST_STATION_PUBLISHING_TIME = 5 
+export const FIRST_STATION_STATION_ID = 1
+export const FIRST_STATION_STATION_KEY = "asdlfaaifjqoir98ulkasdjfasldfjalbn"
+
+export const SECOND_STATION_STATION_NAME = "Bac Ninh"
+export const SECOND_STATION_STATION_POSITION = "Que Vo, Bac Ninh"
+export const SECOND_STATION_PUBLISHING_TIME = 5 
+export const SECOND_STATION_STATION_ID = 2
+export const SECOND_STATION_STATION_KEY = "asdflasdkfjasdfasdlfaaifjqoir98ulkasdjfasldfjalbn"

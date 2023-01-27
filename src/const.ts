@@ -18,7 +18,17 @@ export const AUTHORIZATION_KEY = "Authorization"
 
 export const TOKEN_VALIDATE_API_ROUTE = "users/validate"
 export const LOGIN_API_ROUTE = "/users/login"
+export const GET_ALL_STATIONS_API_ROUTE = "/stations"
 
 export const HTTP_200_OK = 200
 
 export const ERROR_MESSAGE_TIME_OUT = 2000
+
+
+export interface StationType {
+    stationId: number
+    stationName: string 
+    stationPosition: string 
+    stationKey: string
+    pushingDataIntervalInSeconds: number
+}
