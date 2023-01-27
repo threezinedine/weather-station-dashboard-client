@@ -9,6 +9,7 @@ import HomePage from "./HomePage"
 import { 
     Wrapper,
     AuthWrapper,
+    HeaderWrapper,
 } from "./layouts"
 
 
@@ -18,7 +19,9 @@ const router = createBrowserRouter([
         element: (
             <Wrapper>
                 <AuthWrapper>
-                    <HomePage /> 
+                    <HeaderWrapper>
+                        <HomePage /> 
+                    </HeaderWrapper>
                 </AuthWrapper>
             </Wrapper>
         ),
