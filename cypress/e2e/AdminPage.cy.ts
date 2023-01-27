@@ -17,6 +17,8 @@ import {
     ADD_STATION_FETCH_ALIAS,
     HTTP_404_NOT_FOUND,
     STATION_KEY_DOES_NOT_EXIST_ERROR_MESSAGE,
+    TEST_USERNAME,
+    TEST_PASSWORD_ADMIN_PAGE,
 } from "../constants"
 import {
     checkTextExist,
@@ -36,6 +38,14 @@ import {
 
 
 describe("Admin page testing", () => {
+    it("should contain the user information", () => {
+        setupValidToken()
+        visitRoute(ADMIN_ROUTE)
+
+        checkTextExist(TEST_USERNAME)
+        checkTextExist(TEST_PASSWORD_ADMIN_PAGE)
+    })
+
     it("should display all the station that the user have", () => {
         setupValidToken()
         setupAllStation()

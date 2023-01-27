@@ -43,6 +43,7 @@ export const STATION_KEY_DOES_NOT_EXIST_ERROR_MESSAGE = "The station's key does 
 
 export const TEST_USERNAME = "threezinedine"
 export const TEST_PASSWORD = "threezinedine"
+export const TEST_PASSWORD_ADMIN_PAGE = "*************"
 
 export const LOGIN_ERROR_MESSAGE = "Login error"
 export const REGISTER_ERROR_MESSAGE = "Register error"
