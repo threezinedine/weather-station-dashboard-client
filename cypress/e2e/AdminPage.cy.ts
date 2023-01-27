@@ -49,9 +49,10 @@ describe("Admin page testing", () => {
         setupAllStation()
 
         visitRoute(ADMIN_ROUTE)
+        
         getComponentByTestId(ADD_STATION_KEY_TEST_ID).should("not.exist")
 
-        getComponentByText(ADD_STATION_TEST_ID)
+        getComponentByTestId(ADD_STATION_TEST_ID)
             .click()
 
         getComponentByTestId(ADD_STATION_KEY_TEST_ID).should("exist")

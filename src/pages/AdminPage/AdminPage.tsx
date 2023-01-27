@@ -21,6 +21,7 @@ import {
 const AdminPage: React.FC = () => {
     const navigate = useNavigate()
     const [stations, setStations] = useState([])
+    const [addStation, setAddStation] = useState(false)
 
     useEffect(() => {
         const token = loadToken()
@@ -61,6 +62,25 @@ const AdminPage: React.FC = () => {
                         </div>
                     ))
                 }
+            </div>
+            <div>
+                {
+                    addStation && (
+                        <div>
+                            <input 
+                                data-testid="addStationKey"
+                                type="text" />
+                        </div>
+                    )
+                }
+                <button
+                    data-testid="addStation"
+                    onClick={() => {
+                        setAddStation(!addStation)
+                    }}
+                >
+                    Add station
+                </button>
             </div>
         </div>
     )
