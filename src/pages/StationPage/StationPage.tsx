@@ -59,6 +59,12 @@ const StationPage: React.FC = () => {
                             const token = loadToken()
                             
                             resetStationKey(token, stationInformation.stationName)
+                                .then(() => (
+                                    fetchStationInformation(token, stationName || EMPTY_STRING)            
+                                ))
+                                .then(response => {
+                                    setStationInformation(response.data)
+                                })
                                 .catch(err => {
                                     handleErrorResponse(err, dispatch)
                                 })
