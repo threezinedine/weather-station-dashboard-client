@@ -15,7 +15,7 @@ import {
 } from "../utils"
 
 
-describe("Home page testing", () => {
+describe("AuthWrapper testing", () => {
     it("should navigate to the login page at the first time try to run the home page", () => {
         visitRoute(HOME_ROUTE)
 

@@ -20,7 +20,6 @@ const HeaderWrapper: React.FC<HeaderWrapperProps> = ({
 
     return (
         <div>
-            { children }
             <div>
                 <button
                     data-testid={LOGOUT_BUTTON_TEST_ID}
@@ -32,6 +31,7 @@ const HeaderWrapper: React.FC<HeaderWrapperProps> = ({
                     Logout
                 </button>
             </div>
+            { children }
         </div>
     )
 } 
