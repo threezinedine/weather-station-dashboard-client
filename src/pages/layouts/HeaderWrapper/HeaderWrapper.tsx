@@ -22,6 +22,14 @@ const HeaderWrapper: React.FC<HeaderWrapperProps> = ({
         <div>
             <div>
                 <button
+                    data-testid="brand"
+                    onClick={() => {
+                        console.log("Nothing")
+                    }}
+                >
+                    Brand
+                </button>
+                <button
                     data-testid={LOGOUT_BUTTON_TEST_ID}
                     onClick={() => {
                         clearToken()
