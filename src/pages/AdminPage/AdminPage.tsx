@@ -6,16 +6,16 @@ import {
     useNavigate,
 } from "react-router-dom"
 
-import api from "stores/api"
 import {
-    GET_ALL_STATIONS_API_ROUTE,
-    GET_METHOD,
-    AUTHORIZATION_KEY,
     StationType,
-    PUT_METHOD,
-    ADD_STATION_API_ROUTE,
+    INPUT_TAG_TEXT_TYPE,
+    ADD_STATION_KEY_TEST_ID,
+    SUBMIT_ADD_STATION_KEY_TEST_ID,
+    ADD_STATION_TEST_ID,
 } from "const"
 import {
+    addStationByStationId,
+    fetchAllStations,
     loadToken,
 } from "utils"
 
@@ -28,13 +28,8 @@ const AdminPage: React.FC = () => {
 
     useEffect(() => {
         const token = loadToken()
-        api({
-            method: GET_METHOD,
-            url: GET_ALL_STATIONS_API_ROUTE,
-            headers: {
-                [AUTHORIZATION_KEY]: `Bearer ${token}`
-            }
-        })
+
+        fetchAllStations(token)
             .then(response => {
                 setStations(response.data)
             })
@@ -71,27 +66,17 @@ const AdminPage: React.FC = () => {
                     addStation && (
                         <div>
                             <input 
-                                data-testid="addStationKey"
+                                data-testid={ADD_STATION_KEY_TEST_ID}
                                 value={stationKey}
                                 onChange={(evt) => {
                                     setStationKey(evt.target.value)
                                 }}
-                                type="text" />
+                                type={INPUT_TAG_TEXT_TYPE} />
                             <button
-                                data-testid="submitAddStationKey"
+                                data-testid={SUBMIT_ADD_STATION_KEY_TEST_ID}
                                 onClick={() => {
                                     const token = loadToken()
-
-                                    api({
-                                        method: PUT_METHOD,
-                                        url: ADD_STATION_API_ROUTE,
-                                        headers: {
-                                            [AUTHORIZATION_KEY]: `Bearer ${token}`
-                                        },
-                                        data: {
-                                            stationKey: stationKey,
-                                        }
-                                    }) 
+                                    addStationByStationId(token, stationKey)
                                 }}
                             >
                                 Submit
@@ -100,7 +85,7 @@ const AdminPage: React.FC = () => {
                     )
                 }
                 <button
-                    data-testid="addStation"
+                    data-testid={ADD_STATION_TEST_ID}
                     onClick={() => {
                         setAddStation(!addStation)
                     }}

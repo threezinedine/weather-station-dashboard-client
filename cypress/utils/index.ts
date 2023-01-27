@@ -20,7 +20,8 @@ import {
     SECOND_STATION_STATION_POSITION,
     SECOND_STATION_PUBLISHING_TIME,
     SECOND_STATION_STATION_ID,
-    SECOND_STATION_STATION_KEY
+    SECOND_STATION_STATION_KEY,
+    AUTHORIZATION_KEY
 } from '../constants'
 
 
@@ -150,3 +151,17 @@ export const setupAllStation = () => {
         ]
     })
 }
+
+
+export const createAuthorizationHeader = (token: string) => {
+    return {
+        [AUTHORIZATION_KEY]: getTheBearerToken(token)
+    }
+}
+
+
+export const getTheBearerToken = (token: string): string => {
+    return `Bearer ${token}`
+}
+
+

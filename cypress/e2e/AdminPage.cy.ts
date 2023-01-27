@@ -10,10 +10,11 @@ import {
     THIRD_STATION_STATION_KEY,
     SUBMIT_ADD_STATION_KEY_TEST_ID,
     PUT_METHOD,
-    GET_ALL_STATIONS_API_ROUTE,
     AUTHORIZATION_KEY,
     TESTING_TOKEN,
     LOCAL_HOST,
+    ADD_STATION_BY_STATION_KEY_API_ROUTE,
+    ADD_STATION_FETCH_ALIAS,
 } from "../constants"
 import {
     checkTextExist,
@@ -26,6 +27,7 @@ import {
     checkComponentNotExistByTestId,
     checkComponentExistByTestId,
     typeWithTestId,
+    getTheBearerToken,
 } from "../utils"
 
 
@@ -58,9 +60,9 @@ describe("Admin page testing", () => {
 
         cy.intercept({
             method: PUT_METHOD,
-            url: "/stations",
+            url: ADD_STATION_BY_STATION_KEY_API_ROUTE,
             hostname: LOCAL_HOST,
-        }).as('addStation')
+        }).as(ADD_STATION_FETCH_ALIAS)
 
         visitRoute(ADMIN_ROUTE)
         checkComponentNotExistByTestId(ADD_STATION_KEY_TEST_ID)
@@ -74,9 +76,9 @@ describe("Admin page testing", () => {
         getComponentByTestId(SUBMIT_ADD_STATION_KEY_TEST_ID)
             .click()
 
-        cy.wait(['@addStation'])
+        cy.wait([`@${ADD_STATION_FETCH_ALIAS}`])
             .then(intercept => {
-                expect(intercept.request.headers[AUTHORIZATION_KEY]).to.equal(`Bearer ${TESTING_TOKEN}`)
+                expect(intercept.request.headers[AUTHORIZATION_KEY]).to.equal(getTheBearerToken(TESTING_TOKEN))
                 expect(intercept.request.body.stationKey).to.equal(THIRD_STATION_STATION_KEY)
             })
     })

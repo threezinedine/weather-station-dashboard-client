@@ -50,6 +50,7 @@ export const SMALL_WAITING_TIME = 100
 export const VALIDATE_API_ROUTE = "/users/validate"
 export const LOGIN_API_ROUTE = "/users/login"
 export const GET_ALL_STATIONS_API_ROUTE = "/stations"
+export const ADD_STATION_BY_STATION_KEY_API_ROUTE = "/stations"
 
 export const GET_METHOD = "GET"
 export const POST_METHOD = "POST"
@@ -82,3 +83,5 @@ export const THIRD_STATION_STATION_POSITION = "Ha Nam"
 export const THIRD_STATION_PUBLISHING_TIME = 5 
 export const THIRD_STATION_STATION_ID = 3
 export const THIRD_STATION_STATION_KEY = "kjoihasdofijasdfhewoinvasdfav"
+
+export const ADD_STATION_FETCH_ALIAS = "addStation"

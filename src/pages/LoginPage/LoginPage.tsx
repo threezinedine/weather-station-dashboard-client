@@ -20,9 +20,12 @@ import {
     HOME_ROUTE,
     HTTP_200_OK,
     ERROR_MESSAGE_TIME_OUT,
+    LOGIN_ERROR_MESSAGE,
+    LOGIN_SUBMIT_LABEL,
 } from "const"
 import {
-    saveToken,
+    getLoginFormFromFields,
+    saveToken, sendLoginFormData,
 } from "utils"
 
 
@@ -72,22 +75,9 @@ const LoginPage: React.FC = () => {
                         ],
                     }
                 ]}
-                submitLabel="Login"
+                submitLabel={LOGIN_SUBMIT_LABEL}
                 onSubmit={(fields) => {
-                    const data = new FormData()
-
-                    const username = fields.filter(field => field.name === "username")[0].value
-                    data.append("username", username)
-
-                    const password = fields.filter(field => field.name === "password")[0].value
-                    data.append("password", password)
-
-                    api({
-                        method: POST_METHOD,
-                        url: LOGIN_API_ROUTE,
-                        data: data,
-                        headers: { "Content-Type": "multipart/form-data" }
-                    })           
+                    sendLoginFormData(getLoginFormFromFields(fields))
                         .then((response) => {
                             if (response.status === HTTP_200_OK) {
                                 saveToken(response.data.token)
@@ -95,7 +85,7 @@ const LoginPage: React.FC = () => {
                             navigate(HOME_ROUTE)
                         })
                         .catch(() => {
-                            dispatch(addErrorAction("Login error"))
+                            dispatch(addErrorAction(LOGIN_ERROR_MESSAGE))
 
                             setTimeout(() => {
                                 dispatch(popErrorAction())
@@ -104,7 +94,7 @@ const LoginPage: React.FC = () => {
 
                 }}
                 onSubmitError={() => {
-                    dispatch(addErrorAction("Login error"))
+                    dispatch(addErrorAction(LOGIN_ERROR_MESSAGE))
 
                     setTimeout(() => {
                         dispatch(popErrorAction())
