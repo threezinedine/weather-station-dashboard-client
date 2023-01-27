@@ -81,5 +81,8 @@ describe("Admin page testing", () => {
                 expect(intercept.request.headers[AUTHORIZATION_KEY]).to.equal(getTheBearerToken(TESTING_TOKEN))
                 expect(intercept.request.body.stationKey).to.equal(THIRD_STATION_STATION_KEY)
             })
+
+        checkComponentNotExistByTestId(ADD_STATION_KEY_TEST_ID)
+        checkComponentNotExistByTestId(SUBMIT_ADD_STATION_KEY_TEST_ID)
     })
 })
