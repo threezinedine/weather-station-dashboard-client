@@ -2,6 +2,9 @@ import React, {
     useEffect,
     useState,
 } from "react"
+import { 
+    useNavigate,
+} from "react-router-dom"
 
 import api from "stores/api"
 import {
@@ -16,7 +19,9 @@ import {
 
 
 const AdminPage: React.FC = () => {
+    const navigate = useNavigate()
     const [stations, setStations] = useState([])
+
     useEffect(() => {
         const token = loadToken()
         api({
@@ -43,9 +48,13 @@ const AdminPage: React.FC = () => {
                         <div
                             key={index}
                         >
-                            <div>
+                            <button
+                                onClick={() => {
+                                    navigate(`/station/${station.stationId}`)
+                                }}
+                            >
                                 { station.stationName } 
-                            </div>
+                            </button>
                             <div>
                                 { station.stationPosition }
                             </div>

@@ -62,7 +62,7 @@ export const FIRST_STATION_STATION_POSITION = "Hai Ba Trung, Ha Noi"
 export const FIRST_STATION_PUBLISHING_TIME = 5 
 export const FIRST_STATION_STATION_ID = 1
 export const FIRST_STATION_STATION_KEY = "asdlfaaifjqoir98ulkasdjfasldfjalbn"
-export const FIRST_STATION_PAGE_ROUTE = `/station/${FIRST_STATION_STATION_ID}`
+export const FIRST_STATION_PAGE_ROUTE = `http://localhost:3000/station/${FIRST_STATION_STATION_ID}`
 
 export const SECOND_STATION_STATION_NAME = "Bac Ninh"
 export const SECOND_STATION_STATION_POSITION = "Que Vo, Bac Ninh"

@@ -7,6 +7,7 @@ import LoginPage from "./LoginPage"
 import RegisterPage from "./RegisterPage"
 import HomePage from "./HomePage"
 import AdminPage from "./AdminPage"
+import StationPage from "./StationPage"
 import { 
     Wrapper,
     AuthWrapper,
@@ -17,6 +18,7 @@ import {
     REGISTER_ROUTE,
     HOME_ROUTE,
     ADMIN_ROUTE,
+    STATION_PAGE_ROUTE,
 } from "const"
 
 
@@ -32,6 +34,18 @@ const router = createBrowserRouter([
                 </AuthWrapper>
             </Wrapper>
         ),
+    },
+    {
+        path: STATION_PAGE_ROUTE,
+        element: (
+            <Wrapper>
+                <AuthWrapper>
+                    <HeaderWrapper>
+                        <StationPage />
+                    </HeaderWrapper>
+                </AuthWrapper>
+            </Wrapper>
+        )
     },
     {
         path: ADMIN_ROUTE,
