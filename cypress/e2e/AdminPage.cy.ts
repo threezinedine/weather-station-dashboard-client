@@ -7,6 +7,8 @@ import {
     FIRST_STATION_PAGE_ROUTE,
     ADD_STATION_TEST_ID,
     ADD_STATION_KEY_TEST_ID,
+    THIRD_STATION_STATION_KEY,
+    SUBMIT_ADD_STATION_KEY_TEST_ID,
 } from "../constants"
 import {
     checkTextExist,
@@ -18,6 +20,7 @@ import {
     visitRoute,
     checkComponentNotExistByTestId,
     checkComponentExistByTestId,
+    typeWithTestId,
 } from "../utils"
 
 
@@ -39,10 +42,8 @@ describe("Admin page testing", () => {
         setupAllStation()
 
         visitRoute(ADMIN_ROUTE)
-
         getComponentByText(FIRST_STATION_STATION_NAME)
             .click()
-
         validateRoute(FIRST_STATION_PAGE_ROUTE)
     })
 
@@ -51,12 +52,13 @@ describe("Admin page testing", () => {
         setupAllStation()
 
         visitRoute(ADMIN_ROUTE)
-        
         checkComponentNotExistByTestId(ADD_STATION_KEY_TEST_ID)
-            
         getComponentByTestId(ADD_STATION_TEST_ID)
             .click()
-
         checkComponentExistByTestId(ADD_STATION_KEY_TEST_ID)
+
+        typeWithTestId(ADD_STATION_KEY_TEST_ID, THIRD_STATION_STATION_KEY) 
+
+        checkComponentExistByTestId(SUBMIT_ADD_STATION_KEY_TEST_ID)
     })
 })

@@ -12,6 +12,7 @@ export const BRAND_DATA_TEST_ID = "brand"
 export const USER_DATA_TEST_ID = "user"
 export const ADD_STATION_TEST_ID = "addStation"
 export const ADD_STATION_KEY_TEST_ID = "addStationKey"
+export const SUBMIT_ADD_STATION_KEY_TEST_ID = "submitAddStationKey"
 
 export const TEST_USERNAME_WITH_LESS_THAN_FIVE_CHARACTERS = "thre"
 export const USERNAME_MUST_HAVE_MORE_THAN_FIVE_CHARACTERS_ERROR_MESSAGE = "Username must have more than 5 characters."
@@ -71,3 +72,9 @@ export const SECOND_STATION_STATION_POSITION = "Que Vo, Bac Ninh"
 export const SECOND_STATION_PUBLISHING_TIME = 5 
 export const SECOND_STATION_STATION_ID = 2
 export const SECOND_STATION_STATION_KEY = "asdflasdkfjasdfasdlfaaifjqoir98ulkasdjfasldfjalbn"
+
+export const THIRD_STATION_STATION_NAME = "Ha Nam"
+export const THIRD_STATION_STATION_POSITION = "Ha Nam"
+export const THIRD_STATION_PUBLISHING_TIME = 5 
+export const THIRD_STATION_STATION_ID = 3
+export const THIRD_STATION_STATION_KEY = "kjoihasdofijasdfhewoinvasdfav"
