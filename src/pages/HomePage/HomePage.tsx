@@ -32,6 +32,17 @@ const HomePage: React.FC = () => {
 
     return (
         <div>
+            <div>
+                <button
+                    data-testid="logoutBtn"
+                    onClick={() => {
+                        localStorage.removeItem("token_item")
+                        navigate("/login")
+                    }}
+                >
+                    Logout
+                </button>
+            </div>
             Home Page
         </div>
     )

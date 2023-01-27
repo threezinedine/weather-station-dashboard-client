@@ -7,11 +7,11 @@ import {
 } from "stores/Error/actions"
 
 
-describe('ErrorReducer test', () => {
+describe("ErrorReducer test", () => {
     const firstErrorMessage = "Login error."
     const secondErrorMessage = "Register error."
 
-    it('should have the errorMessage inside the errorMessages list when the errorMessage is added.', () => {
+    it("should have the errorMessage inside the errorMessages list when the errorMessage is added.", () => {
         const initState: ErrorState = {
             errorMessages: []
         } 
@@ -20,7 +20,7 @@ describe('ErrorReducer test', () => {
         expect(newState.errorMessages).toStrictEqual([firstErrorMessage])
     })
 
-    it('should have the two errorMessages in order inside the errorMessages list when the two errorMessages is added.', () => {
+    it("should have the two errorMessages in order inside the errorMessages list when the two errorMessages is added.", () => {
         const initState: ErrorState = {
             errorMessages: []
         } 
@@ -30,7 +30,7 @@ describe('ErrorReducer test', () => {
         expect(finalState.errorMessages).toStrictEqual([firstErrorMessage, secondErrorMessage])
     })
 
-    it('should have remove the first errorMessage when have 2 errorMessages are stored in the errorMessages.', () => {
+    it("should have remove the first errorMessage when have 2 errorMessages are stored in the errorMessages.", () => {
         const initState: ErrorState = {
             errorMessages: [firstErrorMessage, secondErrorMessage]
         } 
@@ -40,7 +40,7 @@ describe('ErrorReducer test', () => {
         expect(newState.errorMessages).toStrictEqual([secondErrorMessage])
     })
 
-    it('should do nothing when no error message in the reducer', () => {
+    it("should do nothing when no error message in the reducer", () => {
         const initState: ErrorState = {
             errorMessages: []
         } 
