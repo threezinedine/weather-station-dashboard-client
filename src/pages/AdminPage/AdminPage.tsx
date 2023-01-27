@@ -77,6 +77,9 @@ const AdminPage: React.FC = () => {
                                 onClick={() => {
                                     const token = loadToken()
                                     addStationByStationId(token, stationKey)
+                                        .catch(err => {
+                                            console.log(err)
+                                        })
                                     setAddStation(!addStation)
                                 }}
                             >

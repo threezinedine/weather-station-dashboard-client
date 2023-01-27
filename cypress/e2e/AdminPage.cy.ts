@@ -15,6 +15,8 @@ import {
     LOCAL_HOST,
     ADD_STATION_BY_STATION_KEY_API_ROUTE,
     ADD_STATION_FETCH_ALIAS,
+    HTTP_404_NOT_FOUND,
+    STATION_KEY_DOES_NOT_EXIST_ERROR_MESSAGE,
 } from "../constants"
 import {
     checkTextExist,
@@ -84,5 +86,33 @@ describe("Admin page testing", () => {
 
         checkComponentNotExistByTestId(ADD_STATION_KEY_TEST_ID)
         checkComponentNotExistByTestId(SUBMIT_ADD_STATION_KEY_TEST_ID)
+    })
+
+    it("should display the error when the add station api call is wrong.", () => {
+        setupValidToken()
+        setupAllStation()
+
+        cy.intercept({
+            method: PUT_METHOD,
+            url: ADD_STATION_BY_STATION_KEY_API_ROUTE,
+            hostname: LOCAL_HOST,
+        },
+        {
+            statusCode: HTTP_404_NOT_FOUND,
+            body: {
+                detail: {
+                    loc: [],
+                    msg: STATION_KEY_DOES_NOT_EXIST_ERROR_MESSAGE,
+                }
+            }
+        }).as(ADD_STATION_FETCH_ALIAS)
+
+        visitRoute(ADMIN_ROUTE)
+
+        getComponentByTestId(ADD_STATION_TEST_ID)
+            .click()
+        typeWithTestId(ADD_STATION_KEY_TEST_ID, THIRD_STATION_STATION_KEY) 
+
+        checkTextExist(STATION_KEY_DOES_NOT_EXIST_ERROR_MESSAGE)
     })
 })

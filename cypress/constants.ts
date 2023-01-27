@@ -39,6 +39,8 @@ export const PASSWORD_CANNOT_CONTAIN_THE_SPECIAL_CHARACTERS = "Password cannot c
 export const TEST_VALID_PASSWORD_WITH_NOT_MATCH_WITH_PASSWORD = "threezinedine1"
 export const VALID_PASSWORD_DOES_NOT_MATCH_ERROR_MESSAGE = "Valid password does not match."
 
+export const STATION_KEY_DOES_NOT_EXIST_ERROR_MESSAGE = "The station's key does not exist."
+
 export const TEST_USERNAME = "threezinedine"
 export const TEST_PASSWORD = "threezinedine"
 
