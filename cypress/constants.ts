@@ -1,8 +1,3 @@
-export const LOGIN_ROUTE = "http://localhost:3000/login"
-export const HOME_ROUTE = "http://localhost:3000/"
-export const REGISTER_ROUTE = "http://localhost:3000/register"
-export const ADMIN_ROUTE = "http://localhost:3000/admin"
-
 export const USERNAME_DATA_TEST_ID = "username"
 export const PASSWORD_DATA_TEST_ID = "password"
 export const VALID_PASSWORD_DATA_TEST_ID = "valid"
@@ -57,6 +52,7 @@ export const VALIDATE_API_ROUTE = "/users/validate"
 export const LOGIN_API_ROUTE = "/users/login"
 export const GET_ALL_STATIONS_API_ROUTE = "/stations"
 export const ADD_STATION_BY_STATION_KEY_API_ROUTE = "/stations"
+export const FIRST_STATION_API_ROUTE = "/stations/Ha%20Noi"
 
 export const GET_METHOD = "GET"
 export const POST_METHOD = "POST"
@@ -76,7 +72,6 @@ export const FIRST_STATION_STATION_POSITION = "Hai Ba Trung, Ha Noi"
 export const FIRST_STATION_PUBLISHING_TIME = 5 
 export const FIRST_STATION_STATION_ID = 1
 export const FIRST_STATION_STATION_KEY = "asdlfaaifjqoir98ulkasdjfasldfjalbn"
-export const FIRST_STATION_PAGE_ROUTE = `http://localhost:3000/station/${FIRST_STATION_STATION_ID}`
 
 export const SECOND_STATION_STATION_NAME = "Bac Ninh"
 export const SECOND_STATION_STATION_POSITION = "Que Vo, Bac Ninh"
@@ -92,3 +87,9 @@ export const THIRD_STATION_STATION_KEY = "kjoihasdofijasdfhewoinvasdfav"
 
 export const ADD_STATION_FETCH_ALIAS = "addStation"
 export const LOGIN_POST_ALIAS = "login"
+
+export const LOGIN_ROUTE = "http://localhost:3000/login"
+export const HOME_ROUTE = "http://localhost:3000/"
+export const REGISTER_ROUTE = "http://localhost:3000/register"
+export const ADMIN_ROUTE = "http://localhost:3000/admin"
+export const FIRST_STATION_PAGE_ROUTE = `http://localhost:3000/station/${FIRST_STATION_STATION_NAME}`

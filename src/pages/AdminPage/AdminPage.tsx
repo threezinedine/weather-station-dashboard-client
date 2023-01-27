@@ -68,7 +68,7 @@ const AdminPage: React.FC = () => {
                         >
                             <button
                                 onClick={() => {
-                                    navigate(`/station/${station.stationId}`)
+                                    navigate(`/station/${station.stationName}`)
                                 }}
                             >
                                 { station.stationName } 
