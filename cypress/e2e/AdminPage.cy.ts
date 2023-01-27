@@ -35,6 +35,7 @@ import {
     getTheBearerToken,
     setupAddStationByValidStationKey,
     setupAddStationByInvalidStationKey,
+    setupFirstStation,
 } from "../utils"
 
 
@@ -66,6 +67,7 @@ describe("Admin page testing", () => {
     it("should navigate to the station's page when click into the station name and position", () => {
         setupValidToken()
         setupAllStation()
+        setupFirstStation()
 
         visitRoute(ADMIN_ROUTE)
         getComponentByText(FIRST_STATION_STATION_NAME)

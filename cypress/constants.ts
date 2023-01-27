@@ -92,4 +92,4 @@ export const LOGIN_ROUTE = "http://localhost:3000/login"
 export const HOME_ROUTE = "http://localhost:3000/"
 export const REGISTER_ROUTE = "http://localhost:3000/register"
 export const ADMIN_ROUTE = "http://localhost:3000/admin"
-export const FIRST_STATION_PAGE_ROUTE = `http://localhost:3000/station/${FIRST_STATION_STATION_NAME}`
+export const FIRST_STATION_PAGE_ROUTE = `http://localhost:3000/station/Ha%20Noi`

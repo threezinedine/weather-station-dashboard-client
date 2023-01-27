@@ -11,6 +11,7 @@ import {
 } from "../constants"
 import {
     checkTextExist,
+    setupFirstStation,
     setupValidToken, 
     visitRoute,
 } from "../utils"
@@ -18,20 +19,7 @@ import {
 describe("Station Page test", () => {
     it("should display all the information of the station", () => {
         setupValidToken()
-
-        cy.intercept({
-            method: GET_METHOD,
-            url: FIRST_STATION_API_ROUTE,
-        }, {
-            status: HTTP_200_OK,
-            body: {
-                stationName: FIRST_STATION_STATION_NAME,
-                stationPosition: FIRST_STATION_STATION_POSITION,
-                pushingDataIntervalInSeconds: FIRST_STATION_PUBLISHING_TIME,
-                stationId: FIRST_STATION_STATION_ID,
-                stationKey: FIRST_STATION_STATION_KEY,
-            }
-        })
+        setupFirstStation()
 
         visitRoute(FIRST_STATION_PAGE_ROUTE)
 

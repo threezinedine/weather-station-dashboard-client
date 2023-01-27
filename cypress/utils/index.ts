@@ -34,6 +34,7 @@ import {
     THIRD_STATION_STATION_KEY,
     LOGIN_ERROR_MESSAGE,
     SESSION_EXPIRED_ERROR_MESSAGE,
+    FIRST_STATION_API_ROUTE,
 } from '../constants'
 
 
@@ -214,6 +215,23 @@ export const setupAddStationByValidStationKey = () => {
             stationKey: THIRD_STATION_STATION_KEY,
 }
     }).as(ADD_STATION_FETCH_ALIAS)
+}
+
+
+export const setupFirstStation = () => {
+    cy.intercept({
+        method: GET_METHOD,
+        url: FIRST_STATION_API_ROUTE,
+    }, {
+        status: HTTP_200_OK,
+        body: {
+            stationName: FIRST_STATION_STATION_NAME,
+            stationPosition: FIRST_STATION_STATION_POSITION,
+            pushingDataIntervalInSeconds: FIRST_STATION_PUBLISHING_TIME,
+            stationId: FIRST_STATION_STATION_ID,
+            stationKey: FIRST_STATION_STATION_KEY,
+        }
+    })
 }
 
 
