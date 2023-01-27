@@ -11,7 +11,7 @@ import {
     SMALL_WAITING_TIME,
     BRAND_DATA_TEST_ID,
     ADMIN_ROUTE,
-    USERNAME_DATA_TEST_ID,
+    USER_DATA_TEST_ID,
 } from "../constants"
 
 
@@ -62,7 +62,7 @@ describe("HeaderWrapper testing", () => {
         setupValidToken()
         visitRoute(HOME_ROUTE)
 
-        getComponentByTestId(USERNAME_DATA_TEST_ID)
+        getComponentByTestId(USER_DATA_TEST_ID)
             .click()
 
         cy.wait(SMALL_WAITING_TIME)

@@ -9,6 +9,7 @@ export const VALID_PASSWORD_DATA_TEST_ID = "valid"
 export const SUBMIT_BUTTON_DATA_TEST_ID = "submitBtn"
 export const LOGOUT_DATA_TEST_ID = "logoutBtn"
 export const BRAND_DATA_TEST_ID = "brand"
+export const USER_DATA_TEST_ID = "user"
 
 export const TEST_USERNAME_WITH_LESS_THAN_FIVE_CHARACTERS = "thre"
 export const USERNAME_MUST_HAVE_MORE_THAN_FIVE_CHARACTERS_ERROR_MESSAGE = "Username must have more than 5 characters."

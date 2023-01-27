@@ -9,6 +9,8 @@ import {
     HOME_ROUTE,
     LOGIN_ROUTE,
     LOGOUT_BUTTON_TEST_ID,
+    USER_DATA_TEST_ID,
+    ADMIN_ROUTE,
 } from "const"
 import { 
     clearToken,
@@ -30,6 +32,14 @@ const HeaderWrapper: React.FC<HeaderWrapperProps> = ({
                     }}
                 >
                     Brand
+                </button>
+                <button
+                    data-testid={USER_DATA_TEST_ID}
+                    onClick={() => {
+                        navigate(ADMIN_ROUTE)
+                    }}
+                >
+                    User 
                 </button>
                 <button
                     data-testid={LOGOUT_BUTTON_TEST_ID}
