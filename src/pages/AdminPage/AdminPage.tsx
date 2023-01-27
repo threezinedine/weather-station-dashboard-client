@@ -6,6 +6,7 @@ import {
     useNavigate,
 } from "react-router-dom"
 import {
+    useSelector,
     useDispatch,
 } from "react-redux"
 
@@ -15,7 +16,6 @@ import {
     ADD_STATION_KEY_TEST_ID,
     SUBMIT_ADD_STATION_KEY_TEST_ID,
     ADD_STATION_TEST_ID,
-    ERROR_MESSAGE_TIME_OUT,
 } from "const"
 import {
     addStationByStationId,
@@ -24,14 +24,15 @@ import {
     loadToken,
 } from "utils"
 import {
-    addErrorAction, 
-    popErrorAction,
-} from "stores/Error/actions"
+    StoreState,
+} from "stores"
 
 
 const AdminPage: React.FC = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch() 
+    const username = useSelector((state: StoreState): string => state.UserReducer.username)
+
     const [stations, setStations] = useState([])
     const [addStation, setAddStation] = useState(false)
     const [stationKey, setStationKey] = useState("")
@@ -51,6 +52,14 @@ const AdminPage: React.FC = () => {
     return (
         <div>
             Admin Page
+            <div>
+                <div>
+                    Username: { username }
+                </div>
+                <div>
+                    Password: ************** 
+                </div>
+            </div>
             <div>
                 {
                     stations.map((station: StationType, index: number) => (
