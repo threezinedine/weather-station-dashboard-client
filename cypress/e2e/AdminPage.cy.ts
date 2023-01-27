@@ -5,10 +5,13 @@ import {
     SECOND_STATION_STATION_NAME, 
     SECOND_STATION_STATION_POSITION,
     FIRST_STATION_PAGE_ROUTE,
+    ADD_STATION_TEST_ID,
+    ADD_STATION_KEY_TEST_ID,
 } from "../constants"
 import {
     checkTextExist,
     getComponentByText,
+    getComponentByTestId,
     setupAllStation,
     setupValidToken,
     validateRoute,
@@ -39,5 +42,18 @@ describe("Admin page testing", () => {
             .click()
 
         validateRoute(FIRST_STATION_PAGE_ROUTE)
+    })
+
+    it("should contain the add new station button and have the input tag to insert the station's key into it", () => {
+        setupValidToken()
+        setupAllStation()
+
+        visitRoute(ADMIN_ROUTE)
+        getComponentByTestId(ADD_STATION_KEY_TEST_ID).should("not.exist")
+
+        getComponentByText(ADD_STATION_TEST_ID)
+            .click()
+
+        getComponentByTestId(ADD_STATION_KEY_TEST_ID).should("exist")
     })
 })
