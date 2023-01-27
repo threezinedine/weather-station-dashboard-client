@@ -5,6 +5,7 @@ import {
 
 import HeaderWrapperProps from "./HeaderWrapperProps"
 import { 
+    BRAND_DATA_TEST_ID,
     HOME_ROUTE,
     LOGIN_ROUTE,
     LOGOUT_BUTTON_TEST_ID,
@@ -23,7 +24,7 @@ const HeaderWrapper: React.FC<HeaderWrapperProps> = ({
         <div>
             <div>
                 <button
-                    data-testid="brand"
+                    data-testid={BRAND_DATA_TEST_ID}
                     onClick={() => {
                         navigate(HOME_ROUTE)
                     }}

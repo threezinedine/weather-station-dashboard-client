@@ -1,7 +1,6 @@
 import { 
     HOME_ROUTE,
     LOGIN_ROUTE,
-    LOGOUT_DATA_TEST_ID,
     SMALL_WAITING_TIME,
     SESSION_EXPIRED_ERROR_MESSAGE,
 } from "../constants"
@@ -9,7 +8,6 @@ import {
     visitRoute,
     validateRoute,
     setupValidToken,
-    getComponentByTestId,
     setupInvalidToken,
     checkTextExist,
 } from "../utils"

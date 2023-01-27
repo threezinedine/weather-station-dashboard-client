@@ -3,7 +3,7 @@ import {
     visitRoute,
     getComponentByTestId,
     validateRoute,
-} from '../utils'
+} from "../utils"
 import { 
     LOGIN_ROUTE,
     HOME_ROUTE,
@@ -11,7 +11,7 @@ import {
     SMALL_WAITING_TIME,
     BRAND_DATA_TEST_ID,
     ADMIN_ROUTE,
-} from '../constants'
+} from "../constants"
 
 
 describe("HeaderWrapper testing", () => {
