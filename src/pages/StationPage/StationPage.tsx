@@ -11,6 +11,7 @@ import {
 
 import {
     GET_METHOD,
+    PUT_METHOD,
     StationType,
 } from "const"
 import api from "stores/api"
@@ -54,7 +55,29 @@ const StationPage: React.FC = () => {
             <div>
                 <div>Station Name: { stationInformation.stationName }</div>
                 <div>Station Position: { stationInformation.stationPosition }</div>
-                <div>Station Key: { stationInformation.stationKey }</div>
+                <div>
+                    Station Key: { stationInformation.stationKey }
+                    <button
+                        data-testid="resetKey"
+                        onClick={() => {
+                            const token = loadToken()
+
+                            api({
+                                method: PUT_METHOD,
+                                url: "/stations/reset",
+                                headers: generateAuthorizationHeader(token),
+                                data: {
+                                    stationName: stationInformation.stationName
+                                }
+                            })
+                                .catch(err => {
+                                    handleErrorResponse(err, dispatch)
+                                })
+                        }}
+                    >
+                        Reset
+                    </button>
+                </div>
                 <div>Publishing Time (in seconds): { stationInformation.pushingDataIntervalInSeconds }</div>
             </div>
         </div>

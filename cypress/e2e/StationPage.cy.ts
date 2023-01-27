@@ -11,6 +11,9 @@ import {
     RESET_PUT_ALIAS,
     AUTHORIZATION_KEY,
     TESTING_TOKEN,
+    LOCAL_HOST,
+    SMALL_WAITING_TIME,
+    LARGE_WATING_TIME,
 } from "../constants"
 import {
     checkTextExist,
@@ -45,12 +48,16 @@ describe("Station Page test", () => {
 
         visitRoute(FIRST_STATION_PAGE_ROUTE)
         
-        getComponentByTestId(RESET_KEY_TEST_ID)
-            .click()
+        cy.wait(LARGE_WATING_TIME)
+            .then(() => {
+                getComponentByTestId(RESET_KEY_TEST_ID)
+                    .click()
+            })
 
         cy.wait(`@${RESET_PUT_ALIAS}`)
             .then(intercept => {
                 expect(intercept.request.headers[AUTHORIZATION_KEY]).to.equal(getTheBearerToken(TESTING_TOKEN))
+                console.log(intercept)
                 expect(intercept.request.body.stationName).to.equal(FIRST_STATION_STATION_NAME)
             })
     })
