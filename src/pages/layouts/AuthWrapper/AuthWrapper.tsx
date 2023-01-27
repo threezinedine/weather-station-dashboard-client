@@ -17,6 +17,7 @@ import {
     loadToken,
     handleErrorResponse,
 } from "utils"
+import {saveUsernameAction} from "stores/User/actions"
 
 
 const AuthWrapper: React.FC<AuthWrapperProps> = ({
@@ -29,6 +30,9 @@ const AuthWrapper: React.FC<AuthWrapperProps> = ({
         const token: string | null = loadToken()
         if (token) {
             validateToken(token)
+                .then(response => {
+                    dispatch(saveUsernameAction(response.data.username))
+                })
                 .catch(err => {
                     handleErrorResponse(err, dispatch)
                     navigate(LOGIN_ROUTE)

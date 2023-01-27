@@ -51,6 +51,7 @@ export const SESSION_EXPIRED_ERROR_MESSAGE = "Session expired"
 
 export const WAITING_TIME = 2000
 export const SMALL_WAITING_TIME = 100
+export const LARGE_WATING_TIME = 500
 
 export const VALIDATE_API_ROUTE = "/users/validate"
 export const LOGIN_API_ROUTE = "/users/login"

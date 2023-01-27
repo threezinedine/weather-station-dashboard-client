@@ -19,6 +19,7 @@ import {
     STATION_KEY_DOES_NOT_EXIST_ERROR_MESSAGE,
     TEST_USERNAME,
     TEST_PASSWORD_ADMIN_PAGE,
+    SMALL_WAITING_TIME,
 } from "../constants"
 import {
     checkTextExist,
@@ -40,10 +41,14 @@ import {
 describe("Admin page testing", () => {
     it("should contain the user information", () => {
         setupValidToken()
+        setupAllStation()
         visitRoute(ADMIN_ROUTE)
 
-        checkTextExist(TEST_USERNAME)
-        checkTextExist(TEST_PASSWORD_ADMIN_PAGE)
+        cy.wait(SMALL_WAITING_TIME)
+            .then(() => {
+                checkTextExist(TEST_USERNAME)
+                checkTextExist(TEST_PASSWORD_ADMIN_PAGE)
+            })
     })
 
     it("should display all the station that the user have", () => {

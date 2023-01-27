@@ -45,7 +45,7 @@ const AdminPage: React.FC = () => {
                 setStations(response.data)
             })
             .catch(err => {
-                console.log(err)
+                handleErrorResponse(err, dispatch)
             })
     }, [])
 

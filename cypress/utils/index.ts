@@ -89,6 +89,9 @@ export const setupValidToken = () => {
     },
     {
         statusCode: HTTP_200_OK,
+        body: {
+            username: TEST_USERNAME,
+        },
     })
     window.localStorage.setItem(TOKEN_ITEM, TESTING_TOKEN)
 }
