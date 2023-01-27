@@ -6,6 +6,7 @@ import {
 import LoginPage from "./LoginPage"
 import RegisterPage from "./RegisterPage"
 import HomePage from "./HomePage"
+import AdminPage from "./AdminPage"
 import { 
     Wrapper,
     AuthWrapper,
@@ -25,6 +26,18 @@ const router = createBrowserRouter([
                 </AuthWrapper>
             </Wrapper>
         ),
+    },
+    {
+        path: "/admin",
+        element: (
+            <Wrapper>
+                <AuthWrapper>
+                    <HeaderWrapper>
+                        <AdminPage />
+                    </HeaderWrapper>
+                </AuthWrapper>
+            </Wrapper>
+        )
     },
     {
         path: "/login",

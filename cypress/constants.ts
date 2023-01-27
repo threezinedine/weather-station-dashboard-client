@@ -1,6 +1,7 @@
 export const LOGIN_ROUTE = "http://localhost:3000/login"
 export const HOME_ROUTE = "http://localhost:3000/"
 export const REGISTER_ROUTE = "http://localhost:3000/register"
+export const ADMIN_ROUTE = "http://localhost:3000/admin"
 
 export const USERNAME_DATA_TEST_ID = "username"
 export const PASSWORD_DATA_TEST_ID = "password"

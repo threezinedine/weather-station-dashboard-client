@@ -10,6 +10,7 @@ import {
     LOGOUT_DATA_TEST_ID,
     SMALL_WAITING_TIME,
     BRAND_DATA_TEST_ID,
+    ADMIN_ROUTE,
 } from '../constants'
 
 
@@ -34,10 +35,19 @@ describe("HeaderWrapper testing", () => {
             })
     })
 
-    it("Should navigate to brand when the brand is clicked", () => {
+    it("Should navigate to home page when the brand is clicked", () => {
         setupValidToken()
         visitRoute(HOME_ROUTE)
 
+        getComponentByTestId(BRAND_DATA_TEST_ID)
+            .click()
+
+        cy.wait(SMALL_WAITING_TIME)
+            .then(() => {
+                validateRoute(HOME_ROUTE)
+            })
+
+        visitRoute(ADMIN_ROUTE)
         getComponentByTestId(BRAND_DATA_TEST_ID)
             .click()
 
