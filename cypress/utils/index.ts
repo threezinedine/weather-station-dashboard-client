@@ -8,7 +8,8 @@ import {
     HTTP_401_UNAUTHORIZED,
     LOGIN_API_ROUTE,
     POST_METHOD,
-    TEST_USERNAME
+    TEST_USERNAME,
+    HTTP_404_NOT_FOUND
 } from '../constants'
 
 
@@ -83,5 +84,16 @@ export const setupValidUsernamePassword = () => {
             },
             token: TESTING_TOKEN,
         }
+    })
+}
+
+export const setupInvalidUsernamePassword = () => {
+    cy.intercept({
+        method: POST_METHOD,
+        url: LOGIN_API_ROUTE,
+        hostname: LOCAL_HOST,
+    },
+    {
+        statusCode: HTTP_404_NOT_FOUND,
     })
 }

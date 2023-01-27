@@ -48,6 +48,7 @@ export const LOCAL_HOST = "localhost"
 
 export const HTTP_200_OK = 200
 export const HTTP_401_UNAUTHORIZED = 401
+export const HTTP_404_NOT_FOUND = 404
 
 export const TOKEN_ITEM = "token_item"
 export const TESTING_TOKEN = "testing_token"

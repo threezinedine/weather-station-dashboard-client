@@ -5,7 +5,8 @@ import {
     checkTextNotExist,
     getComponentByTestId,
     validateRoute,
-    setupValidUsernamePassword, 
+    setupValidUsernamePassword,
+    setupInvalidUsernamePassword, 
 } from "../utils"
 import {
     LOGIN_ROUTE,
@@ -92,5 +93,23 @@ describe("Login page testing", () => {
             .then(() => {
                 validateRoute(HOME_ROUTE) 
             })
+    })
+
+    it("should not navigate to the home page and display the login error message when the login information is not valid", () => {
+        setupInvalidUsernamePassword() 
+        visitRoute(LOGIN_ROUTE)
+
+        typeWithTestId(USERNAME_DATA_TEST_ID, TEST_USERNAME)
+        typeWithTestId(PASSWORD_DATA_TEST_ID, TEST_PASSWORD)
+        
+        getComponentByTestId(SUBMIT_BUTTON_DATA_TEST_ID)
+            .click()
+
+        cy.wait(SMALL_WAITING_TIME)
+            .then(() => {
+                validateRoute(LOGIN_ROUTE) 
+            })
+
+        checkTextExist(LOGIN_ERROR_MESSAGE)
     })
 })
