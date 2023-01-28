@@ -11,6 +11,7 @@ import {
     FIRST_RECORD_TEMPERATURE,
     FIRST_RECORD_WIND_DIRECTION,
     FIRST_STATION_STATION_NAME,
+    HOME_ROUTE,
 } from "../constants"
 import {
     checkTextExist,
@@ -18,6 +19,7 @@ import {
     setupAllStation, 
     setupFirstStationLatestRecord, 
     setupValidToken,
+    visitRoute,
 } from "../utils"
 
 describe("Home Page testing", () => {
@@ -25,6 +27,8 @@ describe("Home Page testing", () => {
         setupValidToken()
         setupAllStation()
         setupFirstStationLatestRecord()
+
+        visitRoute(HOME_ROUTE)
 
         getComponentByTestId(STATION_SELECT_TAG_TEST_ID)
             .select(FIRST_STATION_STATION_NAME)

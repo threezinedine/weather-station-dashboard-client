@@ -101,6 +101,14 @@ export const postNewStationData = async (data: NewStationProps, token: string | 
     })
 }
 
+export const fetchTheLatestRecord = async (token: string | null, stationName: string) => {
+    return api({
+        method: GET_METHOD,
+        url: `/records/${stationName}/latest`,
+        headers: generateAuthorizationHeader(token)
+    })
+}
+
 export const generateAuthorizationHeader = (token: string | null) => {
     return {
         [AUTHORIZATION_KEY]: generateBearerToken(token)
