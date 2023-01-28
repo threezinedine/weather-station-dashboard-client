@@ -34,6 +34,20 @@ const HomePage: React.FC = () => {
             .catch(err => {
                 handleErrorResponse(err, dispatch)
             })
+
+        const id = setTimeout(() => {
+            fetchAllStations(token)
+                .then(response => {
+                    setStations(response.data)
+                })
+                .catch(err => {
+                    handleErrorResponse(err, dispatch)
+                })
+        }, 30000)
+
+        return () => {
+            clearInterval(id)
+        }
     }, [])
 
 

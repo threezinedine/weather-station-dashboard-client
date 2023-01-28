@@ -34,6 +34,20 @@ const SidebarWrapper: React.FC<SidebarWrapperProps> = ({
             .catch(err => {
                 handleErrorResponse(err, dispatch)
             })
+
+        const id = setInterval(() => {
+            fetchTheLatestRecord(token, FREE_API_STATION_STATION_NAME)
+                .then(response => {
+                    setDisplayRecord(response.data)
+                })
+                .catch(err => {
+                    handleErrorResponse(err, dispatch)
+                })
+        }, 300000)
+
+        return () => {
+            clearInterval(id)
+        }
     }, [])
 
     return (
