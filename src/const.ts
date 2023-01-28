@@ -1,6 +1,8 @@
 export const EMPTY_STRING = ""
 export const ZERO_NUMBER = 0
 
+export const USERNAME_DATA_TEST_ID = "username"
+export const PASSWORD_DATA_TEST_ID = "password"
 export const FORM_SUBMIT_BUTTON_TEST_ID = "submitBtn"
 export const AVATAR_TEST_ID = "avatar"
 export const LOGOUT_BUTTON_TEST_ID = "logoutBtn"
@@ -54,10 +56,15 @@ export const CREATE_STATION_PUBLISHING_TIME_LABEL = "Pushing time in seconds"
 export const LOGIN_ERROR_MESSAGE = "Login error"
 
 
-export interface StationType {
-    stationId: number
+export interface NewStationProps {
     stationName: string 
     stationPosition: string 
-    stationKey: string
     pushingDataIntervalInSeconds: number
 }
+
+
+export interface StationType extends NewStationProps {
+    stationId: number
+    stationKey: string
+}
+

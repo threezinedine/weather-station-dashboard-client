@@ -13,6 +13,13 @@ import {
     GET_ALL_STATIONS_API_ROUTE,
     ERROR_MESSAGE_TIME_OUT,
     RESET_STATOIN_KEY_API_ROUTE,
+    USERNAME_DATA_TEST_ID,
+    PASSWORD_DATA_TEST_ID,
+    STATION_STATION_NAME_TEST_ID,
+    STATION_STATION_POSITION_TEST_ID,
+    STATION_PUBLISHING_TIME_TEST_ID,
+    CREATE_NEW_STATION_API_ROUTE,
+    NewStationProps,
 } from "const"
 import api from "stores/api"
 import { 
@@ -77,6 +84,15 @@ export const sendLoginFormData = async (data: FormData) => {
     })           
 }
 
+export const postNewStationData = async (data: NewStationProps, token: string | null) => {
+    return api({
+        method: POST_METHOD,
+        url: CREATE_NEW_STATION_API_ROUTE,
+        headers: generateAuthorizationHeader(token),
+        data: data,
+    })
+}
+
 export const generateAuthorizationHeader = (token: string | null) => {
     return {
         [AUTHORIZATION_KEY]: generateBearerToken(token)
@@ -102,15 +118,28 @@ export const saveToken = (token: string): void => {
 
 export const getLoginFormFromFields = (fields: FormFieldResponseProps[]): FormData => {
     const data = new FormData()
-
-    const username = fields.filter(field => field.name === "username")[0].value
-    data.append("username", username)
-
-    const password = fields.filter(field => field.name === "password")[0].value
-    data.append("password", password)
-
+    const username = extractValueFromFields(fields, USERNAME_DATA_TEST_ID)
+    data.append(USERNAME_DATA_TEST_ID, username)
+    const password = extractValueFromFields(fields, PASSWORD_DATA_TEST_ID)
+    data.append(PASSWORD_DATA_TEST_ID, password)
     return data
 }
+
+
+export const extractStationDataFromFields = (fields: FormFieldResponseProps[]) => {
+    const stationName = extractValueFromFields(fields, STATION_STATION_NAME_TEST_ID)
+    const stationPosition = extractValueFromFields(fields, STATION_STATION_POSITION_TEST_ID)
+    const pushingDataIntervalInSeconds = parseInt(
+        extractValueFromFields(fields, STATION_PUBLISHING_TIME_TEST_ID)
+    )
+
+    return {
+        stationName,
+        stationPosition,
+        pushingDataIntervalInSeconds,
+    }
+}
+
 
 export const extractValueFromFields = (fields: FormFieldResponseProps[], name: string): string => {
     return fields.filter(field => field.name === name)[0].value

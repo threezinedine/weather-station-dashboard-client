@@ -29,11 +29,13 @@ import {
 } from "const"
 import {
     addStationByStationId,
+    extractStationDataFromFields,
     extractValueFromFields,
     fetchAllStations,
     generateAuthorizationHeader,
     handleErrorResponse,
     loadToken,
+    postNewStationData,
 } from "utils"
 import {
     StoreState,
@@ -163,22 +165,8 @@ const AdminPage: React.FC = () => {
                             submitLabel={SUBMIT_CREATE_STATION_LABEL}
                             onSubmit={(fields) => {
                                 const token = loadToken()
-                                const stationName = extractValueFromFields(fields, STATION_STATION_NAME_TEST_ID)
-                                const stationPosition = extractValueFromFields(fields, STATION_STATION_POSITION_TEST_ID)
-                                const pushingDataIntervalInSeconds = parseInt(
-                                    extractValueFromFields(fields, STATION_PUBLISHING_TIME_TEST_ID)
-                                )
 
-                                api({
-                                    method: POST_METHOD,
-                                    url: CREATE_NEW_STATION_API_ROUTE,
-                                    headers: generateAuthorizationHeader(token),
-                                    data: {
-                                        stationName,
-                                        stationPosition,
-                                        pushingDataIntervalInSeconds,
-                                    }
-                                })
+                                postNewStationData(extractStationDataFromFields(fields), token)
                                     .catch(err => {
                                         handleErrorResponse(err, dispatch)
                                     }) 
