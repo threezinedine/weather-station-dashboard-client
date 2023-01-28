@@ -3,6 +3,8 @@ import {
     visitRoute,
     getComponentByTestId,
     validateRoute,
+    checkComponentExistByTestId,
+    checkComponentNotExistByTestId,
 } from "../utils"
 import { 
     LOGIN_ROUTE,
@@ -12,10 +14,20 @@ import {
     BRAND_DATA_TEST_ID,
     ADMIN_ROUTE,
     USER_DATA_TEST_ID,
+    AVATAR_TEST_ID,
 } from "../constants"
 
 
 describe("HeaderWrapper testing", () => {
+    it("should not have the logout or user until click in avatar.", () => {
+        setupValidToken()
+        visitRoute(HOME_ROUTE)
+
+        checkComponentExistByTestId(AVATAR_TEST_ID)
+        checkComponentNotExistByTestId(LOGOUT_DATA_TEST_ID)
+        checkComponentNotExistByTestId(USER_DATA_TEST_ID)
+    })
+
     it("should navigate to the login page and cannot access into the home page again when click the log out button", () => {
         setupValidToken()
         visitRoute(HOME_ROUTE)
