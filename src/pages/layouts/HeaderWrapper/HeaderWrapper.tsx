@@ -1,4 +1,6 @@
-import React from "react"
+import React, {
+    useState,
+} from "react"
 import { 
     useNavigate,
 } from "react-router-dom"
@@ -11,6 +13,7 @@ import {
     LOGOUT_BUTTON_TEST_ID,
     USER_DATA_TEST_ID,
     ADMIN_ROUTE,
+    AVATAR_TEST_ID,
 } from "const"
 import { 
     clearToken,
@@ -21,6 +24,7 @@ const HeaderWrapper: React.FC<HeaderWrapperProps> = ({
     children,
 }) => {
     const navigate = useNavigate()
+    const [optionDisplay, setOptionDislay] = useState(false)
 
     return (
         <div>
@@ -34,22 +38,36 @@ const HeaderWrapper: React.FC<HeaderWrapperProps> = ({
                     Brand
                 </button>
                 <button
-                    data-testid={USER_DATA_TEST_ID}
+                    data-testid={AVATAR_TEST_ID}
                     onClick={() => {
-                        navigate(ADMIN_ROUTE)
+                        setOptionDislay(!optionDisplay)
                     }}
                 >
-                    User 
+                    Avatar 
                 </button>
-                <button
-                    data-testid={LOGOUT_BUTTON_TEST_ID}
-                    onClick={() => {
-                        clearToken()
-                        navigate(LOGIN_ROUTE)
-                    }}
-                >
-                    Logout
-                </button>
+                {
+                    optionDisplay && (
+                        <>
+                            <button
+                                data-testid={USER_DATA_TEST_ID}
+                                onClick={() => {
+                                    navigate(ADMIN_ROUTE)
+                                }}
+                            >
+                                User 
+                            </button>
+                            <button
+                                data-testid={LOGOUT_BUTTON_TEST_ID}
+                                onClick={() => {
+                                    clearToken()
+                                    navigate(LOGIN_ROUTE)
+                                }}
+                            >
+                                Logout
+                            </button>
+                        </>
+                    )
+                }
             </div>
             { children }
         </div>

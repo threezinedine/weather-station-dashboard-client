@@ -26,12 +26,21 @@ describe("HeaderWrapper testing", () => {
         checkComponentExistByTestId(AVATAR_TEST_ID)
         checkComponentNotExistByTestId(LOGOUT_DATA_TEST_ID)
         checkComponentNotExistByTestId(USER_DATA_TEST_ID)
+
+        getComponentByTestId(AVATAR_TEST_ID)
+            .click()
+
+        checkComponentExistByTestId(LOGOUT_DATA_TEST_ID)
+        checkComponentExistByTestId(USER_DATA_TEST_ID)
     })
 
     it("should navigate to the login page and cannot access into the home page again when click the log out button", () => {
         setupValidToken()
         visitRoute(HOME_ROUTE)
         
+        getComponentByTestId(AVATAR_TEST_ID)
+            .click()
+
         getComponentByTestId(LOGOUT_DATA_TEST_ID)
             .click()
 
@@ -74,6 +83,8 @@ describe("HeaderWrapper testing", () => {
         setupValidToken()
         visitRoute(HOME_ROUTE)
 
+        getComponentByTestId(AVATAR_TEST_ID)
+            .click()
         getComponentByTestId(USER_DATA_TEST_ID)
             .click()
 
