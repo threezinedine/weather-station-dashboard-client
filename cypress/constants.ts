@@ -33,6 +33,7 @@ export const SMALL_WAITING_TIME = 100
 export const LARGE_WATING_TIME = 300
 
 export const FIRST_STATION_API_ROUTE = "/stations/Ha%20Noi"
+export const FIRST_STATION_GET_ALL_RECORDS_API_ROUTE = "/records/Ha%20Noi"
 
 export const TESTING_TOKEN = "testing_token"
 
@@ -58,9 +59,32 @@ export const ADD_STATION_FETCH_ALIAS = "addStation"
 export const LOGIN_POST_ALIAS = "login"
 export const RESET_PUT_ALIAS = "reset"
 export const CREATE_NEW_STATION_ALIAS = "newStation"
+export const GET_ALL_RECORDS_ALIAS = "allRecords"
 
 export const LOGIN_ROUTE = "http://localhost:3000/login"
 export const HOME_ROUTE = "http://localhost:3000/"
 export const REGISTER_ROUTE = "http://localhost:3000/register"
 export const ADMIN_ROUTE = "http://localhost:3000/admin"
 export const FIRST_STATION_PAGE_ROUTE = `http://localhost:3000/station/Ha%20Noi`
+
+export const FIRST_RECORD_STATION_ID = 1
+export const FIRST_RECORD_WIND_DIRECTION = 2 
+export const FIRST_RECORD_AVERAGE_WIND_SPEED = 12.23 
+export const FIRST_RECORD_MAX_WIND_SPEED = 123.23
+export const FIRST_RECORD_RAIN_FALL_ONE_HOUR = 23
+export const FIRST_RECORD_RAIN_FALL_ONE_DAY = 233.12
+export const FIRST_RECORD_TEMPERATURE = 12.32
+export const FIRST_RECORD_HUMIDITY = 23
+export const FIRST_RECORD_PRESSUER = 123
+export const FIRST_RECORD_CREATED_TIME = "2023-01-28T10:13:33.010Z"
+
+export const SECOND_RECORD_STATION_ID = 2
+export const SECOND_RECORD_WIND_DIRECTION = 3 
+export const SECOND_RECORD_AVERAGE_WIND_SPEED = 22.23 
+export const SECOND_RECORD_MAX_WIND_SPEED = 223.23
+export const SECOND_RECORD_RAIN_FALL_ONE_HOUR = 13
+export const SECOND_RECORD_RAIN_FALL_ONE_DAY = 133.12
+export const SECOND_RECORD_TEMPERATURE = 32.32
+export const SECOND_RECORD_HUMIDITY = 24
+export const SECOND_RECORD_PRESSUER = 121
+export const SECOND_RECORD_CREATED_TIME = "2023-01-28T5:13:33.010Z"

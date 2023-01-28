@@ -24,6 +24,28 @@ import {
     FIRST_STATION_API_ROUTE,
     RESET_PUT_ALIAS,
     CREATE_NEW_STATION_ALIAS,
+    FIRST_STATION_GET_ALL_RECORDS_API_ROUTE,
+    GET_ALL_RECORDS_ALIAS,
+    FIRST_RECORD_STATION_ID,
+    SECOND_RECORD_STATION_ID,
+    FIRST_RECORD_WIND_DIRECTION,
+    SECOND_RECORD_WIND_DIRECTION,
+    FIRST_RECORD_AVERAGE_WIND_SPEED,
+    SECOND_RECORD_AVERAGE_WIND_SPEED,
+    FIRST_RECORD_MAX_WIND_SPEED,
+    SECOND_RECORD_MAX_WIND_SPEED,
+    FIRST_RECORD_RAIN_FALL_ONE_HOUR,
+    SECOND_RECORD_RAIN_FALL_ONE_HOUR,
+    FIRST_RECORD_RAIN_FALL_ONE_DAY,
+    SECOND_RECORD_RAIN_FALL_ONE_DAY,
+    FIRST_RECORD_TEMPERATURE,
+    SECOND_RECORD_TEMPERATURE,
+    FIRST_RECORD_HUMIDITY,
+    SECOND_RECORD_HUMIDITY,
+    FIRST_RECORD_PRESSUER,
+    SECOND_RECORD_PRESSUER,
+    FIRST_RECORD_CREATED_TIME,
+    SECOND_RECORD_CREATED_TIME,
 } from '../constants'
 import { 
     TOKEN_ITEM,
@@ -246,6 +268,42 @@ export const setupCreateNewStation = () => {
             stationKey: THIRD_STATION_STATION_KEY,
         }
     }).as(CREATE_NEW_STATION_ALIAS)
+}
+
+
+export const setupAllRecords = () => {
+    cy.intercept({
+        method: POST_METHOD,
+        url: FIRST_STATION_GET_ALL_RECORDS_API_ROUTE,
+    }, {
+        status: HTTP_200_OK,
+        body: [
+            {
+                stationId: FIRST_RECORD_STATION_ID,
+                windDirection: FIRST_RECORD_WIND_DIRECTION,
+                averageWindSpeedInOneMinute: FIRST_RECORD_AVERAGE_WIND_SPEED,
+                maxWindSpeedInFiveMinutes: FIRST_RECORD_MAX_WIND_SPEED,
+                rainFallInOneHour: FIRST_RECORD_RAIN_FALL_ONE_HOUR,
+                rainFallInOneDay: FIRST_RECORD_RAIN_FALL_ONE_DAY,
+                temperature: FIRST_RECORD_TEMPERATURE,
+                humidity: FIRST_RECORD_HUMIDITY,
+                barPressure: FIRST_RECORD_PRESSUER,
+                createdTime: FIRST_RECORD_CREATED_TIME,
+            },
+            {
+                stationId: SECOND_RECORD_STATION_ID,
+                windDirection: SECOND_RECORD_WIND_DIRECTION,
+                averageWindSpeedInOneMinute: SECOND_RECORD_AVERAGE_WIND_SPEED,
+                maxWindSpeedInFiveMinutes: SECOND_RECORD_MAX_WIND_SPEED,
+                rainFallInOneHour: SECOND_RECORD_RAIN_FALL_ONE_HOUR,
+                rainFallInOneDay: SECOND_RECORD_RAIN_FALL_ONE_DAY,
+                temperature: SECOND_RECORD_TEMPERATURE,
+                humidity: SECOND_RECORD_HUMIDITY,
+                barPressure: SECOND_RECORD_PRESSUER,
+                createdTime: SECOND_RECORD_CREATED_TIME,
+            }
+        ]
+    }).as(GET_ALL_RECORDS_ALIAS)
 }
 
 

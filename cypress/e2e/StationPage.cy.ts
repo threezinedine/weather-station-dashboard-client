@@ -7,6 +7,8 @@ import {
     RESET_PUT_ALIAS,
     TESTING_TOKEN,
     LARGE_WATING_TIME,
+    FIRST_RECORD_CREATED_TIME,
+    SECOND_RECORD_CREATED_TIME,
 } from "../constants"
 import { 
     RESET_KEY_TEST_ID,
@@ -16,6 +18,7 @@ import {
     checkTextExist,
     getComponentByTestId,
     getTheBearerToken,
+    setupAllRecords,
     setupFirstStation,
     setupResetStationKey,
     setupValidToken, 
@@ -55,5 +58,16 @@ describe("Station Page test", () => {
                 console.log(intercept)
                 expect(intercept.request.body.stationName).to.equal(FIRST_STATION_STATION_NAME)
             })
+    })
+
+    it("should display the list of station's records (maximum 30 latest records)", () => {
+        setupValidToken()
+        setupFirstStation()
+        setupAllRecords()
+
+        visitRoute(FIRST_STATION_PAGE_ROUTE)
+
+        checkTextExist(FIRST_RECORD_CREATED_TIME)
+        checkTextExist(SECOND_RECORD_CREATED_TIME)
     })
 })
