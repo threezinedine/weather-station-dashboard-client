@@ -162,6 +162,15 @@ const AdminPage: React.FC = () => {
                                 const token = loadToken()
 
                                 postNewStationData(extractStationDataFromFields(fields), token)
+                                    .then(() => {
+                                        setupCreateNewStation(!createNewStation)
+                                    })
+                                    .then(() => {
+                                        return fetchAllStations(token)
+                                    })
+                                    .then(response => {
+                                        setStations(response.data)
+                                    })
                                     .catch(err => {
                                         handleErrorResponse(err, dispatch)
                                     }) 

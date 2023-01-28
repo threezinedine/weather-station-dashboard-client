@@ -60,6 +60,7 @@ export const LOGIN_POST_ALIAS = "login"
 export const RESET_PUT_ALIAS = "reset"
 export const CREATE_NEW_STATION_ALIAS = "newStation"
 export const GET_ALL_RECORDS_ALIAS = "allRecords"
+export const ALL_STATION_ALIAS = "allStation"
 
 export const LOGIN_ROUTE = "http://localhost:3000/login"
 export const HOME_ROUTE = "http://localhost:3000/"

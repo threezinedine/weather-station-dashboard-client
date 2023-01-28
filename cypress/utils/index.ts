@@ -46,6 +46,7 @@ import {
     SECOND_RECORD_PRESSUER,
     FIRST_RECORD_CREATED_TIME,
     SECOND_RECORD_CREATED_TIME,
+    ALL_STATION_ALIAS,
 } from '../constants'
 import { 
     TOKEN_ITEM,
@@ -199,7 +200,7 @@ export const setupAllStation = () => {
                 stationKey: SECOND_STATION_STATION_KEY,
             }
         ]
-    })
+    }).as(ALL_STATION_ALIAS)
 }
 
 
