@@ -9,6 +9,14 @@ import {
     LARGE_WATING_TIME,
     FIRST_RECORD_CREATED_TIME,
     SECOND_RECORD_CREATED_TIME,
+    FIRST_RECORD_WIND_DIRECTION,
+    FIRST_RECORD_AVERAGE_WIND_SPEED,
+    FIRST_RECORD_MAX_WIND_SPEED,
+    FIRST_RECORD_RAIN_FALL_ONE_HOUR,
+    FIRST_RECORD_RAIN_FALL_ONE_DAY,
+    FIRST_RECORD_TEMPERATURE,
+    FIRST_RECORD_HUMIDITY,
+    FIRST_RECORD_PRESSUER,
 } from "../constants"
 import { 
     RESET_KEY_TEST_ID,
@@ -16,7 +24,9 @@ import {
 } from "const"
 import {
     checkTextExist,
+    checkTextNotExist,
     getComponentByTestId,
+    getComponentByText,
     getTheBearerToken,
     setupAllRecords,
     setupFirstStation,
@@ -69,5 +79,37 @@ describe("Station Page test", () => {
 
         checkTextExist(FIRST_RECORD_CREATED_TIME)
         checkTextExist(SECOND_RECORD_CREATED_TIME)
+    })
+
+    it("should show all records information when click into the station's record time", () => {
+        setupValidToken()
+        setupFirstStation()
+        setupAllRecords()
+
+        visitRoute(FIRST_STATION_PAGE_ROUTE)
+
+        getComponentByText(FIRST_RECORD_CREATED_TIME)
+            .click()
+
+        checkTextExist(FIRST_RECORD_WIND_DIRECTION.toString())
+        checkTextExist(FIRST_RECORD_AVERAGE_WIND_SPEED.toString())
+        checkTextExist(FIRST_RECORD_MAX_WIND_SPEED.toString())
+        checkTextExist(FIRST_RECORD_RAIN_FALL_ONE_HOUR.toString())
+        checkTextExist(FIRST_RECORD_RAIN_FALL_ONE_DAY.toString())
+        checkTextExist(FIRST_RECORD_TEMPERATURE.toString())
+        checkTextExist(FIRST_RECORD_HUMIDITY.toString())
+        checkTextExist(FIRST_RECORD_PRESSUER.toString())
+
+        getComponentByText(FIRST_RECORD_CREATED_TIME)
+            .click()
+
+        checkTextNotExist(FIRST_RECORD_WIND_DIRECTION.toString())
+        checkTextNotExist(FIRST_RECORD_AVERAGE_WIND_SPEED.toString())
+        checkTextNotExist(FIRST_RECORD_MAX_WIND_SPEED.toString())
+        checkTextNotExist(FIRST_RECORD_RAIN_FALL_ONE_HOUR.toString())
+        checkTextNotExist(FIRST_RECORD_RAIN_FALL_ONE_DAY.toString())
+        checkTextNotExist(FIRST_RECORD_TEMPERATURE.toString())
+        checkTextNotExist(FIRST_RECORD_HUMIDITY.toString())
+        checkTextNotExist(FIRST_RECORD_PRESSUER.toString())
     })
 })
