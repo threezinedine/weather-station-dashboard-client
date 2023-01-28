@@ -12,6 +12,7 @@ import {
     Wrapper,
     AuthWrapper,
     HeaderWrapper,
+    SidebarWrapper,
 } from "./layouts"
 import {
     LOGIN_ROUTE,
@@ -29,7 +30,9 @@ const router = createBrowserRouter([
             <Wrapper>
                 <AuthWrapper>
                     <HeaderWrapper>
-                        <HomePage /> 
+                        <SidebarWrapper>
+                            <HomePage /> 
+                        </SidebarWrapper>
                     </HeaderWrapper>
                 </AuthWrapper>
             </Wrapper>
@@ -41,7 +44,9 @@ const router = createBrowserRouter([
             <Wrapper>
                 <AuthWrapper>
                     <HeaderWrapper>
-                        <StationPage />
+                        <SidebarWrapper>
+                            <StationPage />
+                        </SidebarWrapper>
                     </HeaderWrapper>
                 </AuthWrapper>
             </Wrapper>
@@ -53,7 +58,9 @@ const router = createBrowserRouter([
             <Wrapper>
                 <AuthWrapper>
                     <HeaderWrapper>
-                        <AdminPage />
+                        <SidebarWrapper>
+                            <AdminPage />
+                        </SidebarWrapper>
                     </HeaderWrapper>
                 </AuthWrapper>
             </Wrapper>
