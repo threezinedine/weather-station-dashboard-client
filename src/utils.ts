@@ -75,6 +75,14 @@ export const fetchStationInformation = async (token: string | null, stationName:
     })
 }
 
+export const fetchStationRecords = async (token: string | null, stationName: string) => {
+    return api({
+        method: GET_METHOD,
+        url: `/records/${stationName}`,
+        headers: generateAuthorizationHeader(token),
+    })
+}
+
 export const sendLoginFormData = async (data: FormData) => {
     return api({
         method: POST_METHOD,

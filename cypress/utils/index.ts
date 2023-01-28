@@ -273,7 +273,7 @@ export const setupCreateNewStation = () => {
 
 export const setupAllRecords = () => {
     cy.intercept({
-        method: POST_METHOD,
+        method: GET_METHOD,
         url: FIRST_STATION_GET_ALL_RECORDS_API_ROUTE,
     }, {
         status: HTTP_200_OK,

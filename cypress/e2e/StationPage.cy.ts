@@ -29,6 +29,7 @@ describe("Station Page test", () => {
     it("should display all the information of the station", () => {
         setupValidToken()
         setupFirstStation()
+        setupAllRecords()
 
         visitRoute(FIRST_STATION_PAGE_ROUTE)
 
@@ -42,6 +43,7 @@ describe("Station Page test", () => {
         setupValidToken()
         setupFirstStation()
         setupResetStationKey()
+        setupAllRecords()
 
         visitRoute(FIRST_STATION_PAGE_ROUTE)
         
@@ -53,9 +55,7 @@ describe("Station Page test", () => {
 
         cy.wait(`@${RESET_PUT_ALIAS}`)
             .then(intercept => {
-                console.log(intercept.request.headers, AUTHORIZATION_KEY)
                 expect(intercept.request.headers[AUTHORIZATION_KEY]).to.equal(getTheBearerToken(TESTING_TOKEN))
-                console.log(intercept)
                 expect(intercept.request.body.stationName).to.equal(FIRST_STATION_STATION_NAME)
             })
     })

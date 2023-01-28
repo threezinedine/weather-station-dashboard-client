@@ -72,3 +72,15 @@ export interface StationType extends NewStationProps {
     stationKey: string
 }
 
+export interface RecordType {
+    stationId: number,
+    windDirection: number,
+    averageWindSpeedInOneMinute: number,
+    maxWindSpeedInFiveMinutes: number,
+    rainFallInOneHour: number,
+    rainFallInOneDay: number,
+    temperature: number,
+    humidity: number,
+    barPressure: number,
+    createdTime: string,
+}

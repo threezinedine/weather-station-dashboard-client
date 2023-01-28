@@ -11,12 +11,14 @@ import {
 
 import {
     EMPTY_STRING,
+    RecordType,
     RESET_KEY_TEST_ID,
     StationType,
     ZERO_NUMBER,
 } from "const"
 import {
     fetchStationInformation,
+    fetchStationRecords,
     handleErrorResponse,
     loadToken,
     resetStationKey,
@@ -32,13 +34,21 @@ const StationPage: React.FC = () => {
         pushingDataIntervalInSeconds: ZERO_NUMBER,
         stationKey: EMPTY_STRING,
     }))
-    const { stationName } = useParams()
+    const [records, setRecords] = useState((): RecordType[] => [])
+    const { stationName = EMPTY_STRING } = useParams()
 
     useEffect(() => {
         const token = loadToken()
-        fetchStationInformation(token, stationName || EMPTY_STRING)            
+
+        fetchStationInformation(token, stationName)            
             .then(response => {
                 setStationInformation(response.data)
+            })
+            .then(() => {
+                return fetchStationRecords(token, stationName)
+            })
+            .then(response => {
+                setRecords(response.data)
             })
             .catch(err => {
                 handleErrorResponse(err, dispatch)
@@ -59,10 +69,11 @@ const StationPage: React.FC = () => {
                             const token = loadToken()
                             
                             resetStationKey(token, stationInformation.stationName)
-                                .then(() => (
-                                    fetchStationInformation(token, stationName || EMPTY_STRING)            
-                                ))
+                                .then(() => {
+                                    return fetchStationInformation(token, stationName || EMPTY_STRING)
+                                })
                                 .then(response => {
+                                    console.log(response)
                                     setStationInformation(response.data)
                                 })
                                 .catch(err => {
@@ -74,6 +85,20 @@ const StationPage: React.FC = () => {
                     </button>
                 </div>
                 <div>Publishing Time (in seconds): { stationInformation.pushingDataIntervalInSeconds }</div>
+                <div>
+                    Records: 
+                    <div>
+                        {
+                            records.map((record: RecordType, index: number) => (
+                                <button
+                                    key={index}
+                                >
+                                    { record.createdTime }
+                                </button> 
+                            ))
+                        }
+                    </div>
+                </div>
             </div>
         </div>
     )
