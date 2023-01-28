@@ -47,6 +47,8 @@ import {
     FIRST_RECORD_CREATED_TIME,
     SECOND_RECORD_CREATED_TIME,
     ALL_STATION_ALIAS,
+    FIRST_STATION_GET_LATEST_RECORD_API_ROUTE,
+    GET_LATEST_RECORD_ALIAS,
 } from '../constants'
 import { 
     TOKEN_ITEM,
@@ -307,6 +309,27 @@ export const setupAllRecords = () => {
     }).as(GET_ALL_RECORDS_ALIAS)
 }
 
+
+export const setupFirstStationLatestRecord = () => {
+    cy.intercept({
+        method: GET_METHOD,
+        url: FIRST_STATION_GET_LATEST_RECORD_API_ROUTE,
+    }, {
+        status: HTTP_200_OK,
+        body: {
+            stationId: FIRST_RECORD_STATION_ID,
+            windDirection: FIRST_RECORD_WIND_DIRECTION,
+            averageWindSpeedInOneMinute: FIRST_RECORD_AVERAGE_WIND_SPEED,
+            maxWindSpeedInFiveMinutes: FIRST_RECORD_MAX_WIND_SPEED,
+            rainFallInOneHour: FIRST_RECORD_RAIN_FALL_ONE_HOUR,
+            rainFallInOneDay: FIRST_RECORD_RAIN_FALL_ONE_DAY,
+            temperature: FIRST_RECORD_TEMPERATURE,
+            humidity: FIRST_RECORD_HUMIDITY,
+            barPressure: FIRST_RECORD_PRESSUER,
+            createdTime: FIRST_RECORD_CREATED_TIME,
+        },
+    }).as(GET_LATEST_RECORD_ALIAS)
+}
 
 export const setupResetStationKey = () => {
     cy.intercept({

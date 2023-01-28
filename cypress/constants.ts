@@ -34,6 +34,7 @@ export const LARGE_WATING_TIME = 300
 
 export const FIRST_STATION_API_ROUTE = "/stations/Ha%20Noi"
 export const FIRST_STATION_GET_ALL_RECORDS_API_ROUTE = "/records/Ha%20Noi"
+export const FIRST_STATION_GET_LATEST_RECORD_API_ROUTE = "/records/Ha%20Noi/latest"
 
 export const TESTING_TOKEN = "testing_token"
 
@@ -61,6 +62,7 @@ export const RESET_PUT_ALIAS = "reset"
 export const CREATE_NEW_STATION_ALIAS = "newStation"
 export const GET_ALL_RECORDS_ALIAS = "allRecords"
 export const ALL_STATION_ALIAS = "allStation"
+export const GET_LATEST_RECORD_ALIAS = "getLatestRecord"
 
 export const LOGIN_ROUTE = "http://localhost:3000/login"
 export const HOME_ROUTE = "http://localhost:3000/"
