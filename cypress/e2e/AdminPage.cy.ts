@@ -24,6 +24,7 @@ import {
     THIRD_STATION_PUBLISHING_TIME,
     CREATE_NEW_STATION_ALIAS,
     SUBMIT_CREATE_STATION_LABEL,
+    CREATE_STATION_TEST_ID,
 } from "../constants"
 import {
     checkTextExist,
@@ -130,6 +131,10 @@ describe("Admin page testing", () => {
         setupCreateNewStation()
 
         visitRoute(ADMIN_ROUTE)
+
+
+        getComponentByTestId(CREATE_STATION_TEST_ID)
+            .click()
 
         typeWithTestId(STATION_STATION_NAME_TEST_ID, THIRD_STATION_STATION_NAME)
         typeWithTestId(STATION_STATION_POSITION_TEST_ID, THIRD_STATION_STATION_POSITION)
