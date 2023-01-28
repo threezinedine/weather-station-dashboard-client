@@ -52,6 +52,7 @@ const HomePage: React.FC = () => {
                             })
                             .catch(err => {
                                 handleErrorResponse(err, dispatch)
+                                setDisplayRecord(null)
                             })
 
                     }}
