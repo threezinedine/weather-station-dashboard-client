@@ -94,10 +94,10 @@ const StationPage: React.FC = () => {
                                 <button
                                     key={index}
                                     onClick={() => {
-                                        if (displayRecord) {
-                                            setDisplayRecord(null)
-                                        } else {
+                                        if (displayRecord === null || displayRecord.createdTime !== record.createdTime) {
                                             setDisplayRecord(record)
+                                        } else {
+                                            setDisplayRecord(null)
                                         }
                                     }}
                                 >
