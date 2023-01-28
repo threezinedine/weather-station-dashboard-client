@@ -37,6 +37,8 @@ import {
     FIRST_STATION_API_ROUTE,
     RESET_PUT_ALIAS,
     RESET_STATION_KEY_API_ROUTE,
+    CREATE_NEW_STATION_API_ROUTE,
+    CREATE_NEW_STATION_ALIAS,
 } from '../constants'
 
 
@@ -234,6 +236,22 @@ export const setupFirstStation = () => {
             stationKey: FIRST_STATION_STATION_KEY,
         }
     })
+}
+
+export const setupCreateNewStation = () => {
+    cy.intercept({
+        method: POST_METHOD,
+        url: CREATE_NEW_STATION_API_ROUTE,
+    }, {
+        status: HTTP_200_OK,
+        body: {
+            stationName: THIRD_STATION_STATION_NAME,
+            stationPosition: THIRD_STATION_STATION_POSITION,
+            pushingDataIntervalInSeconds: THIRD_STATION_PUBLISHING_TIME,
+            stationId: THIRD_STATION_STATION_ID,
+            stationKey: THIRD_STATION_STATION_KEY,
+        }
+    }).as(CREATE_NEW_STATION_ALIAS)
 }
 
 

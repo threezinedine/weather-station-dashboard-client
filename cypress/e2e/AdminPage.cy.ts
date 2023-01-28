@@ -16,6 +16,14 @@ import {
     TEST_USERNAME,
     TEST_PASSWORD_ADMIN_PAGE,
     SMALL_WAITING_TIME,
+    STATION_STATION_NAME_TEST_ID,
+    THIRD_STATION_STATION_NAME,
+    STATION_STATION_POSITION_TEST_ID,
+    THIRD_STATION_STATION_POSITION,
+    STATION_PUBLISHING_TIME_TEST_ID,
+    THIRD_STATION_PUBLISHING_TIME,
+    SUBMIT_CREATE_STATION_TEST_ID,
+    CREATE_NEW_STATION_ALIAS,
 } from "../constants"
 import {
     checkTextExist,
@@ -32,6 +40,7 @@ import {
     setupAddStationByValidStationKey,
     setupAddStationByInvalidStationKey,
     setupFirstStation,
+    setupCreateNewStation,
 } from "../utils"
 
 
@@ -113,5 +122,28 @@ describe("Admin page testing", () => {
             .click()
 
         checkTextExist(STATION_KEY_DOES_NOT_EXIST_ERROR_MESSAGE)
+    })
+
+    it("should contain the create new staiton Button", () => {
+        setupValidToken()
+        setupAllStation()
+        setupCreateNewStation()
+
+        visitRoute(ADMIN_ROUTE)
+
+        typeWithTestId(STATION_STATION_NAME_TEST_ID, THIRD_STATION_STATION_NAME)
+        typeWithTestId(STATION_STATION_POSITION_TEST_ID, THIRD_STATION_STATION_POSITION)
+        typeWithTestId(STATION_PUBLISHING_TIME_TEST_ID, THIRD_STATION_PUBLISHING_TIME.toString())
+
+        getComponentByTestId(SUBMIT_CREATE_STATION_TEST_ID)
+            .click()
+
+        cy.wait(`@${CREATE_NEW_STATION_ALIAS}`)
+            .then(intercept => {
+                expect(intercept.request.headers[AUTHORIZATION_KEY]).to.equal(TESTING_TOKEN) 
+                expect(intercept.request.body.stationName).to.equal(THIRD_STATION_STATION_NAME) 
+                expect(intercept.request.body.stationPosition).to.equal(THIRD_STATION_STATION_POSITION) 
+                expect(intercept.request.body.pushingDataIntervalInSeconds).to.equal(THIRD_STATION_PUBLISHING_TIME) 
+            })
     })
 })
