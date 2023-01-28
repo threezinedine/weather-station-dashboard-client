@@ -18,7 +18,7 @@ import {
 
 
 describe("Sidebar Wrapper testing", () => {
-    it.skip("should contain all current information of the free api", () => {
+    it("should contain all current information of the free api", () => {
         setupValidToken()
         setupFreeAPIStationLatestRecord()
 
