@@ -51,6 +51,7 @@ const HeaderWrapper: React.FC<HeaderWrapperProps> = ({
                             <button
                                 data-testid={USER_DATA_TEST_ID}
                                 onClick={() => {
+                                    setOptionDislay(!optionDisplay)
                                     navigate(ADMIN_ROUTE)
                                 }}
                             >
