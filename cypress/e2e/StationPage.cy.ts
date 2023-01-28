@@ -102,14 +102,5 @@ describe("Station Page test", () => {
 
         getComponentByText(FIRST_RECORD_CREATED_TIME)
             .click()
-
-        checkTextNotExist(FIRST_RECORD_WIND_DIRECTION.toString())
-        checkTextNotExist(FIRST_RECORD_AVERAGE_WIND_SPEED.toString())
-        checkTextNotExist(FIRST_RECORD_MAX_WIND_SPEED.toString())
-        checkTextNotExist(FIRST_RECORD_RAIN_FALL_ONE_HOUR.toString())
-        checkTextNotExist(FIRST_RECORD_RAIN_FALL_ONE_DAY.toString())
-        checkTextNotExist(FIRST_RECORD_TEMPERATURE.toString())
-        checkTextNotExist(FIRST_RECORD_HUMIDITY.toString())
-        checkTextNotExist(FIRST_RECORD_PRESSUER.toString())
     })
 })

@@ -35,6 +35,7 @@ const StationPage: React.FC = () => {
         stationKey: EMPTY_STRING,
     }))
     const [records, setRecords] = useState((): RecordType[] => [])
+    const [displayRecord, setDisplayRecord] = useState((): RecordType | null => null)
     const { stationName = EMPTY_STRING } = useParams()
 
     useEffect(() => {
@@ -92,10 +93,33 @@ const StationPage: React.FC = () => {
                             records.map((record: RecordType, index: number) => (
                                 <button
                                     key={index}
+                                    onClick={() => {
+                                        if (displayRecord) {
+                                            setDisplayRecord(null)
+                                        } else {
+                                            setDisplayRecord(record)
+                                        }
+                                    }}
                                 >
                                     { record.createdTime }
                                 </button> 
                             ))
+                        }
+                    </div>
+                    <div>
+                        {
+                            displayRecord && (
+                                <div>
+                                    <div>Wind Direction: { displayRecord.windDirection }</div>
+                                    <div>Average Wind Speed: { displayRecord.averageWindSpeedInOneMinute }</div>
+                                    <div>Max Wind Speed: { displayRecord.maxWindSpeedInFiveMinutes }</div>
+                                    <div>Rain Fall In One Hour: { displayRecord.rainFallInOneHour }</div>
+                                    <div>Rain Fall In One Day: { displayRecord.rainFallInOneDay }</div>
+                                    <div>Temperature: { displayRecord.temperature }</div>
+                                    <div>Humidity: { displayRecord.humidity }</div>
+                                    <div>Bar Pressure: { displayRecord.barPressure }</div>
+                                </div>
+                            )
                         }
                     </div>
                 </div>
