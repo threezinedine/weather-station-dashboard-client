@@ -15,7 +15,7 @@ export const STATION_STATION_NAME_TEST_ID = "stationStationName"
 export const STATION_STATION_POSITION_TEST_ID = "stationStationPosition"
 export const STATION_PUBLISHING_TIME_TEST_ID = "stationPublishingTime"
 
-export const SUBMIT_CREATE_STATION_LABEL = "Create"
+export const SUBMIT_CREATE_STATION_LABEL = "Submit"
 
 export const LOGIN_ROUTE = "/login"
 export const HOME_ROUTE = "/"
@@ -37,6 +37,7 @@ export const LOGIN_API_ROUTE = "/users/login"
 export const GET_ALL_STATIONS_API_ROUTE = "/stations"
 export const ADD_STATION_API_ROUTE = "/stations"
 export const RESET_STATOIN_KEY_API_ROUTE = "/stations/reset" 
+export const CREATE_NEW_STATION_API_ROUTE = "/stations"
 
 export const HTTP_200_OK = 200
 
@@ -46,6 +47,9 @@ export const INPUT_TAG_PASSWORD_TYPE = "password"
 export const ERROR_MESSAGE_TIME_OUT = 2000
 
 export const LOGIN_SUBMIT_LABEL = "Login"
+export const CREATE_STATION_STATION_NAME_LABEL = "Station name"
+export const CREATE_STATION_STATION_POSITION_LABEL = "Station name"
+export const CREATE_STATION_PUBLISHING_TIME_LABEL = "Pushing time in seconds"
 
 export const LOGIN_ERROR_MESSAGE = "Login error"
 

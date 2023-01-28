@@ -112,6 +112,10 @@ export const getLoginFormFromFields = (fields: FormFieldResponseProps[]): FormDa
     return data
 }
 
+export const extractValueFromFields = (fields: FormFieldResponseProps[], name: string): string => {
+    return fields.filter(field => field.name === name)[0].value
+}
+
 
 export const handleErrorResponse = (err: any, dispatch: any) => {
     dispatch(addErrorAction(err.response.data.detail.msg))

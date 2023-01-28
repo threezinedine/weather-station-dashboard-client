@@ -17,10 +17,21 @@ import {
     SUBMIT_ADD_STATION_KEY_TEST_ID,
     ADD_STATION_TEST_ID,
     CREATE_STATION_TEST_ID,
+    STATION_STATION_NAME_TEST_ID,
+    CREATE_STATION_STATION_NAME_LABEL,
+    SUBMIT_CREATE_STATION_LABEL,
+    STATION_STATION_POSITION_TEST_ID,
+    CREATE_STATION_STATION_POSITION_LABEL,
+    STATION_PUBLISHING_TIME_TEST_ID,
+    CREATE_STATION_PUBLISHING_TIME_LABEL,
+    POST_METHOD,
+    CREATE_NEW_STATION_API_ROUTE,
 } from "const"
 import {
     addStationByStationId,
+    extractValueFromFields,
     fetchAllStations,
+    generateAuthorizationHeader,
     handleErrorResponse,
     loadToken,
 } from "utils"
@@ -30,6 +41,7 @@ import {
 import { 
     Form,
 } from "components"
+import api from "stores/api"
 
 
 const AdminPage: React.FC = () => {
@@ -40,6 +52,7 @@ const AdminPage: React.FC = () => {
     const [stations, setStations] = useState([])
     const [addStation, setAddStation] = useState(false)
     const [stationKey, setStationKey] = useState("")
+    const [createNewStation, setupCreateNewStation] = useState(false)
 
     useEffect(() => {
         const token = loadToken()
@@ -121,9 +134,61 @@ const AdminPage: React.FC = () => {
                 </button>
                 <button
                     data-testid={CREATE_STATION_TEST_ID}
+                    onClick={() => {
+                        setupCreateNewStation(!createNewStation)
+                    }}
                 >
                     Create Station
                 </button>
+                {
+                    createNewStation && (
+                        <Form 
+                            fields={[
+                                {
+                                    name: STATION_STATION_NAME_TEST_ID,
+                                    label: CREATE_STATION_STATION_NAME_LABEL,
+                                    errors: []
+                                },
+                                {
+                                    name: STATION_STATION_POSITION_TEST_ID,
+                                    label: CREATE_STATION_STATION_POSITION_LABEL,
+                                    errors: []
+                                },
+                                {
+                                    name: STATION_PUBLISHING_TIME_TEST_ID,
+                                    label: CREATE_STATION_PUBLISHING_TIME_LABEL,
+                                    errors: []
+                                },
+                            ]}
+                            submitLabel={SUBMIT_CREATE_STATION_LABEL}
+                            onSubmit={(fields) => {
+                                const token = loadToken()
+                                const stationName = extractValueFromFields(fields, STATION_STATION_NAME_TEST_ID)
+                                const stationPosition = extractValueFromFields(fields, STATION_STATION_POSITION_TEST_ID)
+                                const pushingDataIntervalInSeconds = parseInt(
+                                    extractValueFromFields(fields, STATION_PUBLISHING_TIME_TEST_ID)
+                                )
+
+                                api({
+                                    method: POST_METHOD,
+                                    url: CREATE_NEW_STATION_API_ROUTE,
+                                    headers: generateAuthorizationHeader(token),
+                                    data: {
+                                        stationName,
+                                        stationPosition,
+                                        pushingDataIntervalInSeconds,
+                                    }
+                                })
+                                    .catch(err => {
+                                        handleErrorResponse(err, dispatch)
+                                    }) 
+                            }}
+                            onSubmitError={() => {
+                                console.log("Here")
+                            }}
+                        />
+                    )
+                }
             </div>
         </div>
     )

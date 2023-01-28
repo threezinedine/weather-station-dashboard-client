@@ -148,7 +148,7 @@ describe("Admin page testing", () => {
 
         cy.wait(`@${CREATE_NEW_STATION_ALIAS}`)
             .then(intercept => {
-                expect(intercept.request.headers[AUTHORIZATION_KEY]).to.equal(TESTING_TOKEN) 
+                expect(intercept.request.headers[AUTHORIZATION_KEY]).to.equal(getTheBearerToken(TESTING_TOKEN)) 
                 expect(intercept.request.body.stationName).to.equal(THIRD_STATION_STATION_NAME) 
                 expect(intercept.request.body.stationPosition).to.equal(THIRD_STATION_STATION_POSITION) 
                 expect(intercept.request.body.pushingDataIntervalInSeconds).to.equal(THIRD_STATION_PUBLISHING_TIME) 
