@@ -22,8 +22,8 @@ import {
     THIRD_STATION_STATION_POSITION,
     STATION_PUBLISHING_TIME_TEST_ID,
     THIRD_STATION_PUBLISHING_TIME,
-    SUBMIT_CREATE_STATION_TEST_ID,
     CREATE_NEW_STATION_ALIAS,
+    SUBMIT_CREATE_STATION_LABEL,
 } from "../constants"
 import {
     checkTextExist,
@@ -135,7 +135,7 @@ describe("Admin page testing", () => {
         typeWithTestId(STATION_STATION_POSITION_TEST_ID, THIRD_STATION_STATION_POSITION)
         typeWithTestId(STATION_PUBLISHING_TIME_TEST_ID, THIRD_STATION_PUBLISHING_TIME.toString())
 
-        getComponentByTestId(SUBMIT_CREATE_STATION_TEST_ID)
+        getComponentByText(SUBMIT_CREATE_STATION_LABEL)
             .click()
 
         cy.wait(`@${CREATE_NEW_STATION_ALIAS}`)

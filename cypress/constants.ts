@@ -13,7 +13,8 @@ export const RESET_KEY_TEST_ID = "resetKey"
 export const STATION_STATION_NAME_TEST_ID = "stationStationName"
 export const STATION_STATION_POSITION_TEST_ID = "stationStationPosition"
 export const STATION_PUBLISHING_TIME_TEST_ID = "stationPublishingTime"
-export const SUBMIT_CREATE_STATION_TEST_ID = "submitCreateStation"
+
+export const SUBMIT_CREATE_STATION_LABEL = "Create"
 
 export const AUTHORIZATION_KEY = "authorization"
 export const USERNAME_KEY = "username"
