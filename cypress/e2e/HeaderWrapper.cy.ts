@@ -36,6 +36,20 @@ describe("HeaderWrapper testing", () => {
         checkComponentExistByTestId(USER_DATA_TEST_ID)
     })
 
+    it("should hide the user and log out when 1 of them is clicked", () => {
+        setupValidToken()
+        visitRoute(HOME_ROUTE)
+
+        getComponentByTestId(AVATAR_TEST_ID)
+            .click()
+
+        getComponentByTestId(USER_DATA_TEST_ID)
+            .click()
+
+        checkComponentNotExistByTestId(LOGOUT_BUTTON_TEST_ID)
+        checkComponentNotExistByTestId(USER_DATA_TEST_ID)
+    })
+
     it("should navigate to the login page and cannot access into the home page again when click the log out button", () => {
         setupValidToken()
         visitRoute(HOME_ROUTE)

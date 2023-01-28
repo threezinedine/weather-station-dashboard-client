@@ -155,7 +155,8 @@ export const extractValueFromFields = (fields: FormFieldResponseProps[], name: s
 
 
 export const handleErrorResponse = (err: any, dispatch: any) => {
-    dispatch(addErrorAction(err.response.data.detail.msg))
+    const message: string = err.response.data.detail.msg || err.response.data.detail
+    dispatch(addErrorAction(message))
 
     setTimeout(() => {
         dispatch(popErrorAction())

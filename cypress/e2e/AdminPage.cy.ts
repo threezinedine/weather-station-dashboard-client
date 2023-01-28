@@ -155,12 +155,10 @@ describe("Admin page testing", () => {
                 expect(intercept.request.body.stationName).to.equal(THIRD_STATION_STATION_NAME) 
                 expect(intercept.request.body.stationPosition).to.equal(THIRD_STATION_STATION_POSITION) 
                 expect(intercept.request.body.pushingDataIntervalInSeconds).to.equal(THIRD_STATION_PUBLISHING_TIME) 
-                cy.get(`@${ALL_STATION_ALIAS}`)
             })
 
         checkComponentNotExistByTestId(STATION_STATION_NAME_TEST_ID)
         checkComponentNotExistByTestId(STATION_STATION_POSITION_TEST_ID)
         checkComponentNotExistByTestId(STATION_PUBLISHING_TIME_TEST_ID)
-
     })
 })
