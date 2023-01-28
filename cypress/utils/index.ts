@@ -50,6 +50,16 @@ import {
     FIRST_STATION_GET_LATEST_RECORD_API_ROUTE,
     GET_LATEST_RECORD_ALIAS,
     FREE_API_STATION_GET_LATEST_RECORD_API_ROUTE,
+    DEFAULT_RECORD_WIND_DIRECTION,
+    DEFAULT_RECORD_AVERAGE_WIND_SPEED,
+    DEFAULT_RECORD_MAX_WIND_SPEED,
+    DEFAULT_RECORD_STATION_ID,
+    DEFAULT_RECORD_RAIN_FALL_ONE_HOUR,
+    DEFAULT_RECORD_RAIN_FALL_ONE_DAY,
+    DEFAULT_RECORD_TEMPERATURE,
+    DEFAULT_RECORD_HUMIDITY,
+    DEFAULT_RECORD_PRESSUER,
+    DEFAULT_RECORD_CREATED_TIME,
 } from '../constants'
 import { 
     TOKEN_ITEM,
@@ -340,16 +350,16 @@ export const setupFreeAPIStationLatestRecord = () => {
     }, {
         status: HTTP_200_OK,
         body: {
-            stationId: FIRST_RECORD_STATION_ID,
-            windDirection: FIRST_RECORD_WIND_DIRECTION,
-            averageWindSpeedInOneMinute: FIRST_RECORD_AVERAGE_WIND_SPEED,
-            maxWindSpeedInFiveMinutes: FIRST_RECORD_MAX_WIND_SPEED,
-            rainFallInOneHour: FIRST_RECORD_RAIN_FALL_ONE_HOUR,
-            rainFallInOneDay: FIRST_RECORD_RAIN_FALL_ONE_DAY,
-            temperature: FIRST_RECORD_TEMPERATURE,
-            humidity: FIRST_RECORD_HUMIDITY,
-            barPressure: FIRST_RECORD_PRESSUER,
-            createdTime: FIRST_RECORD_CREATED_TIME,
+            stationId: DEFAULT_RECORD_STATION_ID,
+            windDirection: DEFAULT_RECORD_WIND_DIRECTION,
+            averageWindSpeedInOneMinute: DEFAULT_RECORD_AVERAGE_WIND_SPEED,
+            maxWindSpeedInFiveMinutes: DEFAULT_RECORD_MAX_WIND_SPEED,
+            rainFallInOneHour: DEFAULT_RECORD_RAIN_FALL_ONE_HOUR,
+            rainFallInOneDay: DEFAULT_RECORD_RAIN_FALL_ONE_DAY,
+            temperature: DEFAULT_RECORD_TEMPERATURE,
+            humidity: DEFAULT_RECORD_HUMIDITY,
+            barPressure: DEFAULT_RECORD_PRESSUER,
+            createdTime: DEFAULT_RECORD_CREATED_TIME,
         },
     }).as(GET_LATEST_RECORD_ALIAS)
 }
