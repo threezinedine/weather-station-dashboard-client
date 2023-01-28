@@ -132,6 +132,9 @@ describe("Admin page testing", () => {
 
         visitRoute(ADMIN_ROUTE)
 
+        checkComponentNotExistByTestId(STATION_STATION_NAME_TEST_ID)
+        checkComponentNotExistByTestId(STATION_STATION_POSITION_TEST_ID)
+        checkComponentNotExistByTestId(STATION_PUBLISHING_TIME_TEST_ID)
 
         getComponentByTestId(CREATE_STATION_TEST_ID)
             .click()

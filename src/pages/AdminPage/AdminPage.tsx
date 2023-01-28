@@ -16,6 +16,7 @@ import {
     ADD_STATION_KEY_TEST_ID,
     SUBMIT_ADD_STATION_KEY_TEST_ID,
     ADD_STATION_TEST_ID,
+    CREATE_STATION_TEST_ID,
 } from "const"
 import {
     addStationByStationId,
@@ -26,6 +27,9 @@ import {
 import {
     StoreState,
 } from "stores"
+import { 
+    Form,
+} from "components"
 
 
 const AdminPage: React.FC = () => {
@@ -114,6 +118,11 @@ const AdminPage: React.FC = () => {
                     }}
                 >
                     Add station
+                </button>
+                <button
+                    data-testid={CREATE_STATION_TEST_ID}
+                >
+                    Create Station
                 </button>
             </div>
         </div>

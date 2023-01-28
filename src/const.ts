@@ -10,6 +10,12 @@ export const SUBMIT_ADD_STATION_KEY_TEST_ID = "submitAddStationKey"
 export const ADD_STATION_KEY_TEST_ID = "addStationKey"
 export const ADD_STATION_TEST_ID = "addStation"
 export const RESET_KEY_TEST_ID = "resetKey"
+export const CREATE_STATION_TEST_ID = "createStation"
+export const STATION_STATION_NAME_TEST_ID = "stationStationName"
+export const STATION_STATION_POSITION_TEST_ID = "stationStationPosition"
+export const STATION_PUBLISHING_TIME_TEST_ID = "stationPublishingTime"
+
+export const SUBMIT_CREATE_STATION_LABEL = "Create"
 
 export const LOGIN_ROUTE = "/login"
 export const HOME_ROUTE = "/"
