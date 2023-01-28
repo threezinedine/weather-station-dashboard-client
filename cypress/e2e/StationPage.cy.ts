@@ -17,6 +17,14 @@ import {
     FIRST_RECORD_TEMPERATURE,
     FIRST_RECORD_HUMIDITY,
     FIRST_RECORD_PRESSUER,
+    SECOND_RECORD_WIND_DIRECTION,
+    SECOND_RECORD_AVERAGE_WIND_SPEED,
+    SECOND_RECORD_MAX_WIND_SPEED,
+    SECOND_RECORD_RAIN_FALL_ONE_HOUR,
+    SECOND_RECORD_RAIN_FALL_ONE_DAY,
+    SECOND_RECORD_TEMPERATURE,
+    SECOND_RECORD_HUMIDITY,
+    SECOND_RECORD_PRESSUER,
 } from "../constants"
 import { 
     RESET_KEY_TEST_ID,
@@ -102,5 +110,28 @@ describe("Station Page test", () => {
 
         getComponentByText(FIRST_RECORD_CREATED_TIME)
             .click()
+    })
+
+    it("should show all record's information of the clicked records and close others", () => {
+        setupValidToken()
+        setupFirstStation()
+        setupAllRecords()
+
+        visitRoute(FIRST_STATION_PAGE_ROUTE)
+
+        getComponentByText(FIRST_RECORD_CREATED_TIME)
+            .click()
+
+        getComponentByText(SECOND_RECORD_CREATED_TIME)
+            .click()
+
+        checkTextExist(SECOND_RECORD_WIND_DIRECTION.toString())
+        checkTextExist(SECOND_RECORD_AVERAGE_WIND_SPEED.toString())
+        checkTextExist(SECOND_RECORD_MAX_WIND_SPEED.toString())
+        checkTextExist(SECOND_RECORD_RAIN_FALL_ONE_HOUR.toString())
+        checkTextExist(SECOND_RECORD_RAIN_FALL_ONE_DAY.toString())
+        checkTextExist(SECOND_RECORD_TEMPERATURE.toString())
+        checkTextExist(SECOND_RECORD_HUMIDITY.toString())
+        checkTextExist(SECOND_RECORD_PRESSUER.toString())
     })
 })
