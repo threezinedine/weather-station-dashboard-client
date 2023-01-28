@@ -3,7 +3,6 @@ import {
     typeWithTestId,
     checkTextExist,
     checkTextNotExist,
-    getComponentByTestId,
     getComponentByText, 
 } from "../utils"
 import {

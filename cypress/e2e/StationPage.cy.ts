@@ -32,7 +32,6 @@ import {
 } from "const"
 import {
     checkTextExist,
-    checkTextNotExist,
     getComponentByTestId,
     getComponentByText,
     getTheBearerToken,
