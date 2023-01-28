@@ -24,15 +24,11 @@ import {
     CREATE_STATION_STATION_POSITION_LABEL,
     STATION_PUBLISHING_TIME_TEST_ID,
     CREATE_STATION_PUBLISHING_TIME_LABEL,
-    POST_METHOD,
-    CREATE_NEW_STATION_API_ROUTE,
 } from "const"
 import {
     addStationByStationId,
     extractStationDataFromFields,
-    extractValueFromFields,
     fetchAllStations,
-    generateAuthorizationHeader,
     handleErrorResponse,
     loadToken,
     postNewStationData,
@@ -43,7 +39,6 @@ import {
 import { 
     Form,
 } from "components"
-import api from "stores/api"
 
 
 const AdminPage: React.FC = () => {

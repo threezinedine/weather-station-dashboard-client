@@ -3,14 +3,11 @@ import {
     typeWithTestId,
     checkTextExist,
     checkTextNotExist,
-    getComponentByTestId, 
+    getComponentByTestId,
+    getComponentByText, 
 } from "../utils"
 import {
     REGISTER_ROUTE,
-    USERNAME_DATA_TEST_ID,
-    PASSWORD_DATA_TEST_ID,
-    VALID_PASSWORD_DATA_TEST_ID,
-    SUBMIT_BUTTON_DATA_TEST_ID,
     TEST_USERNAME_WITH_LESS_THAN_FIVE_CHARACTERS,
     USERNAME_MUST_HAVE_MORE_THAN_FIVE_CHARACTERS_ERROR_MESSAGE,
     TEST_USERNAME_WITH_MORE_THAN_TWENTY_CHARACTERS,
@@ -28,8 +25,14 @@ import {
     VALID_PASSWORD_DOES_NOT_MATCH_ERROR_MESSAGE,
     TEST_PASSWORD,
     REGISTER_ERROR_MESSAGE,
-    WAITING_TIME,
 } from "../constants"
+import { 
+    ERROR_MESSAGE_TIME_OUT,
+    REGISTER_SUBMIT_LABEL,
+    VALID_PASSWORD_DATA_TEST_ID,
+    USERNAME_DATA_TEST_ID,
+    PASSWORD_DATA_TEST_ID,
+} from "const"
 
 
 describe("Register page testing", () => {
@@ -53,11 +56,11 @@ describe("Register page testing", () => {
         typeWithTestId(PASSWORD_DATA_TEST_ID, TEST_PASSWORD_WITH_LESS_THAN_FIVE_CHARACTERS)
         checkTextExist(PASSWORD_MUST_HAVE_MORE_THAN_FIVE_CHARACTERS_ERROR_MESSAGE)
 
-        getComponentByTestId(SUBMIT_BUTTON_DATA_TEST_ID)
+        getComponentByText(REGISTER_SUBMIT_LABEL)
             .click()
 
         checkTextExist(REGISTER_ERROR_MESSAGE)
-        cy.wait(WAITING_TIME)
+        cy.wait(ERROR_MESSAGE_TIME_OUT)
             .then(() => {
                 checkTextNotExist(REGISTER_ERROR_MESSAGE)
             })
@@ -79,7 +82,7 @@ describe("Register page testing", () => {
         typeWithTestId(VALID_PASSWORD_DATA_TEST_ID, TEST_PASSWORD)
         checkTextNotExist(VALID_PASSWORD_DOES_NOT_MATCH_ERROR_MESSAGE)
 
-        getComponentByTestId(SUBMIT_BUTTON_DATA_TEST_ID)
+        getComponentByText(REGISTER_SUBMIT_LABEL)
             .click()
     })
 })

@@ -1,17 +1,6 @@
 import {
-    GET_METHOD,
-    PUT_METHOD,
-    VALIDATE_API_ROUTE,
-    HTTP_200_OK,
-    LOCAL_HOST,
-    TOKEN_ITEM,
     TESTING_TOKEN,
-    HTTP_401_UNAUTHORIZED,
-    LOGIN_API_ROUTE,
-    POST_METHOD,
     TEST_USERNAME,
-    HTTP_404_NOT_FOUND,
-    GET_ALL_STATIONS_API_ROUTE,
     FIRST_STATION_STATION_NAME,
     FIRST_STATION_STATION_POSITION,
     FIRST_STATION_PUBLISHING_TIME,
@@ -22,9 +11,7 @@ import {
     SECOND_STATION_PUBLISHING_TIME,
     SECOND_STATION_STATION_ID,
     SECOND_STATION_STATION_KEY,
-    AUTHORIZATION_KEY,
     LOGIN_POST_ALIAS,
-    ADD_STATION_BY_STATION_KEY_API_ROUTE,
     ADD_STATION_FETCH_ALIAS,
     STATION_KEY_DOES_NOT_EXIST_ERROR_MESSAGE,
     THIRD_STATION_STATION_NAME,
@@ -36,10 +23,24 @@ import {
     SESSION_EXPIRED_ERROR_MESSAGE,
     FIRST_STATION_API_ROUTE,
     RESET_PUT_ALIAS,
-    RESET_STATION_KEY_API_ROUTE,
-    CREATE_NEW_STATION_API_ROUTE,
     CREATE_NEW_STATION_ALIAS,
 } from '../constants'
+import { 
+    TOKEN_ITEM,
+    GET_METHOD,
+    PUT_METHOD,
+    POST_METHOD,
+    AUTHORIZATION_KEY,
+    HTTP_401_UNAUTHORIZED,
+    HTTP_200_OK,
+    HTTP_404_NOT_FOUND,
+    GET_ALL_STATIONS_API_ROUTE,
+    TOKEN_VALIDATE_API_ROUTE,
+    RESET_STATOIN_KEY_API_ROUTE,
+    CREATE_NEW_STATION_API_ROUTE,
+    ADD_STATION_API_ROUTE,
+    LOGIN_API_ROUTE,
+} from 'const'
 
 
 export const getComponentByTestId = (testId: string) => {
@@ -89,8 +90,7 @@ export const validateRoute = (route: string) => {
 export const setupValidToken = () => {
     cy.intercept({
         method: GET_METHOD,
-        url: VALIDATE_API_ROUTE,
-        hostname: LOCAL_HOST,
+        url: TOKEN_VALIDATE_API_ROUTE,
     },
     {
         statusCode: HTTP_200_OK,
@@ -104,8 +104,7 @@ export const setupValidToken = () => {
 export const setupInvalidToken = () => {
     cy.intercept({
         method: GET_METHOD,
-        url: VALIDATE_API_ROUTE,
-        hostname: LOCAL_HOST,
+        url: TOKEN_VALIDATE_API_ROUTE,
     },
     {
         statusCode: HTTP_401_UNAUTHORIZED,
@@ -124,7 +123,6 @@ export const setupValidUsernamePassword = () => {
     cy.intercept({
         method: POST_METHOD,
         url: LOGIN_API_ROUTE,
-        hostname: LOCAL_HOST,
     },
     {
         statusCode: HTTP_200_OK,
@@ -142,7 +140,6 @@ export const setupInvalidUsernamePassword = () => {
     cy.intercept({
         method: POST_METHOD,
         url: LOGIN_API_ROUTE,
-        hostname: LOCAL_HOST,
     },
     {
         statusCode: HTTP_404_NOT_FOUND,
@@ -160,7 +157,6 @@ export const setupAllStation = () => {
     cy.intercept({
         method: GET_METHOD,
         url: GET_ALL_STATIONS_API_ROUTE,
-        hostname: LOCAL_HOST,
     },
     {
         statusCode: HTTP_200_OK,
@@ -188,8 +184,7 @@ export const setupAllStation = () => {
 export const setupAddStationByInvalidStationKey = () => {
     cy.intercept({
         method: PUT_METHOD,
-        url: ADD_STATION_BY_STATION_KEY_API_ROUTE,
-        hostname: LOCAL_HOST,
+        url: ADD_STATION_API_ROUTE,
     },
     {
         statusCode: HTTP_404_NOT_FOUND,
@@ -206,8 +201,7 @@ export const setupAddStationByInvalidStationKey = () => {
 export const setupAddStationByValidStationKey = () => {
     cy.intercept({
         method: PUT_METHOD,
-        url: ADD_STATION_BY_STATION_KEY_API_ROUTE,
-        hostname: LOCAL_HOST,
+        url: ADD_STATION_API_ROUTE,
     },
     {
         statusCode: HTTP_200_OK,
@@ -258,7 +252,7 @@ export const setupCreateNewStation = () => {
 export const setupResetStationKey = () => {
     cy.intercept({
         method: PUT_METHOD,
-        url: RESET_STATION_KEY_API_ROUTE,
+        url: RESET_STATOIN_KEY_API_ROUTE,
     }).as(RESET_PUT_ALIAS)
 }
 

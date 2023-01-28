@@ -9,13 +9,15 @@ import {
 import { 
     LOGIN_ROUTE,
     HOME_ROUTE,
-    LOGOUT_DATA_TEST_ID,
     SMALL_WAITING_TIME,
-    BRAND_DATA_TEST_ID,
     ADMIN_ROUTE,
+} from "../constants"
+import { 
+    LOGOUT_BUTTON_TEST_ID,
+    BRAND_DATA_TEST_ID,
     USER_DATA_TEST_ID,
     AVATAR_TEST_ID,
-} from "../constants"
+} from "const"
 
 
 describe("HeaderWrapper testing", () => {
@@ -24,13 +26,13 @@ describe("HeaderWrapper testing", () => {
         visitRoute(HOME_ROUTE)
 
         checkComponentExistByTestId(AVATAR_TEST_ID)
-        checkComponentNotExistByTestId(LOGOUT_DATA_TEST_ID)
+        checkComponentNotExistByTestId(LOGOUT_BUTTON_TEST_ID)
         checkComponentNotExistByTestId(USER_DATA_TEST_ID)
 
         getComponentByTestId(AVATAR_TEST_ID)
             .click()
 
-        checkComponentExistByTestId(LOGOUT_DATA_TEST_ID)
+        checkComponentExistByTestId(LOGOUT_BUTTON_TEST_ID)
         checkComponentExistByTestId(USER_DATA_TEST_ID)
     })
 
@@ -41,7 +43,7 @@ describe("HeaderWrapper testing", () => {
         getComponentByTestId(AVATAR_TEST_ID)
             .click()
 
-        getComponentByTestId(LOGOUT_DATA_TEST_ID)
+        getComponentByTestId(LOGOUT_BUTTON_TEST_ID)
             .click()
 
         cy.wait(SMALL_WAITING_TIME)

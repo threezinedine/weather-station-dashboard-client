@@ -6,13 +6,11 @@ import {
     getComponentByTestId,
     validateRoute,
     setupValidUsernamePassword,
-    setupInvalidUsernamePassword, 
+    setupInvalidUsernamePassword,
+    getComponentByText, 
 } from "../utils"
 import {
     LOGIN_ROUTE,
-    USERNAME_DATA_TEST_ID,
-    PASSWORD_DATA_TEST_ID,
-    SUBMIT_BUTTON_DATA_TEST_ID,
     TEST_USERNAME_WITH_LESS_THAN_FIVE_CHARACTERS,
     USERNAME_MUST_HAVE_MORE_THAN_FIVE_CHARACTERS_ERROR_MESSAGE,
     TEST_USERNAME_WITH_MORE_THAN_TWENTY_CHARACTERS,
@@ -28,13 +26,16 @@ import {
     PASSWORD_CANNOT_CONTAIN_THE_SPECIAL_CHARACTERS,
     TEST_PASSWORD,
     LOGIN_ERROR_MESSAGE,
-    WAITING_TIME,
-    SMALL_WAITING_TIME,
     HOME_ROUTE,
-    USERNAME_KEY,
-    PASSWORD_KEY,
     LOGIN_POST_ALIAS,
+    SMALL_WAITING_TIME,
 } from "../constants"
+import { 
+    USERNAME_DATA_TEST_ID,
+    PASSWORD_DATA_TEST_ID,
+    LOGIN_SUBMIT_LABEL,
+    ERROR_MESSAGE_TIME_OUT,
+} from "const"
 
 
 describe("Login page testing", () => {
@@ -58,11 +59,11 @@ describe("Login page testing", () => {
         typeWithTestId(PASSWORD_DATA_TEST_ID, TEST_PASSWORD_WITH_LESS_THAN_FIVE_CHARACTERS)
         checkTextExist(PASSWORD_MUST_HAVE_MORE_THAN_FIVE_CHARACTERS_ERROR_MESSAGE)
 
-        getComponentByTestId(SUBMIT_BUTTON_DATA_TEST_ID)
+        getComponentByText(LOGIN_SUBMIT_LABEL)
             .click()
 
         checkTextExist(LOGIN_ERROR_MESSAGE)
-        cy.wait(WAITING_TIME)
+        cy.wait(ERROR_MESSAGE_TIME_OUT)
             .then(() => {
                 checkTextNotExist(LOGIN_ERROR_MESSAGE)
             })
@@ -78,7 +79,7 @@ describe("Login page testing", () => {
         typeWithTestId(PASSWORD_DATA_TEST_ID, TEST_PASSWORD)
         checkTextNotExist(PASSWORD_CANNOT_CONTAIN_THE_SPECIAL_CHARACTERS)
 
-        getComponentByTestId(SUBMIT_BUTTON_DATA_TEST_ID)
+        getComponentByText(LOGIN_SUBMIT_LABEL)
             .click()
     })
 
@@ -89,7 +90,7 @@ describe("Login page testing", () => {
         typeWithTestId(USERNAME_DATA_TEST_ID, TEST_USERNAME)
         typeWithTestId(PASSWORD_DATA_TEST_ID, TEST_PASSWORD)
         
-        getComponentByTestId(SUBMIT_BUTTON_DATA_TEST_ID)
+        getComponentByText(LOGIN_SUBMIT_LABEL)
             .click()
 
         cy.wait(SMALL_WAITING_TIME)
@@ -100,8 +101,8 @@ describe("Login page testing", () => {
         cy.wait(`@${LOGIN_POST_ALIAS}`)
             .then(intercept => {
                 console.log(intercept)
-                expect(intercept.request.body).to.have.string(USERNAME_KEY)
-                expect(intercept.request.body).to.have.string(PASSWORD_KEY)
+                expect(intercept.request.body).to.have.string(USERNAME_DATA_TEST_ID)
+                expect(intercept.request.body).to.have.string(PASSWORD_DATA_TEST_ID)
                 expect(intercept.request.body).to.have.string(TEST_USERNAME)
                 expect(intercept.request.body).to.have.string(TEST_PASSWORD)
             })
@@ -114,7 +115,7 @@ describe("Login page testing", () => {
         typeWithTestId(USERNAME_DATA_TEST_ID, TEST_USERNAME)
         typeWithTestId(PASSWORD_DATA_TEST_ID, TEST_PASSWORD)
         
-        getComponentByTestId(SUBMIT_BUTTON_DATA_TEST_ID)
+        getComponentByText(LOGIN_SUBMIT_LABEL)
             .click()
 
         cy.wait(SMALL_WAITING_TIME)

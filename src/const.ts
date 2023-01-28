@@ -3,6 +3,7 @@ export const ZERO_NUMBER = 0
 
 export const USERNAME_DATA_TEST_ID = "username"
 export const PASSWORD_DATA_TEST_ID = "password"
+export const VALID_PASSWORD_DATA_TEST_ID = "valid"
 export const FORM_SUBMIT_BUTTON_TEST_ID = "submitBtn"
 export const AVATAR_TEST_ID = "avatar"
 export const LOGOUT_BUTTON_TEST_ID = "logoutBtn"
@@ -17,7 +18,6 @@ export const STATION_STATION_NAME_TEST_ID = "stationStationName"
 export const STATION_STATION_POSITION_TEST_ID = "stationStationPosition"
 export const STATION_PUBLISHING_TIME_TEST_ID = "stationPublishingTime"
 
-export const SUBMIT_CREATE_STATION_LABEL = "Submit"
 
 export const LOGIN_ROUTE = "/login"
 export const HOME_ROUTE = "/"
@@ -32,7 +32,7 @@ export const POST_METHOD = "POST"
 export const PUT_METHOD = "PUT"
 export const DELETE_METHOD = "DELETE"
 
-export const AUTHORIZATION_KEY = "Authorization"
+export const AUTHORIZATION_KEY = "authorization"
 
 export const TOKEN_VALIDATE_API_ROUTE = "users/validate"
 export const LOGIN_API_ROUTE = "/users/login"
@@ -42,13 +42,17 @@ export const RESET_STATOIN_KEY_API_ROUTE = "/stations/reset"
 export const CREATE_NEW_STATION_API_ROUTE = "/stations"
 
 export const HTTP_200_OK = 200
+export const HTTP_401_UNAUTHORIZED = 401
+export const HTTP_404_NOT_FOUND = 404
 
 export const INPUT_TAG_TEXT_TYPE = "text"
 export const INPUT_TAG_PASSWORD_TYPE = "password"
 
 export const ERROR_MESSAGE_TIME_OUT = 2000
 
+export const SUBMIT_CREATE_STATION_LABEL = "Submit"
 export const LOGIN_SUBMIT_LABEL = "Login"
+export const REGISTER_SUBMIT_LABEL = "Register"
 export const CREATE_STATION_STATION_NAME_LABEL = "Station name"
 export const CREATE_STATION_STATION_POSITION_LABEL = "Station name"
 export const CREATE_STATION_PUBLISHING_TIME_LABEL = "Pushing time in seconds"

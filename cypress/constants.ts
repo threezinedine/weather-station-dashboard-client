@@ -1,26 +1,3 @@
-export const USERNAME_DATA_TEST_ID = "username"
-export const PASSWORD_DATA_TEST_ID = "password"
-export const VALID_PASSWORD_DATA_TEST_ID = "valid"
-export const SUBMIT_BUTTON_DATA_TEST_ID = "submitBtn"
-export const BRAND_DATA_TEST_ID = "brand"
-export const AVATAR_TEST_ID = "avatar"
-export const USER_DATA_TEST_ID = "user"
-export const LOGOUT_DATA_TEST_ID = "logoutBtn"
-export const ADD_STATION_TEST_ID = "addStation"
-export const ADD_STATION_KEY_TEST_ID = "addStationKey"
-export const SUBMIT_ADD_STATION_KEY_TEST_ID = "submitAddStationKey"
-export const RESET_KEY_TEST_ID = "resetKey"
-export const CREATE_STATION_TEST_ID = "createStation"
-export const STATION_STATION_NAME_TEST_ID = "stationStationName"
-export const STATION_STATION_POSITION_TEST_ID = "stationStationPosition"
-export const STATION_PUBLISHING_TIME_TEST_ID = "stationPublishingTime"
-
-export const SUBMIT_CREATE_STATION_LABEL = "Submit"
-
-export const AUTHORIZATION_KEY = "authorization"
-export const USERNAME_KEY = "username"
-export const PASSWORD_KEY = "password"
-
 export const TEST_USERNAME_WITH_LESS_THAN_FIVE_CHARACTERS = "thre"
 export const USERNAME_MUST_HAVE_MORE_THAN_FIVE_CHARACTERS_ERROR_MESSAGE = "Username must have more than 5 characters."
 
@@ -52,29 +29,11 @@ export const LOGIN_ERROR_MESSAGE = "Login error"
 export const REGISTER_ERROR_MESSAGE = "Register error"
 export const SESSION_EXPIRED_ERROR_MESSAGE = "Session expired"
 
-export const WAITING_TIME = 2000
 export const SMALL_WAITING_TIME = 100
 export const LARGE_WATING_TIME = 300
 
-export const VALIDATE_API_ROUTE = "/users/validate"
-export const LOGIN_API_ROUTE = "/users/login"
-export const GET_ALL_STATIONS_API_ROUTE = "/stations"
-export const ADD_STATION_BY_STATION_KEY_API_ROUTE = "/stations"
 export const FIRST_STATION_API_ROUTE = "/stations/Ha%20Noi"
-export const RESET_STATION_KEY_API_ROUTE = "/stations/reset"
-export const CREATE_NEW_STATION_API_ROUTE = "/stations"
 
-export const GET_METHOD = "GET"
-export const POST_METHOD = "POST"
-export const PUT_METHOD = "PUT"
-export const DELETE_METHOD = "DELETE"
-export const LOCAL_HOST = "localhost"
-
-export const HTTP_200_OK = 200
-export const HTTP_401_UNAUTHORIZED = 401
-export const HTTP_404_NOT_FOUND = 404
-
-export const TOKEN_ITEM = "token_item"
 export const TESTING_TOKEN = "testing_token"
 
 export const FIRST_STATION_STATION_NAME = "Ha Noi"

@@ -4,12 +4,14 @@ import {
     FIRST_STATION_STATION_KEY, 
     FIRST_STATION_STATION_NAME,
     FIRST_STATION_STATION_POSITION,
-    RESET_KEY_TEST_ID,
     RESET_PUT_ALIAS,
-    AUTHORIZATION_KEY,
     TESTING_TOKEN,
     LARGE_WATING_TIME,
 } from "../constants"
+import { 
+    RESET_KEY_TEST_ID,
+    AUTHORIZATION_KEY,
+} from "const"
 import {
     checkTextExist,
     getComponentByTestId,
@@ -48,6 +50,7 @@ describe("Station Page test", () => {
 
         cy.wait(`@${RESET_PUT_ALIAS}`)
             .then(intercept => {
+                console.log(intercept.request.headers, AUTHORIZATION_KEY)
                 expect(intercept.request.headers[AUTHORIZATION_KEY]).to.equal(getTheBearerToken(TESTING_TOKEN))
                 console.log(intercept)
                 expect(intercept.request.body.stationName).to.equal(FIRST_STATION_STATION_NAME)
