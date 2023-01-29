@@ -93,7 +93,9 @@ const HeaderWrapper: React.FC<HeaderWrapperProps> = ({
                     </div>
                 </Button>
             </div>
-            { children }
+            <div className={st("content")}>
+                { children }
+            </div>
         </div>
     )
 } 

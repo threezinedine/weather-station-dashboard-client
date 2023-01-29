@@ -1,38 +1,45 @@
 import React from "react"
 
 import ModalProps from "./ModalProps"
-import { 
-    Button, 
-} from "components"
 import {
-    MODAL_CANCEL_BUTTON_TEST_ID, 
     MODAL_WRAPPER_TEST_ID, 
 } from "const"
+import { 
+    combineClassName,
+} from "utils"
+import styles from "./Modal.module.scss"
 
 
 const Modal: React.FC<ModalProps> = ({
     children,
+    title,
     onClose,
     visible = false,
 }) => {
+    const st = combineClassName(styles)
+
     return (
         <div
             data-testid={ MODAL_WRAPPER_TEST_ID }
-            onClick={onClose}
+            onClick={(evt: any) => {
+                if (evt.target.dataset.testid === MODAL_WRAPPER_TEST_ID) {
+                    onClose()
+                }
+            }}
+            className={st([
+                "wrapper",
+                visible ? "": "display-none"
+            ])}
         >
             {
                 visible && (
-                    <div>
-                        { children }
-                        <Button
-                            data-testid={MODAL_CANCEL_BUTTON_TEST_ID}
-                            onClick={(evt: any) => {
-                                evt.stopPropagation() 
-                                onClose()
-                            }}
-                        >
-                            Cancel
-                        </Button>
+                    <div className={st("modal")}>
+                        <div className={st("modal__title")}>
+                            { title }
+                        </div>
+                        <div className={st("modal__content")}>
+                            { children }
+                        </div>
                     </div>
                 )
             }

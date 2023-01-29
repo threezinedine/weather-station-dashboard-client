@@ -31,10 +31,14 @@ import {
     CREATE_STATION_STATION_POSITION_LABEL,
     STATION_PUBLISHING_TIME_TEST_ID,
     CREATE_STATION_PUBLISHING_TIME_LABEL,
+    ADD_STATION_LABEL,
+    SUBMIT_ADD_STATION_KEY_LABEL,
+    CREATE_STATION_LABEL,
 } from "const"
 import {
     addStationByStationId,
     extractStationDataFromFields,
+    extractValueFromFields,
     fetchAllStations,
     handleErrorResponse,
     loadToken,
@@ -44,7 +48,7 @@ import {
     StoreState,
 } from "stores"
 import { 
-    Form,
+    Form, Modal,
 } from "components"
 import styles from "./AdminPage.module.scss"
 import { 
@@ -170,60 +174,27 @@ const AdminPage: React.FC = () => {
                 </div>
             </div>
             <div>
-                {
-                    addStation && (
-                        <div>
-                            <input 
-                                data-testid={ADD_STATION_KEY_TEST_ID}
-                                value={stationKey}
-                                onChange={(evt) => {
-                                    setStationKey(evt.target.value)
-                                }}
-                                type={INPUT_TAG_TEXT_TYPE} />
-                            <button
-                                data-testid={SUBMIT_ADD_STATION_KEY_TEST_ID}
-                                onClick={() => {
-                                    const token = loadToken()
-                                    addStationByStationId(token, stationKey)
-                                        .catch(err => {
-                                            handleErrorResponse(err, dispatch)
-                                        })
-                                    setAddStation(!addStation)
-                                }}
-                            >
-                                Submit
-                            </button>
-                        </div>
-                    )
-                }
-                {
-                    createNewStation && (
+                <Modal
+                    visible={addStation}
+                    title={ADD_STATION_LABEL}
+                    onClose={() => {
+                        setAddStation(false)
+                    }}
+                >
+                    <div className={st("station-modal-content-container")}>
                         <Form 
                             fields={[
                                 {
-                                    name: STATION_STATION_NAME_TEST_ID,
-                                    label: CREATE_STATION_STATION_NAME_LABEL,
-                                    errors: []
-                                },
-                                {
-                                    name: STATION_STATION_POSITION_TEST_ID,
-                                    label: CREATE_STATION_STATION_POSITION_LABEL,
-                                    errors: []
-                                },
-                                {
-                                    name: STATION_PUBLISHING_TIME_TEST_ID,
-                                    label: CREATE_STATION_PUBLISHING_TIME_LABEL,
-                                    errors: []
+                                    name: ADD_STATION_KEY_TEST_ID,
+                                    label: "Station's key",
+                                    errors: [],
                                 },
                             ]}
-                            submitLabel={SUBMIT_CREATE_STATION_LABEL}
                             onSubmit={(fields) => {
                                 const token = loadToken()
+                                const stationKey = extractValueFromFields(fields, ADD_STATION_KEY_TEST_ID)
 
-                                postNewStationData(extractStationDataFromFields(fields), token)
-                                    .then(() => {
-                                        setupCreateNewStation(!createNewStation)
-                                    })
+                                addStationByStationId(token, stationKey)
                                     .then(() => {
                                         return fetchAllStations(token)
                                     })
@@ -232,14 +203,64 @@ const AdminPage: React.FC = () => {
                                     })
                                     .catch(err => {
                                         handleErrorResponse(err, dispatch)
-                                    }) 
+                                    })
+                                setAddStation(!addStation)
                             }}
+                            submitLabel={SUBMIT_ADD_STATION_KEY_LABEL}
                             onSubmitError={() => {
                                 console.log("Here")
                             }}
                         />
-                    )
-                }
+                    </div>
+                </Modal>
+                <Modal
+                    visible={createNewStation}
+                    title={CREATE_STATION_LABEL}
+                    onClose={() => {
+                        setupCreateNewStation(false)
+                    }}
+                >
+                    <Form 
+                        fields={[
+                            {
+                                name: STATION_STATION_NAME_TEST_ID,
+                                label: CREATE_STATION_STATION_NAME_LABEL,
+                                errors: []
+                            },
+                            {
+                                name: STATION_STATION_POSITION_TEST_ID,
+                                label: CREATE_STATION_STATION_POSITION_LABEL,
+                                errors: []
+                            },
+                            {
+                                name: STATION_PUBLISHING_TIME_TEST_ID,
+                                label: CREATE_STATION_PUBLISHING_TIME_LABEL,
+                                errors: []
+                            },
+                        ]}
+                        submitLabel={SUBMIT_CREATE_STATION_LABEL}
+                        onSubmit={(fields) => {
+                            const token = loadToken()
+
+                            postNewStationData(extractStationDataFromFields(fields), token)
+                                .then(() => {
+                                    setupCreateNewStation(!createNewStation)
+                                })
+                                .then(() => {
+                                    return fetchAllStations(token)
+                                })
+                                .then(response => {
+                                    setStations(response.data)
+                                })
+                                .catch(err => {
+                                    handleErrorResponse(err, dispatch)
+                                }) 
+                        }}
+                        onSubmitError={() => {
+                            console.log("Here")
+                        }}
+                    />
+                </Modal>
             </div>
         </div>
     )

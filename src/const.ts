@@ -63,6 +63,9 @@ export const REGISTER_SUBMIT_LABEL = "Register"
 export const CREATE_STATION_STATION_NAME_LABEL = "Station name"
 export const CREATE_STATION_STATION_POSITION_LABEL = "Station name"
 export const CREATE_STATION_PUBLISHING_TIME_LABEL = "Pushing time in seconds"
+export const ADD_STATION_LABEL = "Add Station"
+export const CREATE_STATION_LABEL = "Create Station"
+export const SUBMIT_ADD_STATION_KEY_LABEL = "Submit Station Key"
 
 export const LOGIN_ERROR_MESSAGE = "Login error"
 
