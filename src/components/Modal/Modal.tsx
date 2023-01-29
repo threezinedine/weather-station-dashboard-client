@@ -11,6 +11,7 @@ import {
 
 const Modal: React.FC<ModalProps> = ({
     children,
+    onClose,
     visible = false,
 }) => {
     return (
@@ -21,6 +22,7 @@ const Modal: React.FC<ModalProps> = ({
                         { children }
                         <Button
                             data-testid={MODAL_CANCEL_BUTTON_TEST_ID}
+                            onClick={onClose}
                         >
                             Cancel
                         </Button>
