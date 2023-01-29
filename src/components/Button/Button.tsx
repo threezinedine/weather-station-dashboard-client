@@ -21,6 +21,7 @@ const Button: React.FC<ButtonProps> = ({
     noColor = false,
     haveHover = false,
     toggleList = null,
+    leftTextAlign = false,
     wrapperStyle = EMPTY_STRING,
     ...props
 }) => {
@@ -32,33 +33,51 @@ const Button: React.FC<ButtonProps> = ({
             className={
                 st([
                     "wrapper", 
+                    "button",
                     wrapperStyle, 
                     fit ? "fit": "",
                     noColor ? "": "color-button",
                     haveHover ? "have-hover": "",
+                    leftTextAlign ? "left-text": "center-text",
                 ])
             }
             onClick={() => {
-                onClick && onClick()
-                !onClick && setDisplayToggleList(!displayToggleList)
+                if (onClick) {
+                    onClick()
+                } else {
+                    setDisplayToggleList(!displayToggleList)
+
+                    setTimeout(() => {
+                        setDisplayToggleList(false)
+                    }, 3000)
+                }
+                
             }}
             { ...props }
         >
             { children }
-            <div>
-                {
-                    (toggleList && displayToggleList) && (
-                        toggleList.map((item: DropdownItemProps) => (
-                            <div
-                                key={item.label}
-                                onClick={item.onClick}
-                            >
-                                { item.label } 
-                            </div>
-                        )) 
-                    )
-                }
-            </div>
+            {
+                (toggleList && displayToggleList) && (
+                    <div
+                        className={st("toggle-list")}
+                    >
+                        {
+                            toggleList.map((item: DropdownItemProps) => (
+                                <div
+                                    key={item.label}
+                                    onClick={item.onClick}
+                                    className={st([
+                                        "button",
+                                        "have-hover",
+                                    ])}
+                                >
+                                    { item.label } 
+                                </div>
+                            )) 
+                        }
+                    </div>
+                )
+            }
         </div>
     )
 }

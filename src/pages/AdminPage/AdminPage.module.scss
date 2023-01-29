@@ -1,0 +1,114 @@
+.wrapper {
+    --station-name-min-width: 150px;
+
+    padding: 20px;
+    display: flex;
+    user-select: none;
+}
+
+
+.avatar-image {
+    width: 300px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+
+.station-column {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding-left: 20px;
+}
+
+
+.user-information-container {
+    position: relative;
+    border: 1px solid #aaa;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.user-information-container__title {
+    position: absolute;
+    top: -20%;
+    left: 0;
+    background-color: #fff;
+    padding: 5px;
+}
+
+
+.user-information {
+    display: flex;
+    padding: 5px 0;
+    font-style: italic;
+}
+
+.user-information__label {
+    margin-right: 15px;
+}
+
+
+.user-information__value {
+    flex: 1;
+}
+
+
+.station {
+    display: flex;
+    color: #333;
+    border-bottom: 1px solid #ddd;
+}
+
+
+.station__name {
+    min-width: var(--station-name-min-width);
+    color: #333;
+}
+
+.station__position {
+    flex: 1;
+    color: #333;
+}
+
+
+.station-title {
+    display: flex;
+}
+
+
+.station-title {
+    display: flex;
+    background-color: #ddd;
+    padding: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+
+.station-title__name {
+    text-align: left;
+    min-width: var(--station-name-min-width);
+}
+
+.station-title__position {
+    flex: 1;
+}
+
+
+.option-buttons-group {
+    margin-top: 40px;
+}
+
+.option-buttons-group__btn {
+    display: flex;
+    justify-content: center;
+
+    & + & {
+        margin-top: 10px;
+    }
+
+    & > .option-buttons-group-btn__label {
+        margin-left: 10px;
+    }
+}

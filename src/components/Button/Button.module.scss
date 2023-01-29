@@ -1,19 +1,34 @@
 .wrapper {
+    position: relative;
     font-family: Roboto;
     font-size: .9rem;
-    padding: 10px 15px;
+    padding-left: 15px;
+    padding-right: 15px;
     cursor: pointer;
     border-radius: 5px;
-    text-align: center;
     color: #fff;
     user-select: none;
 
-    &.have-hover:hover {
-        background-color: rgba(0, 0, 0, 0.1);
-    }
-
     &.fit {
         display: inline-block;
+    }
+
+    &.center-text {
+        text-align: center;
+    }
+
+    &.left-text {
+        text-align: left;
+    }
+}
+
+
+.button {
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+    &.have-hover:hover {
+        background-color: rgba(0, 0, 0, 0.1);
     }
 
     &.color-button {
@@ -22,5 +37,35 @@
         &:hover {
             background-color: #fa7d83;
         }
+    }
+}
+
+
+.toggle-list {
+    --triangle-size: 10px;
+
+    position: absolute;
+    background-color: #fff;
+    color: #333;
+    padding: 10px 0px;
+    width: 150px;
+    right: 30%;
+    top: 95%;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    border-radius: 10px;
+
+    &:before {
+        position: absolute;
+        content: "";
+        display: block;
+        width: 0;
+        height: 0;
+        bottom: 100%;
+        right: 10%;
+        border-left: var(--triangle-size) solid transparent;
+        border-right: var(--triangle-size) solid transparent;
+        border-top: var(--triangle-size) solid transparent;
+        border-bottom: var(--triangle-size) solid #fff;
+        
     }
 }

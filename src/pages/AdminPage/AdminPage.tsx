@@ -9,6 +9,13 @@ import {
     useSelector,
     useDispatch,
 } from "react-redux"
+import {
+    FontAwesomeIcon,
+} from "@fortawesome/react-fontawesome"
+import {
+    faCirclePlus,
+    faPlus,
+} from "@fortawesome/free-solid-svg-icons"
 
 import {
     StationType,
@@ -39,12 +46,21 @@ import {
 import { 
     Form,
 } from "components"
+import styles from "./AdminPage.module.scss"
+import { 
+    combineClassName,
+} from "utils"
+import FacebookUserImage from "assets/images/facebook-user.jpg"
+import { 
+    Button,
+} from "components"
 
 
 const AdminPage: React.FC = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch() 
     const username = useSelector((state: StoreState): string => state.UserReducer.username)
+    const st = combineClassName(styles)
 
     const [stations, setStations] = useState([])
     const [addStation, setAddStation] = useState(false)
@@ -64,34 +80,94 @@ const AdminPage: React.FC = () => {
     }, [])
 
     return (
-        <div>
+        <div
+            className={st("wrapper")}
+        >
             <div>
-                <div>
-                    Username: { username }
-                </div>
-                <div>
-                    Password: ************** 
+                <img 
+                    className={st("avatar-image")}
+                    src={FacebookUserImage}
+                />
+                <div className={st("user-information-container")}>
+                    <div className={st("user-information-container__title")}>
+                        User Information
+                    </div>
+                    <div className={st("user-information")}>
+                        <div className={st("user-information__label")}>
+                            Username:
+                        </div>
+                        <div className={st("user-information__value")}>
+                            { username }
+                        </div>
+                    </div>
+                    <div className={st("user-information")}>
+                        <div className={st("user-information__label")}>
+                            Password: 
+                        </div>
+                        <div className={st("user-information__value")}>
+                            **************
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div>
-                {
-                    stations.map((station: StationType, index: number) => (
-                        <div
-                            key={index}
-                        >
-                            <button
+            <div className={st("station-column")}>
+                <div className={st("station-information")}>
+                    <div className={st("station-title")}>
+                        <div className={st("station-title__name")}>
+                            Station&apos;s name
+                        </div>
+                        <div className={st("station-title__position")}>
+                            Station&apos;s Position
+                        </div>
+                    </div>
+                    {
+                        stations.map((station: StationType, index: number) => (
+                            <Button
+                                noColor
+                                haveHover
+                                leftTextAlign
+                                key={index}
                                 onClick={() => {
                                     navigate(`/station/${station.stationName}`)
                                 }}
+                                wrapperStyle={st("station")}
                             >
-                                { station.stationName } 
-                            </button>
-                            <div>
-                                { station.stationPosition }
-                            </div>
+                                <div className={st("station__name")}>
+                                    { station.stationName } 
+                                </div>
+                                <div className={st("station__position")}>
+                                    { station.stationPosition }
+                                </div>
+                            </Button>
+                        ))
+                    }
+                </div>
+                <div className={st("option-buttons-group")}>
+                    <Button
+                        data-testid={ADD_STATION_TEST_ID}
+                        onClick={() => {
+                            setAddStation(!addStation)
+                        }}
+                        wrapperStyle={st("option-buttons-group__btn")}
+                    >
+                        <FontAwesomeIcon icon={faPlus} />
+                        <div className={st("option-buttons-group-btn__label")}>
+                            Add station
                         </div>
-                    ))
-                }
+                    </Button>
+                    <Button
+                        data-testid={CREATE_STATION_TEST_ID}
+                        onClick={() => {
+                            setupCreateNewStation(!createNewStation)
+                        }}
+                        wrapperStyle={st("option-buttons-group__btn")}
+                    >
+                        <FontAwesomeIcon icon={faCirclePlus} />
+                        <div className={st("option-buttons-group-btn__label")}>
+                            Create station
+                        </div>
+                    </Button>
+                </div>
             </div>
             <div>
                 {
@@ -120,22 +196,6 @@ const AdminPage: React.FC = () => {
                         </div>
                     )
                 }
-                <button
-                    data-testid={ADD_STATION_TEST_ID}
-                    onClick={() => {
-                        setAddStation(!addStation)
-                    }}
-                >
-                    Add station
-                </button>
-                <button
-                    data-testid={CREATE_STATION_TEST_ID}
-                    onClick={() => {
-                        setupCreateNewStation(!createNewStation)
-                    }}
-                >
-                    Create Station
-                </button>
                 {
                     createNewStation && (
                         <Form 

@@ -15,4 +15,5 @@ export default interface ButtonProps {
     noColor?: boolean
     haveHover?: boolean
     wrapperStyle?: string
+    leftTextAlign?: boolean
 }
