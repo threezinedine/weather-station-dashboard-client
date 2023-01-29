@@ -41,9 +41,9 @@ const Button: React.FC<ButtonProps> = ({
                     leftTextAlign ? "left-text": "center-text",
                 ])
             }
-            onClick={() => {
+            onClick={(evt) => {
                 if (onClick) {
-                    onClick()
+                    onClick(evt)
                 } else {
                     setDisplayToggleList(!displayToggleList)
 

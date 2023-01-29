@@ -6,6 +6,7 @@ import {
 } from "components"
 import {
     MODAL_CANCEL_BUTTON_TEST_ID, 
+    MODAL_WRAPPER_TEST_ID, 
 } from "const"
 
 
@@ -15,14 +16,20 @@ const Modal: React.FC<ModalProps> = ({
     visible = false,
 }) => {
     return (
-        <div>
+        <div
+            data-testid={ MODAL_WRAPPER_TEST_ID }
+            onClick={onClose}
+        >
             {
                 visible && (
                     <div>
                         { children }
                         <Button
                             data-testid={MODAL_CANCEL_BUTTON_TEST_ID}
-                            onClick={onClose}
+                            onClick={(evt: any) => {
+                                evt.stopPropagation() 
+                                onClose()
+                            }}
                         >
                             Cancel
                         </Button>
