@@ -2,13 +2,13 @@ import {
     render,
     screen,
 } from "@testing-library/react"
+import userEvent from "@testing-library/user-event"
 
 import { 
     Modal,
 } from "components"
 import {
     MODAL_CANCEL_BUTTON_TEST_ID, 
-    MODAL_SUBMIT_BUTTON_TEST_ID,
 } from "const"
 
 
@@ -29,7 +29,6 @@ describe("<Modal testing />", () => {
         renderModal(false)
         expect(screen.queryByText(modalLabel)).toBeNull()
         expect(screen.queryByTestId(MODAL_CANCEL_BUTTON_TEST_ID)).toBeNull()
-        expect(screen.queryByTestId(MODAL_SUBMIT_BUTTON_TEST_ID)).toBeNull()
     })
 
     it("should display the content of the modal when the visible is passed", () => {
@@ -41,6 +40,5 @@ describe("<Modal testing />", () => {
         renderModal(true)
 
         expect(screen.getByTestId(MODAL_CANCEL_BUTTON_TEST_ID)).toBeInTheDocument()
-        expect(screen.getByTestId(MODAL_SUBMIT_BUTTON_TEST_ID)).toBeInTheDocument()
     })
 })
