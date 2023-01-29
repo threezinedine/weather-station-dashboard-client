@@ -68,4 +68,13 @@ describe("Testing button", () => {
         expect(screen.queryByText(firstItemToggleListLabel)).toBeNull()
         expect(screen.queryByText(secondItemToggleListLabel)).toBeNull()
     })
+
+    it("should display all toggle items when the click to the label button", () => {
+        renderButtonWithToggleMenu(buttonLabel)
+
+        userEvent.click(screen.getByText(buttonLabel))
+
+        expect(screen.getByText(firstItemToggleListLabel)).toBeInTheDocument()
+        expect(screen.getByText(secondItemToggleListLabel)).toBeInTheDocument()
+    })
 })
