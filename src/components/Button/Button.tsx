@@ -1,4 +1,6 @@
-import React from "react"
+import React, {
+    useState,
+} from "react"
 
 import ButtonProps, {
     DropdownItemProps,
@@ -14,17 +16,16 @@ import {
 
 const Button: React.FC<ButtonProps> = ({
     children,
-    onClick = () => {
-        console.log("Click")
-    },
+    onClick = null,
     fit = false,
     noColor = false,
     haveHover = false,
-    toggleList = [],
+    toggleList = null,
     wrapperStyle = EMPTY_STRING,
     ...props
 }) => {
     const st = combineClassName(styles)
+    const [displayToggleList, setDisplayToggleList] = useState(false)
 
     return (
         <div
@@ -37,10 +38,27 @@ const Button: React.FC<ButtonProps> = ({
                     haveHover ? "have-hover": "",
                 ])
             }
-            onClick={onClick}
+            onClick={() => {
+                onClick && onClick()
+                !onClick && setDisplayToggleList(!displayToggleList)
+            }}
             { ...props }
         >
             { children }
+            <div>
+                {
+                    (toggleList && displayToggleList) && (
+                        toggleList.map((item: DropdownItemProps) => (
+                            <div
+                                key={item.label}
+                                onClick={item.onClick}
+                            >
+                                { item.label } 
+                            </div>
+                        )) 
+                    )
+                }
+            </div>
         </div>
     )
 }

@@ -17,7 +17,7 @@ describe("Testing button", () => {
     const firstItemToggleListLabel = "Item 1"
     const firstItemToggleListMockFunction = jest.fn()
 
-    const secondItemToggleListLabel = "Item 1"
+    const secondItemToggleListLabel = "Item 2"
     const secondItemToggleListMockFunction = jest.fn()
 
     const renderButton = (label: string) => {
