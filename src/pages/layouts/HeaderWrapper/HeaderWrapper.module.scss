@@ -1,0 +1,45 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    z-index: 1000;
+}
+
+
+.header {
+    background-image: url("../../../assets/images/header.png");
+    padding: 0 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.logo {
+    display: flex;
+    flex-direction: row;
+
+    img {
+        height: 70px;
+    }
+
+    .brand-name {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-left: 15px;
+        color: #333;
+        font-size: 1.5rem;
+        font-weight: 500;
+        font-family: Roboto;
+    }
+
+}
+
+.avatar {
+    img {
+        height: 60px;
+        width: 60px;
+        border-radius: 50%;
+    }
+}

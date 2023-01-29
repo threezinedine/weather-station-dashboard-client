@@ -23,6 +23,7 @@ export default interface FormProps {
     onSubmit: (data: FormFieldResponseProps[]) => void
     onSubmitError: (errorMessages: string[]) => void
     submitLabel: string
+    wrapperStyle?: string
 }
 
 

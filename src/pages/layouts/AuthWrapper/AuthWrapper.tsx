@@ -17,13 +17,20 @@ import {
     loadToken,
     handleErrorResponse,
 } from "utils"
-import {saveUsernameAction} from "stores/User/actions"
+import {
+    saveUsernameAction,
+} from "stores/User/actions"
+import styles from "./AuthWrapper.module.scss"
+import { 
+    combineClassName,
+} from "utils"
 
 
 const AuthWrapper: React.FC<AuthWrapperProps> = ({
     children,
 }) => {
     const navigate = useNavigate()
+    const st = combineClassName(styles)
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -43,7 +50,9 @@ const AuthWrapper: React.FC<AuthWrapperProps> = ({
     }, [])
 
     return (
-        <div>
+        <div
+            className={st("wrapper")}
+        >
             { children }
         </div>
     )

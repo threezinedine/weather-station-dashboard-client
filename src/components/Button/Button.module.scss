@@ -4,15 +4,23 @@
     padding: 10px 15px;
     cursor: pointer;
     border-radius: 5px;
-    background-color: #f54049;
     text-align: center;
     color: #fff;
+    user-select: none;
 
-    &:hover {
-        background-color: #fa7d83;
+    &.have-hover:hover {
+        background-color: rgba(0, 0, 0, 0.1);
     }
 
     &.fit {
         display: inline-block;
+    }
+
+    &.color-button {
+        background-color: #f54049;
+
+        &:hover {
+            background-color: #fa7d83;
+        }
     }
 }

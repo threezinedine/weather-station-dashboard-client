@@ -175,6 +175,10 @@ export const handleErrorResponse = (err: any, dispatch: any) => {
 export const combineClassName = (styles: any) => {
     return (classes: string | string[]) => {
         const data: string[] = Array.isArray(classes) ? classes : [classes]
-        return data.reduce((result: string, classValue: string) => result + styles[classValue] + " ", "")
+        return data.reduce((result: string, classValue: string) => {
+            const addedClasses = styles[classValue] ? styles[classValue] : classValue
+
+            return result + addedClasses + " "
+        } , "")
     } 
 }

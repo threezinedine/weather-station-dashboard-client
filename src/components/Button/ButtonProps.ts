@@ -5,4 +5,7 @@ export default interface ButtonProps {
     children: React.ReactNode
     onClick: () => void
     fit?: boolean
+    noColor?: boolean
+    haveHover?: boolean
+    wrapperStyle?: string
 }

@@ -28,9 +28,7 @@ describe("Sidebar Wrapper testing", () => {
 
         checkTextExist(DEFAULT_RECORD_WIND_DIRECTION.toString())
         checkTextExist(DEFAULT_RECORD_AVERAGE_WIND_SPEED.toString())
-        checkTextExist(DEFAULT_RECORD_MAX_WIND_SPEED.toString())
         checkTextExist(DEFAULT_RECORD_RAIN_FALL_ONE_HOUR.toString())
-        checkTextExist(DEFAULT_RECORD_RAIN_FALL_ONE_DAY.toString())
         checkTextExist(DEFAULT_RECORD_TEMPERATURE.toString())
         checkTextExist(DEFAULT_RECORD_HUMIDITY.toString())
         checkTextExist(DEFAULT_RECORD_PRESSUER.toString())

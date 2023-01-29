@@ -25,15 +25,23 @@ import {
     handleErrorResponse,
     saveToken, sendLoginFormData,
 } from "utils"
+import { 
+    combineClassName,
+} from "utils"
+import styles from "./LoginPage.module.scss"
 
 
 const LoginPage: React.FC = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
+    const st = combineClassName(styles)
 
     return (
-        <div>
+        <div
+            className={st("wrapper")}
+        >
             <Form 
+                wrapperStyle={st("form-style")}
                 fields={[
                     {
                         name: "username",

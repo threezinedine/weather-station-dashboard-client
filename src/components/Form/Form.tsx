@@ -13,6 +13,10 @@ import {
     Input,
     Button,
 } from "components"
+import styles from "./Form.module.scss"
+import { 
+    combineClassName,
+} from "utils"
 
 
 const Form: React.FC<FormProps> = ({
@@ -20,7 +24,9 @@ const Form: React.FC<FormProps> = ({
     onSubmit,
     submitLabel,
     onSubmitError,
+    wrapperStyle = EMPTY_STRING,
 }) => {
+    const st = combineClassName(styles)
     const [response, setResponse] = useState((): FormFieldResponseProps[] => {
         const response: FormFieldResponseProps[] = []
         fields.reduce((prev: FormFieldResponseProps[], curr: FormFieldProps): FormFieldResponseProps[] => {
@@ -59,7 +65,9 @@ const Form: React.FC<FormProps> = ({
     }
 
     return (
-        <div>
+        <div
+            className={st(["wrapper", wrapperStyle])}
+        >
             { 
                 response.map((field: FormFieldResponseProps, index: number) => 
                     (
@@ -96,6 +104,7 @@ const Form: React.FC<FormProps> = ({
                             onSubmitError(filterAllEmtryStringMessagesInTheArray(errorMessages))
                         }
                     }}
+                    wrapperStyle={st("button")}
                 >
                     { submitLabel }
                 </Button>
