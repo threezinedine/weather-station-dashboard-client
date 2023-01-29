@@ -1,0 +1,18 @@
+.wrapper {
+    font-family: Roboto;
+    font-size: .9rem;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    background-color: #f54049;
+    text-align: center;
+    color: #fff;
+
+    &:hover {
+        background-color: #fa7d83;
+    }
+
+    &.fit {
+        display: inline-block;
+    }
+}
