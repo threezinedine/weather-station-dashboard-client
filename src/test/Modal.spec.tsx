@@ -14,11 +14,13 @@ import {
 
 describe("<Modal testing />", () => {
     const modalLabel = "Hello World"
+    const onCloseStub = jest.fn()
 
     const renderModal = (visible: boolean) => {
         render(
             <Modal
                 visible={visible}
+                onClose={onCloseStub}
             >
                 { modalLabel }
             </Modal>
@@ -40,5 +42,13 @@ describe("<Modal testing />", () => {
         renderModal(true)
 
         expect(screen.getByTestId(MODAL_CANCEL_BUTTON_TEST_ID)).toBeInTheDocument()
+    })
+
+    it("should call onClose event when clicked into the cancel button", () => {
+        renderModal(true)
+
+        userEvent.click(screen.getByTestId(MODAL_CANCEL_BUTTON_TEST_ID))
+
+        expect(onCloseStub).toHaveBeenCalledTimes(1)
     })
 })
