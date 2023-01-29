@@ -11,6 +11,7 @@ import {
 } from "const"
 import {
     Input,
+    Button,
 } from "components"
 
 
@@ -86,7 +87,7 @@ const Form: React.FC<FormProps> = ({
                     ))
             }
             <div>
-                <button
+                <Button
                     data-testid={FORM_SUBMIT_BUTTON_TEST_ID}
                     onClick={() => {
                         if (checkWhetherAllMessagesAreNotEmptyString(errorMessages)) {
@@ -97,7 +98,7 @@ const Form: React.FC<FormProps> = ({
                     }}
                 >
                     { submitLabel }
-                </button>  
+                </Button>
             </div>
         </div>
     )
