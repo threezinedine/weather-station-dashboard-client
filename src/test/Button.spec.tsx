@@ -64,5 +64,8 @@ describe("Testing button", () => {
 
     it("should have not have the toggle menu when the button is not clicked", () => {
         renderButtonWithToggleMenu(buttonLabel)
+
+        expect(screen.queryByText(firstItemToggleListLabel)).toBeNull()
+        expect(screen.queryByText(secondItemToggleListLabel)).toBeNull()
     })
 })
