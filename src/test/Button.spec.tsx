@@ -14,12 +14,37 @@ describe("Testing button", () => {
     const buttonLabel = "Button"
     const mockOnClickFunction = jest.fn()
 
+    const firstItemToggleListLabel = "Item 1"
+    const firstItemToggleListMockFunction = jest.fn()
+
+    const secondItemToggleListLabel = "Item 1"
+    const secondItemToggleListMockFunction = jest.fn()
+
     const renderButton = (label: string) => {
         render(
             <Button
                 onClick={mockOnClickFunction}
             >
                 { label }
+            </Button>
+        )
+    }
+
+    const renderButtonWithToggleMenu(label: string) => {
+        render(
+            <Button
+                toggleList={[
+                    {
+                        label: firstItemToggleListLabel,
+                        onClick: firstItemToggleListMockFunction,
+                    },
+                    {
+                        label: secondItemToggleListLabel,
+                        onClick: secondItemToggleListMockFunction,
+                    },
+                ]}
+            >
+                { label } 
             </Button>
         )
     }
@@ -35,5 +60,9 @@ describe("Testing button", () => {
         userEvent.click(screen.getByText(buttonLabel))
 
         expect(mockOnClickFunction).toHaveBeenCalledTimes(1)
+    })
+
+    it("should have not have the toggle menu when the button is not clicked", () => {
+        renderButtonWithToggleMenu()
     })
 })
