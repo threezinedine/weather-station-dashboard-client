@@ -1,6 +1,8 @@
 import React from "react"
 
-import ButtonProps from "./ButtonProps"
+import ButtonProps, {
+    DropdownItemProps,
+} from "./ButtonProps"
 import styles from "./Button.module.scss"
 import { 
     combineClassName,
@@ -12,10 +14,13 @@ import {
 
 const Button: React.FC<ButtonProps> = ({
     children,
-    onClick,
+    onClick = () => {
+        console.log("Click")
+    },
     fit = false,
     noColor = false,
     haveHover = false,
+    toggleList = [],
     wrapperStyle = EMPTY_STRING,
     ...props
 }) => {

@@ -1,9 +1,16 @@
 import React from "react"
 
 
+export interface DropdownItemProps {
+    label: string
+    onClick: () => void
+}
+
+
 export default interface ButtonProps {
     children: React.ReactNode
-    onClick: () => void
+    onClick?: () => void
+    toggleList?: DropdownItemProps[]
     fit?: boolean
     noColor?: boolean
     haveHover?: boolean

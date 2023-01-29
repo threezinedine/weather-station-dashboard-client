@@ -30,7 +30,7 @@ describe("Testing button", () => {
         )
     }
 
-    const renderButtonWithToggleMenu(label: string) => {
+    const renderButtonWithToggleMenu = (label: string) => {
         render(
             <Button
                 toggleList={[
@@ -63,6 +63,6 @@ describe("Testing button", () => {
     })
 
     it("should have not have the toggle menu when the button is not clicked", () => {
-        renderButtonWithToggleMenu()
+        renderButtonWithToggleMenu(buttonLabel)
     })
 })
