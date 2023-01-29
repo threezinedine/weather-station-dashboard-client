@@ -2,6 +2,7 @@ import Button from "./Button"
 import Form from "./Form"
 import Input from "./Input"
 import Modal from "./Modal"
+import InformationBlock from "./InformationBlock"
 
 
 export {
@@ -9,4 +10,5 @@ export {
     Form,
     Input,
     Modal,
+    InformationBlock,
 }

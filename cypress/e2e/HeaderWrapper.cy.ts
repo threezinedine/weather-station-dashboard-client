@@ -4,7 +4,6 @@ import {
     getComponentByTestId,
     validateRoute,
     checkComponentExistByTestId,
-    checkComponentNotExistByTestId,
     setupAllStation,
     setupFreeAPIStationLatestRecord,
     checkTextNotExist,
@@ -18,9 +17,7 @@ import {
     ADMIN_ROUTE,
 } from "../constants"
 import { 
-    LOGOUT_BUTTON_TEST_ID,
     BRAND_DATA_TEST_ID,
-    USER_DATA_TEST_ID,
     AVATAR_TEST_ID,
     LOGOUT_BUTTON_LABEL,
     USER_BUTTON_LABEL,

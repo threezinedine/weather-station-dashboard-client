@@ -1,0 +1,32 @@
+.information-container {
+    position: relative;
+    border: 1px solid #aaa;
+    border-radius: 10px;
+    padding: 20px;
+    width: 100%;
+}
+
+.information-container__title {
+    position: absolute;
+    top: -20px;
+    left: 0;
+    background-color: #fff;
+    padding: 5px;
+}
+
+.information {
+    display: flex;
+    padding: 5px 0;
+    font-style: italic;
+}
+
+.information__label {
+    margin-right: 15px;
+    width: 150px;
+}
+
+.information__value {
+    max-width: 200px;
+    overflow-y: hidden;
+    white-space: pre-wrap;
+}

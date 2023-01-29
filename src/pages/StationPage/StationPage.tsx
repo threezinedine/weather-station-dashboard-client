@@ -8,6 +8,13 @@ import {
 import {
     useDispatch,
 } from "react-redux"
+import {
+    FontAwesomeIcon,
+} from "@fortawesome/react-fontawesome"
+import {
+    faArrowsRotate, 
+    faCopy,
+} from "@fortawesome/free-solid-svg-icons"
 
 import {
     EMPTY_STRING,
@@ -23,10 +30,19 @@ import {
     loadToken,
     resetStationKey,
 } from "utils"
+import { 
+    InformationBlock,
+    Button,
+} from "components"
+import { 
+    combineClassName,
+} from "utils"
+import styles from "./StationPage.module.scss"
 
 
 const StationPage: React.FC = () => {
     const dispatch = useDispatch()
+    const st = combineClassName(styles)
     const [stationInformation, setStationInformation] = useState((): StationType => ({
         stationId: ZERO_NUMBER,
         stationName: EMPTY_STRING,
@@ -57,14 +73,31 @@ const StationPage: React.FC = () => {
     }, [])
 
     return (
-        <div>
-            Station Page
-            <div>
-                <div>Station Name: { stationInformation.stationName }</div>
-                <div>Station Position: { stationInformation.stationPosition }</div>
-                <div>
-                    Station Key: { stationInformation.stationKey }
-                    <button
+        <div className={st("wrapper")}>
+            <div className={st("station-column")}>
+                <InformationBlock 
+                    fields={[
+                        {
+                            label: "Station name",
+                            value: stationInformation.stationName,
+                        },
+                        {
+                            label: "Station position",
+                            value: stationInformation.stationPosition,
+                        },
+                        {
+                            label: "Station key",
+                            value: stationInformation.stationKey,
+                        },
+                        {
+                            label: "Pushing data interval",
+                            value: stationInformation.pushingDataIntervalInSeconds,
+                        },
+                    ]}
+                    title="Station Information"
+                />
+                <div className={st("btn-groups")}>
+                    <Button
                         data-testid={RESET_KEY_TEST_ID}
                         onClick={() => {
                             const token = loadToken()
@@ -74,54 +107,72 @@ const StationPage: React.FC = () => {
                                     return fetchStationInformation(token, stationName || EMPTY_STRING)
                                 })
                                 .then(response => {
-                                    console.log(response)
                                     setStationInformation(response.data)
                                 })
                                 .catch(err => {
                                     handleErrorResponse(err, dispatch)
                                 })
                         }}
+                        wrapperStyle={st("btn-groups__btn")}
                     >
-                        Reset
-                    </button>
+                        <FontAwesomeIcon icon={faArrowsRotate} />
+                        <div className={st("btn-groups__btn__label")}>
+                            Reset
+                        </div>
+                    </Button>
+                    <Button
+                        onClick={() => {
+                            navigator.clipboard.writeText(stationInformation.stationKey)
+                        }}
+                        wrapperStyle={st("btn-groups__btn")}
+                    >
+                        <FontAwesomeIcon icon={faCopy} />
+                        <div className={st("btn-groups__btn__label")}>
+                            Copy station&apos;s key
+                        </div>
+                    </Button>
                 </div>
-                <div>Publishing Time (in seconds): { stationInformation.pushingDataIntervalInSeconds }</div>
+            </div>
+            <div className={st("record-column")}>
                 <div>
-                    Records: 
-                    <div>
-                        {
-                            records.map((record: RecordType, index: number) => (
-                                <button
-                                    key={index}
-                                    onClick={() => {
-                                        if (displayRecord === null || displayRecord.createdTime !== record.createdTime) {
-                                            setDisplayRecord(record)
-                                        } else {
-                                            setDisplayRecord(null)
-                                        }
-                                    }}
-                                >
-                                    { record.createdTime }
-                                </button> 
-                            ))
-                        }
-                    </div>
-                    <div>
-                        {
-                            displayRecord && (
+                    {
+                        records.map((record: RecordType, index: number) => (
+                            <Button
+                                key={index}
+                                leftTextAlign
+                                noColor
+                                haveHover
+                                onClick={() => {
+                                    if (displayRecord === null || displayRecord.createdTime !== record.createdTime) {
+                                        setDisplayRecord(record)
+                                    } else {
+                                        setDisplayRecord(null)
+                                    }
+                                }}
+                                wrapperStyle={st("record-column__record")}
+                            >
                                 <div>
-                                    <div>Wind Direction: { displayRecord.windDirection }</div>
-                                    <div>Average Wind Speed: { displayRecord.averageWindSpeedInOneMinute }</div>
-                                    <div>Max Wind Speed: { displayRecord.maxWindSpeedInFiveMinutes }</div>
-                                    <div>Rain Fall In One Hour: { displayRecord.rainFallInOneHour }</div>
-                                    <div>Rain Fall In One Day: { displayRecord.rainFallInOneDay }</div>
-                                    <div>Temperature: { displayRecord.temperature }</div>
-                                    <div>Humidity: { displayRecord.humidity }</div>
-                                    <div>Bar Pressure: { displayRecord.barPressure }</div>
+                                    { record.createdTime }
                                 </div>
-                            )
-                        }
-                    </div>
+                            </Button> 
+                        ))
+                    }
+                </div>
+                <div>
+                    {
+                        displayRecord && (
+                            <div>
+                                <div>Wind Direction: { displayRecord.windDirection }</div>
+                                <div>Average Wind Speed: { displayRecord.averageWindSpeedInOneMinute }</div>
+                                <div>Max Wind Speed: { displayRecord.maxWindSpeedInFiveMinutes }</div>
+                                <div>Rain Fall In One Hour: { displayRecord.rainFallInOneHour }</div>
+                                <div>Rain Fall In One Day: { displayRecord.rainFallInOneDay }</div>
+                                <div>Temperature: { displayRecord.temperature }</div>
+                                <div>Humidity: { displayRecord.humidity }</div>
+                                <div>Bar Pressure: { displayRecord.barPressure }</div>
+                            </div>
+                        )
+                    }
                 </div>
             </div>
         </div>

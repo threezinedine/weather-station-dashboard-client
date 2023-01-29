@@ -19,9 +19,7 @@ import {
 
 import {
     StationType,
-    INPUT_TAG_TEXT_TYPE,
     ADD_STATION_KEY_TEST_ID,
-    SUBMIT_ADD_STATION_KEY_TEST_ID,
     ADD_STATION_TEST_ID,
     CREATE_STATION_TEST_ID,
     STATION_STATION_NAME_TEST_ID,
@@ -57,6 +55,7 @@ import {
 import FacebookUserImage from "assets/images/facebook-user.jpg"
 import { 
     Button,
+    InformationBlock,
 } from "components"
 
 
@@ -92,27 +91,19 @@ const AdminPage: React.FC = () => {
                     className={st("avatar-image")}
                     src={FacebookUserImage}
                 />
-                <div className={st("user-information-container")}>
-                    <div className={st("user-information-container__title")}>
-                        User Information
-                    </div>
-                    <div className={st("user-information")}>
-                        <div className={st("user-information__label")}>
-                            Username:
-                        </div>
-                        <div className={st("user-information__value")}>
-                            { username }
-                        </div>
-                    </div>
-                    <div className={st("user-information")}>
-                        <div className={st("user-information__label")}>
-                            Password: 
-                        </div>
-                        <div className={st("user-information__value")}>
-                            **************
-                        </div>
-                    </div>
-                </div>
+                <InformationBlock 
+                    title="User Information"
+                    fields={[
+                        {
+                            label: "Username:",
+                            value: username,
+                        },
+                        {
+                            label: "Password:",
+                            value: "**************",
+                        },
+                    ]}
+                />
             </div>
             <div className={st("station-column")}>
                 <div className={st("station-information")}>

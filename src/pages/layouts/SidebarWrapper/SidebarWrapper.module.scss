@@ -4,11 +4,13 @@
     background-color: #5d9ce6;
     font-family: Roboto;
     height: 100%;
+    width: 100%;
 }
 
 
 .side-bar {
     flex: 1;
+    min-width: 250px;
     padding: 10px 15px;
     color: #fff;
     user-select: none;
@@ -56,6 +58,7 @@
     padding: 10px 15px;
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
+    width: 100%;
 }
 
 
