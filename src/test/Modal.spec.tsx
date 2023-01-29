@@ -8,7 +8,7 @@ import {
     Modal,
 } from "components"
 import {
-    MODAL_CANCEL_BUTTON_TEST_ID, 
+    MODAL_CANCEL_BUTTON_TEST_ID, MODAL_WRAPPER_TEST_ID, 
 } from "const"
 
 
@@ -48,6 +48,14 @@ describe("<Modal testing />", () => {
         renderModal(true)
 
         userEvent.click(screen.getByTestId(MODAL_CANCEL_BUTTON_TEST_ID))
+
+        expect(onCloseStub).toHaveBeenCalledTimes(1)
+    })
+
+    it("should call onClose event when click into the wrapper button not the modal content", () => {
+        renderModal(true)
+
+        userEvent.click(screen.getByTestId(MODAL_WRAPPER_TEST_ID))
 
         expect(onCloseStub).toHaveBeenCalledTimes(1)
     })
