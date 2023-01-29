@@ -11,13 +11,23 @@ import {
 describe("<Modal testing />", () => {
     const modalLabel = "Hello World"
 
-    it("should not display the modal when nothing happen", () => {
+    const renderModal = (visible: boolean) => {
         render(
-            <Modal>
+            <Modal
+                visible={visible}
+            >
                 { modalLabel }
             </Modal>
         )
+    }
 
+    it("should not display the modal when nothing happen", () => {
+        renderModal(false)
         expect(screen.queryByText(modalLabel)).toBeNull()
+    })
+
+    it("should display the content of the modal when the visible is passed", () => {
+        renderModal(true)
+        expect(screen.getByText(modalLabel)).toBeInTheDocument()
     })
 })
