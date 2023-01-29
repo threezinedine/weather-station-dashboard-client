@@ -5,11 +5,13 @@ import FormProps, {
     FormFieldErrorProps,
     FormFieldResponseProps,
 } from "./FormProps"
-
 import {
     EMPTY_STRING,
     FORM_SUBMIT_BUTTON_TEST_ID,
 } from "const"
+import {
+    Input,
+} from "components"
 
 
 const Form: React.FC<FormProps> = ({
@@ -60,33 +62,27 @@ const Form: React.FC<FormProps> = ({
             { 
                 response.map((field: FormFieldResponseProps, index: number) => 
                     (
-                        <div
+                        <Input 
                             key={index}
-                        >
-                            <label htmlFor={field.name}>{ fields[index].label }</label>
-                            <input 
-                                name={field.name}
-                                value={field.value}
-                                type={ fields[index].password ? "password" : "text" }
-                                onChange={(evt): void => {
-                                    updateValue(field.name, evt.target.value)  
-                                    removeErrorMessageByIndex(index)
-                                }}
-                                onBlur={(): void => {
-                                    const { errors } = fields[index]
+                            name={field.name}
+                            value={field.value}
+                            label={fields[index].label}
+                            password={fields[index].password}
+                            onChange={(evt): void => {
+                                updateValue(field.name, evt.target.value)  
+                                removeErrorMessageByIndex(index)
+                            }}
+                            onBlur={(): void => {
+                                const { errors } = fields[index]
 
-                                    errors.forEach((error: FormFieldErrorProps) => {
-                                        if (error.validator(response[index].value, response)) {
-                                            setErrorMessageByIndex(index, error.message)
-                                        }
-                                    })
-                                }}
-                                data-testid={field.name} 
-                            /> 
-                            <div>
-                                { errorMessages[index] }
-                            </div>
-                        </div>
+                                errors.forEach((error: FormFieldErrorProps) => {
+                                    if (error.validator(response[index].value, response)) {
+                                        setErrorMessageByIndex(index, error.message)
+                                    }
+                                })
+                            }}
+                            errorMessage={errorMessages[index]}
+                        />
                     ))
             }
             <div>
