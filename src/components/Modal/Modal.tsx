@@ -16,17 +16,23 @@ const Modal: React.FC<ModalProps> = ({
 }) => {
     return (
         <div>
-            { visible && children }
-            <Button
-                data-testid={MODAL_CANCEL_BUTTON_TEST_ID}
-            >
-                Cancel
-            </Button>
-            <Button
-                data-testid={MODAL_SUBMIT_BUTTON_TEST_ID}
-            >
-                Submit
-            </Button>
+            {
+                visible && (
+                    <div>
+                        { children }
+                        <Button
+                            data-testid={MODAL_CANCEL_BUTTON_TEST_ID}
+                        >
+                            Cancel
+                        </Button>
+                        <Button
+                            data-testid={MODAL_SUBMIT_BUTTON_TEST_ID}
+                        >
+                            Submit
+                        </Button>
+                    </div>
+                )
+            }
         </div>
     )
 }
