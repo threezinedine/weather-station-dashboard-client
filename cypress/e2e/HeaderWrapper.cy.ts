@@ -5,6 +5,8 @@ import {
     validateRoute,
     checkComponentExistByTestId,
     checkComponentNotExistByTestId,
+    setupAllStation,
+    setupFreeAPIStationLatestRecord,
 } from "../utils"
 import { 
     LOGIN_ROUTE,
@@ -38,6 +40,8 @@ describe("HeaderWrapper testing", () => {
 
     it("should hide the user and log out when 1 of them is clicked", () => {
         setupValidToken()
+        setupAllStation()
+        setupFreeAPIStationLatestRecord()
         visitRoute(HOME_ROUTE)
 
         getComponentByTestId(AVATAR_TEST_ID)
@@ -52,6 +56,9 @@ describe("HeaderWrapper testing", () => {
 
     it("should navigate to the login page and cannot access into the home page again when click the log out button", () => {
         setupValidToken()
+        setupAllStation()
+        setupFreeAPIStationLatestRecord()
+
         visitRoute(HOME_ROUTE)
         
         getComponentByTestId(AVATAR_TEST_ID)
@@ -75,6 +82,9 @@ describe("HeaderWrapper testing", () => {
 
     it("Should navigate to home page when the brand is clicked", () => {
         setupValidToken()
+        setupAllStation()
+        setupFreeAPIStationLatestRecord()
+
         visitRoute(HOME_ROUTE)
 
         getComponentByTestId(BRAND_DATA_TEST_ID)
@@ -97,6 +107,9 @@ describe("HeaderWrapper testing", () => {
 
     it("should contain the user data-testid and navigate to the admin page when click it", () => {
         setupValidToken()
+        setupAllStation()
+        setupFreeAPIStationLatestRecord()
+
         visitRoute(HOME_ROUTE)
 
         getComponentByTestId(AVATAR_TEST_ID)

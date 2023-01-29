@@ -37,6 +37,7 @@ import {
     getTheBearerToken,
     setupAllRecords,
     setupFirstStation,
+    setupFreeAPIStationLatestRecord,
     setupResetStationKey,
     setupValidToken, 
     visitRoute,
@@ -46,6 +47,7 @@ describe("Station Page test", () => {
     it("should display all the information of the station", () => {
         setupValidToken()
         setupFirstStation()
+        setupFreeAPIStationLatestRecord()
         setupAllRecords()
 
         visitRoute(FIRST_STATION_PAGE_ROUTE)
@@ -61,6 +63,7 @@ describe("Station Page test", () => {
         setupFirstStation()
         setupResetStationKey()
         setupAllRecords()
+        setupFreeAPIStationLatestRecord()
 
         visitRoute(FIRST_STATION_PAGE_ROUTE)
         
@@ -81,6 +84,7 @@ describe("Station Page test", () => {
         setupValidToken()
         setupFirstStation()
         setupAllRecords()
+        setupFreeAPIStationLatestRecord()
 
         visitRoute(FIRST_STATION_PAGE_ROUTE)
 
@@ -92,6 +96,7 @@ describe("Station Page test", () => {
         setupValidToken()
         setupFirstStation()
         setupAllRecords()
+        setupFreeAPIStationLatestRecord()
 
         visitRoute(FIRST_STATION_PAGE_ROUTE)
 
@@ -114,6 +119,7 @@ describe("Station Page test", () => {
     it("should show all record's information of the clicked records and close others", () => {
         setupValidToken()
         setupFirstStation()
+        setupFreeAPIStationLatestRecord()
         setupAllRecords()
 
         visitRoute(FIRST_STATION_PAGE_ROUTE)

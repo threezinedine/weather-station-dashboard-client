@@ -10,6 +10,8 @@ import {
     setupValidToken,
     setupInvalidToken,
     checkTextExist,
+    setupFreeAPIStationLatestRecord,
+    setupAllStation,
 } from "../utils"
 
 
@@ -31,6 +33,9 @@ describe("AuthWrapper testing", () => {
 
     it("should navigate to the login page when the token is not validated", () => {
         setupInvalidToken()
+        setupFreeAPIStationLatestRecord()
+        setupAllStation()
+
         visitRoute(HOME_ROUTE)
 
         cy.wait(SMALL_WAITING_TIME)

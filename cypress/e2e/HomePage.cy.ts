@@ -18,6 +18,7 @@ import {
     getComponentByTestId, 
     setupAllStation, 
     setupFirstStationLatestRecord, 
+    setupFreeAPIStationLatestRecord, 
     setupValidToken,
     visitRoute,
 } from "../utils"
@@ -26,6 +27,7 @@ describe("Home Page testing", () => {
     it("should contain select which user can show the list of station that the user can have", () => {
         setupValidToken()
         setupAllStation()
+        setupFreeAPIStationLatestRecord()
         setupFirstStationLatestRecord()
 
         visitRoute(HOME_ROUTE)

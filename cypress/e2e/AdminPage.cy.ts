@@ -45,6 +45,7 @@ import {
     setupAddStationByInvalidStationKey,
     setupFirstStation,
     setupCreateNewStation,
+    setupFreeAPIStationLatestRecord,
 } from "../utils"
 
 
@@ -52,6 +53,7 @@ describe("Admin page testing", () => {
     it("should contain the user information", () => {
         setupValidToken()
         setupAllStation()
+        setupFreeAPIStationLatestRecord()
         visitRoute(ADMIN_ROUTE)
 
         cy.wait(SMALL_WAITING_TIME)
@@ -63,6 +65,7 @@ describe("Admin page testing", () => {
 
     it("should display all the station that the user have", () => {
         setupValidToken()
+        setupFreeAPIStationLatestRecord()
         setupAllStation()
 
         visitRoute(ADMIN_ROUTE)
@@ -77,6 +80,7 @@ describe("Admin page testing", () => {
         setupValidToken()
         setupAllStation()
         setupFirstStation()
+        setupFreeAPIStationLatestRecord()
 
         visitRoute(ADMIN_ROUTE)
         getComponentByText(FIRST_STATION_STATION_NAME)
@@ -87,6 +91,7 @@ describe("Admin page testing", () => {
     it("should contain the add new station button and have the input tag to insert the station's key into it", () => {
         setupValidToken()
         setupAllStation()
+        setupFreeAPIStationLatestRecord()
 
         setupAddStationByValidStationKey()
 
@@ -116,6 +121,7 @@ describe("Admin page testing", () => {
         setupValidToken()
         setupAllStation()
         setupAddStationByInvalidStationKey()
+        setupFreeAPIStationLatestRecord()
 
         visitRoute(ADMIN_ROUTE)
 
@@ -132,6 +138,7 @@ describe("Admin page testing", () => {
         setupValidToken()
         setupAllStation()
         setupCreateNewStation()
+        setupFreeAPIStationLatestRecord()
 
         visitRoute(ADMIN_ROUTE)
 
