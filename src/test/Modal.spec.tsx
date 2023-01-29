@@ -6,6 +6,10 @@ import {
 import { 
     Modal,
 } from "components"
+import {
+    MODAL_CANCEL_BUTTON_TEST_ID, 
+    MODAL_SUBMIT_BUTTON_TEST_ID,
+} from "const"
 
 
 describe("<Modal testing />", () => {
@@ -29,5 +33,12 @@ describe("<Modal testing />", () => {
     it("should display the content of the modal when the visible is passed", () => {
         renderModal(true)
         expect(screen.getByText(modalLabel)).toBeInTheDocument()
+    })
+
+    it("should contain the submit button and cancel button", () => {
+        renderModal(true)
+
+        expect(screen.getByTestId(MODAL_CANCEL_BUTTON_TEST_ID)).toBeInTheDocument()
+        expect(screen.getByTestId(MODAL_SUBMIT_BUTTON_TEST_ID)).toBeInTheDocument()
     })
 })

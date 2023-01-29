@@ -18,6 +18,8 @@ export const STATION_STATION_NAME_TEST_ID = "stationStationName"
 export const STATION_STATION_POSITION_TEST_ID = "stationStationPosition"
 export const STATION_PUBLISHING_TIME_TEST_ID = "stationPublishingTime"
 export const STATION_SELECT_TAG_TEST_ID = "stationSelect"
+export const MODAL_CANCEL_BUTTON_TEST_ID = "formCancel"
+export const MODAL_SUBMIT_BUTTON_TEST_ID = "formSubmit"
 
 export const LOGIN_ROUTE = "/login"
 export const HOME_ROUTE = "/"
