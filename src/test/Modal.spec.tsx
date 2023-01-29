@@ -28,6 +28,8 @@ describe("<Modal testing />", () => {
     it("should not display the modal when nothing happen", () => {
         renderModal(false)
         expect(screen.queryByText(modalLabel)).toBeNull()
+        expect(screen.queryByTestId(MODAL_CANCEL_BUTTON_TEST_ID)).toBeNull()
+        expect(screen.queryByTestId(MODAL_SUBMIT_BUTTON_TEST_ID)).toBeNull()
     })
 
     it("should display the content of the modal when the visible is passed", () => {
