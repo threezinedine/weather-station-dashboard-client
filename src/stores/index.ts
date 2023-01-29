@@ -8,7 +8,6 @@ import ErrorReducer, {
     ErrorState,
 } from "./Error"
 import UserReducer, {
-    UserAction,
     UserState,
 } from "./User"
 

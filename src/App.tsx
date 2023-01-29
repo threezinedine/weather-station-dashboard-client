@@ -4,6 +4,7 @@ import {
 } from 'react-router-dom'
 
 import router from 'pages'
+import './App.scss'
 
 
 const App: React.FC = () => {

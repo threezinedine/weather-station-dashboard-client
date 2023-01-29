@@ -170,3 +170,11 @@ export const handleErrorResponse = (err: any, dispatch: any) => {
         dispatch(popErrorAction())
     }, ERROR_MESSAGE_TIME_OUT)
 }
+
+
+export const combineClassName = (styles: any) => {
+    return (classes: string | string[]) => {
+        const data: string[] = Array.isArray(classes) ? classes : [classes]
+        return data.reduce((result: string, classValue: string) => result + styles[classValue] + " ", "")
+    } 
+}

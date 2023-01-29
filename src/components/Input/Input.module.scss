@@ -1,0 +1,41 @@
+.wrapper {
+    --error-color: #e8093a;
+
+    font-weight: 400;
+    font-family: Roboto;
+    padding: 5px;
+}
+
+
+.label {
+    font-size: .8rem;
+}
+
+
+.input {
+    width: 100%;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom-width: 1.5px;
+    padding: 10px;
+    font-size: .9rem;
+
+    &:focus-visible {
+        outline: none;
+    }
+
+    &.enter {
+        border-bottom-color: #23c479;
+    }
+
+    &.error {
+        border-bottom-color: var(--error-color);
+    }
+}
+
+.error-message {
+    color: var(--error-color);
+    font-size: .6rem;
+    padding: 3px;
+}
