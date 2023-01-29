@@ -53,6 +53,8 @@ export const INPUT_TAG_PASSWORD_TYPE = "password"
 export const ERROR_MESSAGE_TIME_OUT = 2000
 
 export const SUBMIT_CREATE_STATION_LABEL = "Submit"
+export const USER_BUTTON_LABEL = "Admin"
+export const LOGOUT_BUTTON_LABEL = "Logout"
 export const LOGIN_SUBMIT_LABEL = "Login"
 export const REGISTER_SUBMIT_LABEL = "Register"
 export const CREATE_STATION_STATION_NAME_LABEL = "Station name"

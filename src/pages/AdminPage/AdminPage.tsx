@@ -65,7 +65,6 @@ const AdminPage: React.FC = () => {
 
     return (
         <div>
-            Admin Page
             <div>
                 <div>
                     Username: { username }

@@ -7,6 +7,9 @@ import {
     checkComponentNotExistByTestId,
     setupAllStation,
     setupFreeAPIStationLatestRecord,
+    checkTextNotExist,
+    checkTextExist,
+    getComponentByText,
 } from "../utils"
 import { 
     LOGIN_ROUTE,
@@ -19,6 +22,8 @@ import {
     BRAND_DATA_TEST_ID,
     USER_DATA_TEST_ID,
     AVATAR_TEST_ID,
+    LOGOUT_BUTTON_LABEL,
+    USER_BUTTON_LABEL,
 } from "const"
 
 
@@ -28,14 +33,14 @@ describe("HeaderWrapper testing", () => {
         visitRoute(HOME_ROUTE)
 
         checkComponentExistByTestId(AVATAR_TEST_ID)
-        checkComponentNotExistByTestId(LOGOUT_BUTTON_TEST_ID)
-        checkComponentNotExistByTestId(USER_DATA_TEST_ID)
+        checkTextNotExist(LOGOUT_BUTTON_LABEL)
+        checkTextNotExist(USER_BUTTON_LABEL)
 
         getComponentByTestId(AVATAR_TEST_ID)
             .click()
 
-        checkComponentExistByTestId(LOGOUT_BUTTON_TEST_ID)
-        checkComponentExistByTestId(USER_DATA_TEST_ID)
+        checkTextExist(LOGOUT_BUTTON_LABEL)
+        checkTextExist(USER_BUTTON_LABEL)
     })
 
     it("should hide the user and log out when 1 of them is clicked", () => {
@@ -47,11 +52,11 @@ describe("HeaderWrapper testing", () => {
         getComponentByTestId(AVATAR_TEST_ID)
             .click()
 
-        getComponentByTestId(USER_DATA_TEST_ID)
+        getComponentByText(USER_BUTTON_LABEL)
             .click()
 
-        checkComponentNotExistByTestId(LOGOUT_BUTTON_TEST_ID)
-        checkComponentNotExistByTestId(USER_DATA_TEST_ID)
+        checkTextNotExist(LOGOUT_BUTTON_LABEL)
+        checkTextNotExist(USER_BUTTON_LABEL)
     })
 
     it("should navigate to the login page and cannot access into the home page again when click the log out button", () => {
@@ -64,7 +69,7 @@ describe("HeaderWrapper testing", () => {
         getComponentByTestId(AVATAR_TEST_ID)
             .click()
 
-        getComponentByTestId(LOGOUT_BUTTON_TEST_ID)
+        getComponentByText(LOGOUT_BUTTON_LABEL)
             .click()
 
         cy.wait(SMALL_WAITING_TIME)
@@ -114,7 +119,7 @@ describe("HeaderWrapper testing", () => {
 
         getComponentByTestId(AVATAR_TEST_ID)
             .click()
-        getComponentByTestId(USER_DATA_TEST_ID)
+        getComponentByText(USER_BUTTON_LABEL)
             .click()
 
         cy.wait(SMALL_WAITING_TIME)

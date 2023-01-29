@@ -10,10 +10,10 @@ import {
     BRAND_DATA_TEST_ID,
     HOME_ROUTE,
     LOGIN_ROUTE,
-    LOGOUT_BUTTON_TEST_ID,
-    USER_DATA_TEST_ID,
+    USER_BUTTON_LABEL,
     ADMIN_ROUTE,
     AVATAR_TEST_ID,
+    LOGOUT_BUTTON_LABEL,
 } from "const"
 import { 
     clearToken,
@@ -68,9 +68,21 @@ const HeaderWrapper: React.FC<HeaderWrapperProps> = ({
                     fit
                     noColor
                     data-testid={AVATAR_TEST_ID}
-                    onClick={() => {
-                        setOptionDislay(!optionDisplay)
-                    }}
+                    toggleList={[
+                        {
+                            label: USER_BUTTON_LABEL,
+                            onClick: () => {
+                                navigate(ADMIN_ROUTE)
+                            }
+                        },
+                        {
+                            label: LOGOUT_BUTTON_LABEL,
+                            onClick: () => {
+                                clearToken()
+                                navigate(LOGIN_ROUTE)
+                            }
+                        }
+                    ]}
                 >
                     <div
                         className={st("avatar")}
@@ -80,30 +92,6 @@ const HeaderWrapper: React.FC<HeaderWrapperProps> = ({
                         />
                     </div>
                 </Button>
-                {
-                    optionDisplay && (
-                        <>
-                            <button
-                                data-testid={USER_DATA_TEST_ID}
-                                onClick={() => {
-                                    setOptionDislay(!optionDisplay)
-                                    navigate(ADMIN_ROUTE)
-                                }}
-                            >
-                                User 
-                            </button>
-                            <button
-                                data-testid={LOGOUT_BUTTON_TEST_ID}
-                                onClick={() => {
-                                    clearToken()
-                                    navigate(LOGIN_ROUTE)
-                                }}
-                            >
-                                Logout
-                            </button>
-                        </>
-                    )
-                }
             </div>
             { children }
         </div>
