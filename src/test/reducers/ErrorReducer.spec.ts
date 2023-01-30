@@ -4,29 +4,27 @@ import ErrorReducer, {
 import { 
     addErrorAction,
     popErrorAction,
+    addNotificaionAction,
 } from "stores/Error/actions"
 
 
 describe("ErrorReducer test", () => {
     const firstErrorMessage = "Login error."
     const secondErrorMessage = "Register error."
+    const notification = "Notification"
+    const emptyState: ErrorState = {
+        errorMessages: [],
+        notifications: [],
+    } 
 
     it("should have the errorMessage inside the errorMessages list when the errorMessage is added.", () => {
-        const initState: ErrorState = {
-            errorMessages: [],
-            notifications: [],
-        } 
-        const newState = ErrorReducer(initState, addErrorAction(firstErrorMessage))
+        const newState = ErrorReducer(emptyState, addErrorAction(firstErrorMessage))
 
         expect(newState.errorMessages).toStrictEqual([firstErrorMessage])
     })
 
     it("should have the two errorMessages in order inside the errorMessages list when the two errorMessages is added.", () => {
-        const initState: ErrorState = {
-            errorMessages: [],
-            notifications: [],
-        } 
-        const newState = ErrorReducer(initState, addErrorAction(firstErrorMessage))
+        const newState = ErrorReducer(emptyState, addErrorAction(firstErrorMessage))
         const finalState = ErrorReducer(newState, addErrorAction(secondErrorMessage))
 
         expect(finalState.errorMessages).toStrictEqual([firstErrorMessage, secondErrorMessage])
@@ -44,13 +42,14 @@ describe("ErrorReducer test", () => {
     })
 
     it("should do nothing when no error message in the reducer", () => {
-        const initState: ErrorState = {
-            errorMessages: [],
-            notifications: [],
-        } 
-
-        const newState = ErrorReducer(initState, popErrorAction())
+        const newState = ErrorReducer(emptyState, popErrorAction())
 
         expect(newState.errorMessages).toStrictEqual([])
+    })
+
+    it("should add the notification into the notifications when the action is called.", () => {
+        const newState = ErrorReducer(emptyState, addNotificaionAction(notification))
+
+        expect(newState.notifications).toStrictEqual([notification])
     })
 })
