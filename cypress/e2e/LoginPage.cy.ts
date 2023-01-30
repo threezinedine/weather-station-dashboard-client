@@ -34,6 +34,7 @@ import {
     PASSWORD_DATA_TEST_ID,
     LOGIN_SUBMIT_LABEL,
     ERROR_MESSAGE_TIME_OUT,
+    LOGIN_SUCCESSFULLY_MESSAGE,
 } from "const"
 
 
@@ -91,6 +92,8 @@ describe("Login page testing", () => {
         
         getComponentByText(LOGIN_SUBMIT_LABEL)
             .click()
+
+        checkTextExist(LOGIN_SUCCESSFULLY_MESSAGE)
 
         cy.wait(SMALL_WAITING_TIME)
             .then(() => {

@@ -68,6 +68,7 @@ export const CREATE_STATION_LABEL = "Create Station"
 export const SUBMIT_ADD_STATION_KEY_LABEL = "Submit Station Key"
 
 export const LOGIN_ERROR_MESSAGE = "Login error"
+export const LOGIN_SUCCESSFULLY_MESSAGE = "Login successfully"
 
 
 export const TOAST_ERROR_CLASS = "error"
