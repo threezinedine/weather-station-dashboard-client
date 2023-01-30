@@ -44,27 +44,34 @@
 .toggle-list {
     --triangle-size: 10px;
 
-    position: absolute;
     background-color: #fff;
     color: #333;
-    padding: 10px 0px;
-    width: 150px;
-    right: 30%;
-    top: 95%;
-    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
     border-radius: 10px;
+    width: 100%;
+    margin-top: 20px;
 
-    &:before {
+    &.menu {
+        margin-top: 0;
+        padding: 10px 0px;
         position: absolute;
-        content: "";
-        display: block;
-        width: 0;
-        height: 0;
-        bottom: 100%;
-        right: 10%;
-        border-left: var(--triangle-size) solid transparent;
-        border-right: var(--triangle-size) solid transparent;
-        border-top: var(--triangle-size) solid transparent;
-        border-bottom: var(--triangle-size) solid #fff;
+        box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+        width: 150px;
+        right: 30%;
+        top: 95%;
+
+        &:before {
+            position: absolute;
+            content: "";
+            display: block;
+            width: 0;
+            height: 0;
+            bottom: 100%;
+            right: 10%;
+            border-left: var(--triangle-size) solid transparent;
+            border-right: var(--triangle-size) solid transparent;
+            border-top: var(--triangle-size) solid transparent;
+            border-bottom: var(--triangle-size) solid #fff;
+        }
     }
+
 }

@@ -21,6 +21,7 @@ const Button: React.FC<ButtonProps> = ({
     noColor = false,
     haveHover = false,
     toggleItem = null,
+    toggleMenu = true,
     leftTextAlign = false,
     wrapperStyle = EMPTY_STRING,
     ...props
@@ -46,10 +47,6 @@ const Button: React.FC<ButtonProps> = ({
                     onClick()
                 } else {
                     setDisplayToggleList(!displayToggleList)
-
-                    setTimeout(() => {
-                        setDisplayToggleList(false)
-                    }, 3000)
                 }
                 
             }}
@@ -58,7 +55,10 @@ const Button: React.FC<ButtonProps> = ({
             { children }
             {
                 (toggleItem && displayToggleList) && (
-                    <div className={st("toggle-list")}>
+                    <div className={st([
+                        "toggle-list",
+                        toggleMenu ? "menu": "",
+                    ])}>
                         { toggleItem }
                     </div>
                 )

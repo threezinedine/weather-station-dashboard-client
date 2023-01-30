@@ -11,6 +11,7 @@ export default interface ButtonProps {
     children: React.ReactNode
     onClick?: () => void
     toggleItem?: React.ReactNode
+    toggleMenu?: boolean
     fit?: boolean
     noColor?: boolean
     haveHover?: boolean

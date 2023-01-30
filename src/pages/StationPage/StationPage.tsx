@@ -51,7 +51,6 @@ const StationPage: React.FC = () => {
         stationKey: EMPTY_STRING,
     }))
     const [records, setRecords] = useState((): RecordType[] => [])
-    const [displayRecord, setDisplayRecord] = useState((): RecordType | null => null)
     const { stationName = EMPTY_STRING } = useParams()
 
     useEffect(() => {
@@ -134,6 +133,9 @@ const StationPage: React.FC = () => {
                 </div>
             </div>
             <div className={st("record-column")}>
+                <div className={st("record-column__title")}>
+                    Record
+                </div>
                 <div>
                     {
                         records.map((record: RecordType, index: number) => (
@@ -142,13 +144,47 @@ const StationPage: React.FC = () => {
                                 leftTextAlign
                                 noColor
                                 haveHover
-                                onClick={() => {
-                                    if (displayRecord === null || displayRecord.createdTime !== record.createdTime) {
-                                        setDisplayRecord(record)
-                                    } else {
-                                        setDisplayRecord(null)
-                                    }
-                                }}
+                                toggleMenu={false}
+                                toggleItem={(
+                                    <InformationBlock 
+                                        title="Record Information"
+                                        fields={[
+                                            {
+                                                label: "Wind Direction",
+                                                value: record.windDirection,
+                                            },
+                                            {
+                                                label: "Average Wind Speed",
+                                                value: record.averageWindSpeedInOneMinute,
+                                            },
+                                            {
+                                                label: "Max Wind Speed",
+                                                value: record.maxWindSpeedInFiveMinutes,
+                                            },
+                                            {
+                                                label: "Rain Fall One Day",
+                                                value: record.rainFallInOneDay,
+                                            },
+                                            {
+                                                label: "Rain Fall One Hour",
+                                                value: record.rainFallInOneHour,
+                                            },
+                                            {
+                                                label: "Temperature",
+                                                value: record.temperature,
+                                            },
+                                            {
+                                                label: "Humidity",
+                                                value: record.humidity,
+                                            },
+                                            {
+                                                label: "Pressure",
+                                                value: record.barPressure,
+                                            },
+                                        ]}
+
+                                    />
+                                )}
                                 wrapperStyle={st("record-column__record")}
                             >
                                 <div>
@@ -156,22 +192,6 @@ const StationPage: React.FC = () => {
                                 </div>
                             </Button> 
                         ))
-                    }
-                </div>
-                <div>
-                    {
-                        displayRecord && (
-                            <div>
-                                <div>Wind Direction: { displayRecord.windDirection }</div>
-                                <div>Average Wind Speed: { displayRecord.averageWindSpeedInOneMinute }</div>
-                                <div>Max Wind Speed: { displayRecord.maxWindSpeedInFiveMinutes }</div>
-                                <div>Rain Fall In One Hour: { displayRecord.rainFallInOneHour }</div>
-                                <div>Rain Fall In One Day: { displayRecord.rainFallInOneDay }</div>
-                                <div>Temperature: { displayRecord.temperature }</div>
-                                <div>Humidity: { displayRecord.humidity }</div>
-                                <div>Bar Pressure: { displayRecord.barPressure }</div>
-                            </div>
-                        )
                     }
                 </div>
             </div>
