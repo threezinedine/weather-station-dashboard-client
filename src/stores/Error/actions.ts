@@ -3,6 +3,7 @@ import {
     AddErrorAction,
     PopErrorAction,
     AddNotificationAction,
+    PopNotificationAction,
 } from "./constants"
 
 
@@ -21,9 +22,16 @@ export const popErrorAction = (): PopErrorAction => {
 }
 
 
-export const addNotificaionAction = (notification: string): AddNotificationAction => {
+export const addNotificationAction = (notification: string): AddNotificationAction => {
     return {
         type: ErrorActionType.ADD_NOTIFICATION_ACTION,
         payload: notification,
+    }
+}
+
+
+export const popNotificationAction = (): PopNotificationAction => {
+    return {
+        type: ErrorActionType.POP_NOTIFICATION_ACTION,
     }
 }

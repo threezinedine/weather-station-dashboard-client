@@ -4,7 +4,8 @@ import ErrorReducer, {
 import { 
     addErrorAction,
     popErrorAction,
-    addNotificaionAction,
+    addNotificationAction,
+    popNotificationAction,
 } from "stores/Error/actions"
 
 
@@ -51,5 +52,12 @@ describe("ErrorReducer test", () => {
         const newState = ErrorReducer(emptyState, addNotificaionAction(notification))
 
         expect(newState.notifications).toStrictEqual([notification])
+    })
+
+    it("should add the notification into the notifications when the action is called.", () => {
+        const newState = ErrorReducer(emptyState, addNotificationAction(notification))
+        const finalState = ErrorReducer(newState, popNotificationAction())
+
+        expect(newState.notifications).toStrictEqual([])
     })
 })

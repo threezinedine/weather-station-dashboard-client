@@ -7,6 +7,7 @@ export enum ErrorActionType {
     ADD_ERROR_ACTION = "Add Error Action",
     POP_ERROR_ACTION = "Pop Error Action",
     ADD_NOTIFICATION_ACTION = "Add Notification Action",
+    POP_NOTIFICATION_ACTION = "Pop Notification Action",
 }
 
 
@@ -27,4 +28,9 @@ export interface AddNotificationAction extends Action {
 }
 
 
-export type ErrorAction = AddErrorAction | PopErrorAction | AddNotificationAction
+export interface PopNotificationAction extends Action {
+    type: ErrorActionType.POP_NOTIFICATION_ACTION
+}
+
+
+export type ErrorAction = AddErrorAction | PopErrorAction | AddNotificationAction | PopNotificationAction
