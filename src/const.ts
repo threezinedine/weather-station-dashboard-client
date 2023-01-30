@@ -70,6 +70,9 @@ export const SUBMIT_ADD_STATION_KEY_LABEL = "Submit Station Key"
 export const LOGIN_ERROR_MESSAGE = "Login error"
 
 
+export const TOAST_ERROR_CLASS = "error"
+
+
 export interface NewStationProps {
     stationName: string 
     stationPosition: string 

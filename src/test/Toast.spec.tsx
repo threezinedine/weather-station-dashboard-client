@@ -7,6 +7,9 @@ import {
 import { 
     Toast,
 } from "components"
+import {
+    TOAST_ERROR_CLASS,
+} from "const"
 
 
 describe("<Toast /> testing", () => {
@@ -35,5 +38,12 @@ describe("<Toast /> testing", () => {
     it("should display the notification", () => {
         renderTheToast()
         expect(screen.getByText(notification))
+    })
+
+    it("should contain the error class inside the error message", () => {
+        renderTheToast()
+
+        expect(screen.getByText(firstErrorMessage)).toHaveClass(TOAST_ERROR_CLASS)
+        expect(screen.getByText(secondErrorMessage)).toHaveClass(TOAST_ERROR_CLASS)
     })
 })
