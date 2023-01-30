@@ -46,4 +46,10 @@ describe("<Toast /> testing", () => {
         expect(screen.getByText(firstErrorMessage)).toHaveClass(TOAST_ERROR_CLASS)
         expect(screen.getByText(secondErrorMessage)).toHaveClass(TOAST_ERROR_CLASS)
     })
+
+    it("should contain the noti class inside the notification", () => {
+        renderTheToast()
+
+        expect(screen.getByText(notification)).toHaveClass("noti")
+    })
 })
