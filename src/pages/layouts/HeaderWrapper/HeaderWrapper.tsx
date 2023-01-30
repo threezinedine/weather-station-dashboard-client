@@ -68,21 +68,33 @@ const HeaderWrapper: React.FC<HeaderWrapperProps> = ({
                     fit
                     noColor
                     data-testid={AVATAR_TEST_ID}
-                    toggleList={[
-                        {
-                            label: USER_BUTTON_LABEL,
-                            onClick: () => {
-                                navigate(ADMIN_ROUTE)
-                            }
-                        },
-                        {
-                            label: LOGOUT_BUTTON_LABEL,
-                            onClick: () => {
-                                clearToken()
-                                navigate(LOGIN_ROUTE)
-                            }
-                        }
-                    ]}
+                    toggleItem={(
+                        <div>
+                            <Button
+                                noColor
+                                haveHover
+                                onClick={() => {
+                                    navigate(ADMIN_ROUTE)
+                                }}
+                            >
+                                <div className={st("menu-btn__label")}>
+                                    { USER_BUTTON_LABEL }
+                                </div>
+                            </Button>
+                            <Button
+                                noColor
+                                haveHover
+                                onClick={() => {
+                                    clearToken()
+                                    navigate(LOGIN_ROUTE)
+                                }}
+                            >
+                                <div className={st("menu-btn__label")}>
+                                    { LOGOUT_BUTTON_LABEL }
+                                </div>
+                            </Button>
+                        </div>
+                    )}
                 >
                     <div
                         className={st("avatar")}

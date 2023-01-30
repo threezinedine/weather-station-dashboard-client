@@ -10,7 +10,7 @@ export interface DropdownItemProps {
 export default interface ButtonProps {
     children: React.ReactNode
     onClick?: () => void
-    toggleList?: DropdownItemProps[]
+    toggleItem?: React.ReactNode
     fit?: boolean
     noColor?: boolean
     haveHover?: boolean

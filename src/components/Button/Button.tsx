@@ -20,7 +20,7 @@ const Button: React.FC<ButtonProps> = ({
     fit = false,
     noColor = false,
     haveHover = false,
-    toggleList = null,
+    toggleItem = null,
     leftTextAlign = false,
     wrapperStyle = EMPTY_STRING,
     ...props
@@ -57,24 +57,9 @@ const Button: React.FC<ButtonProps> = ({
         >
             { children }
             {
-                (toggleList && displayToggleList) && (
-                    <div
-                        className={st("toggle-list")}
-                    >
-                        {
-                            toggleList.map((item: DropdownItemProps) => (
-                                <div
-                                    key={item.label}
-                                    onClick={item.onClick}
-                                    className={st([
-                                        "button",
-                                        "have-hover",
-                                    ])}
-                                >
-                                    { item.label } 
-                                </div>
-                            )) 
-                        }
+                (toggleItem && displayToggleList) && (
+                    <div className={st("toggle-list")}>
+                        { toggleItem }
                     </div>
                 )
             }

@@ -13,12 +13,7 @@ import {
 describe("Testing button", () => {
     const buttonLabel = "Button"
     const mockOnClickFunction = jest.fn()
-
-    const firstItemToggleListLabel = "Item 1"
-    const firstItemToggleListMockFunction = jest.fn()
-
-    const secondItemToggleListLabel = "Item 2"
-    const secondItemToggleListMockFunction = jest.fn()
+    const toggleItem = "Hello World"
 
     const renderButton = (label: string) => {
         render(
@@ -30,19 +25,10 @@ describe("Testing button", () => {
         )
     }
 
-    const renderButtonWithToggleMenu = (label: string) => {
+    const renderButtonWithToggleItem = (label: string) => {
         render(
             <Button
-                toggleList={[
-                    {
-                        label: firstItemToggleListLabel,
-                        onClick: firstItemToggleListMockFunction,
-                    },
-                    {
-                        label: secondItemToggleListLabel,
-                        onClick: secondItemToggleListMockFunction,
-                    },
-                ]}
+                toggleItem={toggleItem}
             >
                 { label } 
             </Button>
@@ -63,18 +49,16 @@ describe("Testing button", () => {
     })
 
     it("should have not have the toggle menu when the button is not clicked", () => {
-        renderButtonWithToggleMenu(buttonLabel)
+        renderButtonWithToggleItem(buttonLabel)
 
-        expect(screen.queryByText(firstItemToggleListLabel)).toBeNull()
-        expect(screen.queryByText(secondItemToggleListLabel)).toBeNull()
+        expect(screen.queryByText(toggleItem)).toBeNull()
     })
 
     it("should display all toggle items when the click to the label button", () => {
-        renderButtonWithToggleMenu(buttonLabel)
+        renderButtonWithToggleItem(buttonLabel)
 
         userEvent.click(screen.getByText(buttonLabel))
 
-        expect(screen.getByText(firstItemToggleListLabel)).toBeInTheDocument()
-        expect(screen.getByText(secondItemToggleListLabel)).toBeInTheDocument()
+        expect(screen.getByText(toggleItem)).toBeInTheDocument()
     })
 })
