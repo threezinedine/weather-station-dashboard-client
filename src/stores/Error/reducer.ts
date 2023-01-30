@@ -28,6 +28,11 @@ const reducer = (state: ErrorState = initialState, action: ErrorAction): ErrorSt
             ...state,
             notifications: [...state.notifications, action.payload],
         }
+    case ErrorActionType.POP_NOTIFICATION_ACTION:
+        return {
+            ...state,
+            notifications: state.notifications.slice(1),
+        }
     default:
         return state
     }

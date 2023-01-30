@@ -49,7 +49,7 @@ describe("ErrorReducer test", () => {
     })
 
     it("should add the notification into the notifications when the action is called.", () => {
-        const newState = ErrorReducer(emptyState, addNotificaionAction(notification))
+        const newState = ErrorReducer(emptyState, addNotificationAction(notification))
 
         expect(newState.notifications).toStrictEqual([notification])
     })
@@ -58,6 +58,6 @@ describe("ErrorReducer test", () => {
         const newState = ErrorReducer(emptyState, addNotificationAction(notification))
         const finalState = ErrorReducer(newState, popNotificationAction())
 
-        expect(newState.notifications).toStrictEqual([])
+        expect(finalState.notifications).toStrictEqual([])
     })
 })
