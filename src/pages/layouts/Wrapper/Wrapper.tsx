@@ -11,22 +11,27 @@ import styles from "./Wrapper.module.scss"
 import { 
     combineClassName,
 } from "utils"
+import { 
+    Toast,
+} from "components"
 
 
 const Wrapper: React.FC<WrapperProps> = ({
     children,
 }) => {
     const st = combineClassName(styles)
-    const errorMessage: string = useSelector((state: StoreState): string => state.ErrorReducer.errorMessages[0])
+    const errorMessages: string[] = useSelector((state: StoreState): string[] => state.ErrorReducer.errorMessages)
+    const notifications: string[] = useSelector((state: StoreState): string[] => state.ErrorReducer.notifications)
 
     return (
         <div
             className={st("wrapper")}
         >
             { children }
-            <div>
-                { errorMessage } 
-            </div>
+            <Toast 
+                errorMessages={errorMessages}
+                notifications={notifications}
+            />
         </div>
     )
 }

@@ -13,7 +13,8 @@ describe("ErrorReducer test", () => {
 
     it("should have the errorMessage inside the errorMessages list when the errorMessage is added.", () => {
         const initState: ErrorState = {
-            errorMessages: []
+            errorMessages: [],
+            notifications: [],
         } 
         const newState = ErrorReducer(initState, addErrorAction(firstErrorMessage))
 
@@ -22,7 +23,8 @@ describe("ErrorReducer test", () => {
 
     it("should have the two errorMessages in order inside the errorMessages list when the two errorMessages is added.", () => {
         const initState: ErrorState = {
-            errorMessages: []
+            errorMessages: [],
+            notifications: [],
         } 
         const newState = ErrorReducer(initState, addErrorAction(firstErrorMessage))
         const finalState = ErrorReducer(newState, addErrorAction(secondErrorMessage))
@@ -32,7 +34,8 @@ describe("ErrorReducer test", () => {
 
     it("should have remove the first errorMessage when have 2 errorMessages are stored in the errorMessages.", () => {
         const initState: ErrorState = {
-            errorMessages: [firstErrorMessage, secondErrorMessage]
+            errorMessages: [firstErrorMessage, secondErrorMessage],
+            notifications: [],
         } 
 
         const newState = ErrorReducer(initState, popErrorAction())
@@ -42,7 +45,8 @@ describe("ErrorReducer test", () => {
 
     it("should do nothing when no error message in the reducer", () => {
         const initState: ErrorState = {
-            errorMessages: []
+            errorMessages: [],
+            notifications: [],
         } 
 
         const newState = ErrorReducer(initState, popErrorAction())

@@ -1,3 +1,37 @@
-.wrapper {
+.toast {
+    --message-height: 70px;
+    --message-distance: 20px;
 
+    user-select: none;
+}
+
+
+.toast__message {
+    position: fixed;
+    display: flex;
+    right: 20px;
+    align-items: center;
+    bottom: calc(20px + (var(--message-height) + var(--message-distance)) * var(--i));
+    z-index: 100000;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px 10px;
+    width: 250px;
+    height: var(--message-height);
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+
+    &.error {
+        color: red;
+    }
+
+    &.noti {
+        color: green;
+    }
+}
+
+.toast__message__icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0px 10px;
 }

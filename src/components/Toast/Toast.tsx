@@ -1,4 +1,11 @@
 import React from "react"
+import {
+    FontAwesomeIcon,
+} from "@fortawesome/react-fontawesome"
+import {
+    faCircleCheck,
+    faCircleExclamation,
+} from "@fortawesome/free-solid-svg-icons"
 
 import ToastProps from "./ToastProps"
 import { 
@@ -14,14 +21,25 @@ const Toast: React.FC<ToastProps> = ({
     const st = combineClassName(styles)
 
     return (
-        <div>
+        <div className={st("toast")}>
             {
                 errorMessages.map((errorMessage: string, index: number) => (
                     <div
                         key={index}
-                        className={st("error")}
+                        style={{
+                            "--i": index
+                        } as React.CSSProperties}
+                        className={st([
+                            "toast__message",
+                            "error",
+                        ])}
                     >
-                        { errorMessage }
+                        <div className={st("toast__message__icon")}>
+                            <FontAwesomeIcon icon={faCircleExclamation} />
+                        </div>
+                        <div className={st("toast__message__message")}>
+                            { errorMessage }
+                        </div>
                     </div>
                 ))
             } 
@@ -29,8 +47,20 @@ const Toast: React.FC<ToastProps> = ({
                 notifications.map((notification: string, index: number) => (
                     <div
                         key={index}
+                        style={{
+                            "--i": index + errorMessages.length
+                        } as React.CSSProperties}
+                        className={st([
+                            "toast__message",
+                            "noti",
+                        ])}
                     >
-                        { notification }
+                        <div className={st("toast__message__icon")}>
+                            <FontAwesomeIcon icon={faCircleCheck} />
+                        </div>
+                        <div className={st("toast__message__message")}>
+                            { notification }
+                        </div>
                     </div>
                 )) 
             }

@@ -71,6 +71,7 @@ export const LOGIN_ERROR_MESSAGE = "Login error"
 
 
 export const TOAST_ERROR_CLASS = "error"
+export const TOAST_NOTI_CLASS = "noti"
 
 
 export interface NewStationProps {

@@ -8,7 +8,8 @@ import {
     Toast,
 } from "components"
 import {
-    TOAST_ERROR_CLASS,
+    TOAST_ERROR_CLASS, 
+    TOAST_NOTI_CLASS,
 } from "const"
 
 
@@ -43,13 +44,13 @@ describe("<Toast /> testing", () => {
     it("should contain the error class inside the error message", () => {
         renderTheToast()
 
-        expect(screen.getByText(firstErrorMessage)).toHaveClass(TOAST_ERROR_CLASS)
-        expect(screen.getByText(secondErrorMessage)).toHaveClass(TOAST_ERROR_CLASS)
+        expect(screen.getByText(firstErrorMessage).parentNode).toHaveClass(TOAST_ERROR_CLASS)
+        expect(screen.getByText(secondErrorMessage).parentNode).toHaveClass(TOAST_ERROR_CLASS)
     })
 
     it("should contain the noti class inside the notification", () => {
         renderTheToast()
 
-        expect(screen.getByText(notification)).toHaveClass("noti")
+        expect(screen.getByText(notification).parentNode).toHaveClass(TOAST_NOTI_CLASS)
     })
 })
