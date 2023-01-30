@@ -4,6 +4,10 @@ import {
     screen,
 } from "@testing-library/react"
 
+import { 
+    Toast,
+} from "components"
+
 
 describe("<Toast /> testing", () => {
     const firstErrorMessage = "First Error Message"

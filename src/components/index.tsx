@@ -3,6 +3,7 @@ import Form from "./Form"
 import Input from "./Input"
 import Modal from "./Modal"
 import InformationBlock from "./InformationBlock"
+import Toast from "./Toast"
 
 
 export {
@@ -11,4 +12,5 @@ export {
     Input,
     Modal,
     InformationBlock,
+    Toast,
 }
