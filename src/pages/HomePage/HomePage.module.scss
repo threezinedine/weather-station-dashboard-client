@@ -1,0 +1,45 @@
+.wrapper {
+    padding: 20px;    
+    flex-direction: column;
+}
+
+
+.data-content {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.home-page-select {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+
+    &:focus-visible {
+        outline: none;
+    }
+}
+
+.option {
+    padding: 12px;
+}
+
+
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.page-welcome {
+    font-family: sans-serif;
+    font-weight: 550;
+
+    span {
+        font-style: italic;
+        font-weight: 900;
+    }
+}

@@ -1,0 +1,37 @@
+.wrapper {
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    width: 220px;
+    padding: 20px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    margin: 12px;
+}
+
+
+.header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+
+.icon {
+    background-color: #5d9be3;
+    color: #fff;
+    padding: 2px 3px;
+    border-radius: 5px;
+}
+
+
+.value {
+    span {
+        font-size: .8rem;
+        color: #aaa;
+        font-style: italic;
+    }
+}
