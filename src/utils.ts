@@ -24,7 +24,9 @@ import {
 import api from "stores/api"
 import { 
     addErrorAction,
+    addNotificationAction,
     popErrorAction,
+    popNotificationAction,
 } from "stores/Error/actions"
 
 
@@ -163,11 +165,28 @@ export const extractValueFromFields = (fields: FormFieldResponseProps[], name: s
 
 
 export const handleErrorResponse = (err: any, dispatch: any) => {
-    const message: string = err.response.data.detail.msg || err.response.data.detail
+    let message = ""
+    if (typeof(err) === "string") {
+        message = err
+    } else if (err?.response?.data) {
+        message = err.response.data.detail.msg || err.response.data.detail
+    } else {
+        message = ""
+    }
+
     dispatch(addErrorAction(message))
 
     setTimeout(() => {
         dispatch(popErrorAction())
+    }, ERROR_MESSAGE_TIME_OUT)
+}
+
+
+export const displayTheNotification = (notification: string, dispatch: any) => {
+    dispatch(addNotificationAction(notification))
+
+    setTimeout(() => {
+        dispatch(popNotificationAction())
     }, ERROR_MESSAGE_TIME_OUT)
 }
 

@@ -25,12 +25,17 @@ import {
     SECOND_RECORD_TEMPERATURE,
     SECOND_RECORD_HUMIDITY,
     SECOND_RECORD_PRESSUER,
+    SMALL_WAITING_TIME,
 } from "../constants"
 import { 
     RESET_KEY_TEST_ID,
     AUTHORIZATION_KEY,
+    RESET_STATION_KEY_SUCCESSFULLY_MESSAGE,
+    STATION_STATION_KEY_COPY_TEST_ID,
+    COPY_SUCCESSFULLY_MESSAGE,
 } from "const"
 import {
+    checkComponentExistByTestId,
     checkTextExist,
     getComponentByTestId,
     getComponentByText,
@@ -71,6 +76,7 @@ describe("Station Page test", () => {
             .then(() => {
                 getComponentByTestId(RESET_KEY_TEST_ID)
                     .click()
+                checkTextExist(RESET_STATION_KEY_SUCCESSFULLY_MESSAGE)
             })
 
         cy.wait(`@${RESET_PUT_ALIAS}`)
@@ -138,5 +144,20 @@ describe("Station Page test", () => {
         checkTextExist(SECOND_RECORD_TEMPERATURE.toString())
         checkTextExist(SECOND_RECORD_HUMIDITY.toString())
         checkTextExist(SECOND_RECORD_PRESSUER.toString())
+    })
+
+    it("should have the station's key copy button", () => {
+        setupValidToken()
+        setupFirstStation()
+        setupFreeAPIStationLatestRecord()
+        setupAllRecords()
+
+        visitRoute(FIRST_STATION_PAGE_ROUTE)
+
+        cy.wait(SMALL_WAITING_TIME)
+            .then(() => {
+                getComponentByTestId(STATION_STATION_KEY_COPY_TEST_ID)
+            })
+
     })
 })

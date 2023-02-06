@@ -19,8 +19,10 @@ import {
     ERROR_MESSAGE_TIME_OUT,
     LOGIN_ERROR_MESSAGE,
     LOGIN_SUBMIT_LABEL,
+    LOGIN_SUCCESSFULLY_MESSAGE,
 } from "const"
 import {
+    displayTheNotification,
     getLoginFormFromFields,
     handleErrorResponse,
     saveToken, sendLoginFormData,
@@ -89,6 +91,7 @@ const LoginPage: React.FC = () => {
                                 saveToken(response.data.token)
                             }
                             navigate(HOME_ROUTE)
+                            displayTheNotification(LOGIN_SUCCESSFULLY_MESSAGE, dispatch)
                         })
                         .catch(err => {
                             handleErrorResponse(err, dispatch)

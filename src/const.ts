@@ -15,6 +15,7 @@ export const ADD_STATION_TEST_ID = "addStation"
 export const RESET_KEY_TEST_ID = "resetKey"
 export const CREATE_STATION_TEST_ID = "createStation"
 export const STATION_STATION_NAME_TEST_ID = "stationStationName"
+export const STATION_STATION_KEY_COPY_TEST_ID = "stationKeyCopy"
 export const STATION_STATION_POSITION_TEST_ID = "stationStationPosition"
 export const STATION_PUBLISHING_TIME_TEST_ID = "stationPublishingTime"
 export const STATION_SELECT_TAG_TEST_ID = "stationSelect"
@@ -69,6 +70,9 @@ export const SUBMIT_ADD_STATION_KEY_LABEL = "Submit Station Key"
 
 export const LOGIN_ERROR_MESSAGE = "Login error"
 export const LOGIN_SUCCESSFULLY_MESSAGE = "Login successfully"
+export const RESET_STATION_KEY_SUCCESSFULLY_MESSAGE = "Reset successfully"
+export const COPY_SUCCESSFULLY_MESSAGE = "Copy successfully"
+export const ADD_STATION_SUCCESSFULLY_MESSAGE = "Add station successfully"
 
 
 export const TOAST_ERROR_CLASS = "error"

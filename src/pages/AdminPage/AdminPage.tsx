@@ -32,9 +32,11 @@ import {
     ADD_STATION_LABEL,
     SUBMIT_ADD_STATION_KEY_LABEL,
     CREATE_STATION_LABEL,
+    ADD_STATION_SUCCESSFULLY_MESSAGE,
 } from "const"
 import {
     addStationByStationId,
+    displayTheNotification,
     extractStationDataFromFields,
     extractValueFromFields,
     fetchAllStations,
@@ -186,6 +188,9 @@ const AdminPage: React.FC = () => {
                                 const stationKey = extractValueFromFields(fields, ADD_STATION_KEY_TEST_ID)
 
                                 addStationByStationId(token, stationKey)
+                                    .then(() => {
+                                        displayTheNotification(ADD_STATION_SUCCESSFULLY_MESSAGE, dispatch)
+                                    })
                                     .then(() => {
                                         return fetchAllStations(token)
                                     })

@@ -17,13 +17,17 @@ import {
 } from "@fortawesome/free-solid-svg-icons"
 
 import {
+    COPY_SUCCESSFULLY_MESSAGE,
     EMPTY_STRING,
     RecordType,
     RESET_KEY_TEST_ID,
+    RESET_STATION_KEY_SUCCESSFULLY_MESSAGE,
     StationType,
+    STATION_STATION_KEY_COPY_TEST_ID,
     ZERO_NUMBER,
 } from "const"
 import {
+    displayTheNotification,
     fetchStationInformation,
     fetchStationRecords,
     handleErrorResponse,
@@ -107,6 +111,7 @@ const StationPage: React.FC = () => {
                                 })
                                 .then(response => {
                                     setStationInformation(response.data)
+                                    displayTheNotification(RESET_STATION_KEY_SUCCESSFULLY_MESSAGE, dispatch)
                                 })
                                 .catch(err => {
                                     handleErrorResponse(err, dispatch)
@@ -120,8 +125,15 @@ const StationPage: React.FC = () => {
                         </div>
                     </Button>
                     <Button
+                        data-testid={STATION_STATION_KEY_COPY_TEST_ID}
                         onClick={() => {
                             navigator.clipboard.writeText(stationInformation.stationKey)
+                                .then(() => {
+                                    displayTheNotification(COPY_SUCCESSFULLY_MESSAGE, dispatch)
+                                })
+                                .catch(err => {
+                                    handleErrorResponse(err, dispatch)
+                                })
                         }}
                         wrapperStyle={st("btn-groups__btn")}
                     >

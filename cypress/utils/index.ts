@@ -369,6 +369,8 @@ export const setupResetStationKey = () => {
     cy.intercept({
         method: PUT_METHOD,
         url: RESET_STATOIN_KEY_API_ROUTE,
+    }, {
+        statusCode: 200,
     }).as(RESET_PUT_ALIAS)
 }
 
