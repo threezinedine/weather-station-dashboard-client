@@ -20,6 +20,7 @@ import {
     STATION_PUBLISHING_TIME_TEST_ID,
     CREATE_NEW_STATION_API_ROUTE,
     NewStationProps,
+    CHANGE_PUSHING_DATA_INTERVAL_API_ROUTE,
 } from "const"
 import api from "stores/api"
 import { 
@@ -108,6 +109,20 @@ export const fetchTheLatestRecord = async (token: string | null, stationName: st
         method: GET_METHOD,
         url: `/records/${stationName}/latest`,
         headers: generateAuthorizationHeader(token)
+    })
+}
+
+export const changeThePushingDataIntervale = async (token: string | null, 
+    stationName: string,
+    pushingDataIntervalInSeconds: number) => {
+    return api({
+        method: PUT_METHOD,
+        url: CHANGE_PUSHING_DATA_INTERVAL_API_ROUTE,
+        headers: generateAuthorizationHeader(token),
+        data: {
+            stationName,
+            pushingDataIntervalInSeconds,
+        }
     })
 }
 

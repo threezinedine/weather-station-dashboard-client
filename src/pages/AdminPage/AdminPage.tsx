@@ -33,9 +33,11 @@ import {
     SUBMIT_ADD_STATION_KEY_LABEL,
     CREATE_STATION_LABEL,
     ADD_STATION_SUCCESSFULLY_MESSAGE,
+    PUT_METHOD,
 } from "const"
 import {
     addStationByStationId,
+    changeThePushingDataIntervale,
     displayTheNotification,
     extractStationDataFromFields,
     extractValueFromFields,
@@ -69,7 +71,6 @@ const AdminPage: React.FC = () => {
 
     const [stations, setStations] = useState([])
     const [addStation, setAddStation] = useState(false)
-    const [stationKey, setStationKey] = useState("")
     const [createNewStation, setupCreateNewStation] = useState(false)
 
     useEffect(() => {

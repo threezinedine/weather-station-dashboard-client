@@ -70,6 +70,7 @@ export const CREATE_STATION_PUBLISHING_TIME_LABEL = "Pushing time in seconds"
 export const ADD_STATION_LABEL = "Add Station"
 export const CREATE_STATION_LABEL = "Create Station"
 export const SUBMIT_ADD_STATION_KEY_LABEL = "Submit Station Key"
+export const PUSHING_DATA_INTERVAL_SUBMIT_LABEL = "Submit"
 
 export const LOGIN_ERROR_MESSAGE = "Login error"
 export const LOGIN_SUCCESSFULLY_MESSAGE = "Login successfully"

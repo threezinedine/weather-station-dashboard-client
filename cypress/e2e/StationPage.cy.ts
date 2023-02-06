@@ -37,6 +37,7 @@ import {
     COPY_SUCCESSFULLY_MESSAGE,
     CHANGE_PUSHING_DATA_INTERVAL_TEST_ID,
     NEW_PUSHING_DATA_INTERVAL_INPUT_TEST_ID,
+    PUSHING_DATA_INTERVAL_SUBMIT_LABEL,
 } from "const"
 import {
     checkComponentExistByTestId,
@@ -181,7 +182,10 @@ describe("Station Page test", () => {
         getComponentByTestId(NEW_PUSHING_DATA_INTERVAL_INPUT_TEST_ID)
             .type(FIRST_STATION_NEW_PUSHING_DATA_INTERVAL.toString())
 
-        cy.wait(CHANGE_PUSHING_DATA_ALIAS)
+        getComponentByText(PUSHING_DATA_INTERVAL_SUBMIT_LABEL)
+            .click()
+
+        cy.wait(`@${CHANGE_PUSHING_DATA_ALIAS}`)
             .then(intercept => {
                 expect(intercept.request.headers[AUTHORIZATION_KEY]).to.equal(getTheBearerToken(TESTING_TOKEN))
                 expect(intercept.request.body.stationName).to.equal(FIRST_STATION_STATION_NAME)
