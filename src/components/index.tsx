@@ -4,6 +4,7 @@ import Input from "./Input"
 import Modal from "./Modal"
 import InformationBlock from "./InformationBlock"
 import Toast from "./Toast"
+import WeatherInformation from "./WeatherInformation"
 
 
 export {
@@ -13,4 +14,5 @@ export {
     Modal,
     InformationBlock,
     Toast,
+    WeatherInformation,
 }

@@ -17,6 +17,9 @@ import {
     handleErrorResponse,
     loadToken,
 } from "utils"
+import { 
+    WeatherInformation,
+} from "components"
 
 
 const HomePage: React.FC = () => {
@@ -88,14 +91,38 @@ const HomePage: React.FC = () => {
                 {
                     displayRecord && (
                         <div>
-                            <div>Wind Direction: { displayRecord.windDirection }</div>
-                            <div>Average Wind Speed: { displayRecord.averageWindSpeedInOneMinute }</div>
-                            <div>Max Wind Speed: { displayRecord.maxWindSpeedInFiveMinutes }</div>
-                            <div>Rain Fall In One Hour: { displayRecord.rainFallInOneHour }</div>
-                            <div>Rain Fall In One Day: { displayRecord.rainFallInOneDay }</div>
-                            <div>Temperature: { displayRecord.temperature }</div>
-                            <div>Humidity: { displayRecord.humidity }</div>
-                            <div>Bar Pressure: { displayRecord.barPressure }</div>
+                            <WeatherInformation
+                                label="Wind Direction"
+                                value={displayRecord.windDirection}
+                            />
+                            <WeatherInformation
+                                label="Average Wind Speed"
+                                value={displayRecord.averageWindSpeedInOneMinute}
+                            />
+                            <WeatherInformation
+                                label="Max Wind Speed"
+                                value={displayRecord.maxWindSpeedInFiveMinutes}
+                            />
+                            <WeatherInformation
+                                label="Rain Fall In One Hour"
+                                value={displayRecord.rainFallInOneHour}
+                            />
+                            <WeatherInformation
+                                label="Rain Fall In One Day"
+                                value={displayRecord.rainFallInOneDay}
+                            />
+                            <WeatherInformation
+                                label="Temperature"
+                                value={displayRecord.temperature}
+                            />
+                            <WeatherInformation
+                                label="Humidity"
+                                value={displayRecord.humidity}
+                            />
+                            <WeatherInformation
+                                label="Bar Pressure"
+                                value={displayRecord.barPressure}
+                            />
                         </div>
                     )
                 }
