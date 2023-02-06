@@ -26,6 +26,8 @@ import {
     SECOND_RECORD_HUMIDITY,
     SECOND_RECORD_PRESSUER,
     SMALL_WAITING_TIME,
+    CHANGE_PUSHING_DATA_ALIAS,
+    FIRST_STATION_NEW_PUSHING_DATA_INTERVAL,
 } from "../constants"
 import { 
     RESET_KEY_TEST_ID,
@@ -33,6 +35,8 @@ import {
     RESET_STATION_KEY_SUCCESSFULLY_MESSAGE,
     STATION_STATION_KEY_COPY_TEST_ID,
     COPY_SUCCESSFULLY_MESSAGE,
+    CHANGE_PUSHING_DATA_INTERVAL_TEST_ID,
+    NEW_PUSHING_DATA_INTERVAL_INPUT_TEST_ID,
 } from "const"
 import {
     checkComponentExistByTestId,
@@ -41,6 +45,7 @@ import {
     getComponentByText,
     getTheBearerToken,
     setupAllRecords,
+    setupChangeThePushingDataInterval,
     setupFirstStation,
     setupFreeAPIStationLatestRecord,
     setupResetStationKey,
@@ -159,5 +164,28 @@ describe("Station Page test", () => {
                 getComponentByTestId(STATION_STATION_KEY_COPY_TEST_ID)
             })
 
+    })
+
+    it("should have the change station pushing data interval button", () => {
+        setupValidToken()
+        setupFirstStation()
+        setupFreeAPIStationLatestRecord()
+        setupAllRecords()
+        setupChangeThePushingDataInterval()
+
+        visitRoute(FIRST_STATION_PAGE_ROUTE)
+
+        getComponentByTestId(CHANGE_PUSHING_DATA_INTERVAL_TEST_ID)
+            .click()
+
+        getComponentByTestId(NEW_PUSHING_DATA_INTERVAL_INPUT_TEST_ID)
+            .type(FIRST_STATION_NEW_PUSHING_DATA_INTERVAL.toString())
+
+        cy.wait(CHANGE_PUSHING_DATA_ALIAS)
+            .then(intercept => {
+                expect(intercept.request.headers[AUTHORIZATION_KEY]).to.equal(getTheBearerToken(TESTING_TOKEN))
+                expect(intercept.request.body.stationName).to.equal(FIRST_STATION_STATION_NAME)
+                expect(intercept.request.body.pushingDataIntervalInSeconds).to.equal(FIRST_STATION_NEW_PUSHING_DATA_INTERVAL)
+            })
     })
 })

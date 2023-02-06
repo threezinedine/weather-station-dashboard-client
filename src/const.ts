@@ -22,6 +22,8 @@ export const STATION_SELECT_TAG_TEST_ID = "stationSelect"
 export const MODAL_CANCEL_BUTTON_TEST_ID = "formCancel"
 export const MODAL_SUBMIT_BUTTON_TEST_ID = "formSubmit"
 export const MODAL_WRAPPER_TEST_ID = "modalWrapper"
+export const CHANGE_PUSHING_DATA_INTERVAL_TEST_ID = "pushingDataInterval"
+export const NEW_PUSHING_DATA_INTERVAL_INPUT_TEST_ID = "pushingDataInvetervalInput"
 
 export const LOGIN_ROUTE = "/login"
 export const HOME_ROUTE = "/"
@@ -44,6 +46,7 @@ export const GET_ALL_STATIONS_API_ROUTE = "/stations"
 export const ADD_STATION_API_ROUTE = "/stations"
 export const RESET_STATOIN_KEY_API_ROUTE = "/stations/reset" 
 export const CREATE_NEW_STATION_API_ROUTE = "/stations"
+export const CHANGE_PUSHING_DATA_INTERVAL_API_ROUTE = "station/pushing-data"
 
 export const FREE_API_STATION_STATION_NAME = "default"
 

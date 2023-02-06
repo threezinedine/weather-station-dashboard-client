@@ -60,6 +60,7 @@ import {
     DEFAULT_RECORD_HUMIDITY,
     DEFAULT_RECORD_PRESSUER,
     DEFAULT_RECORD_CREATED_TIME,
+    CHANGE_PUSHING_DATA_ALIAS,
 } from '../constants'
 import { 
     TOKEN_ITEM,
@@ -76,6 +77,7 @@ import {
     CREATE_NEW_STATION_API_ROUTE,
     ADD_STATION_API_ROUTE,
     LOGIN_API_ROUTE,
+    CHANGE_PUSHING_DATA_INTERVAL_API_ROUTE,
 } from 'const'
 
 
@@ -372,6 +374,15 @@ export const setupResetStationKey = () => {
     }, {
         statusCode: 200,
     }).as(RESET_PUT_ALIAS)
+}
+
+export const setupChangeThePushingDataInterval = () => {
+    cy.intercept({
+        method: PUT_METHOD,
+        url: CHANGE_PUSHING_DATA_INTERVAL_API_ROUTE,
+    }, {
+        statusCode: 200,
+    }).as(CHANGE_PUSHING_DATA_ALIAS)
 }
 
 

@@ -36,6 +36,7 @@ export const FIRST_STATION_API_ROUTE = "/stations/Ha%20Noi"
 export const FIRST_STATION_GET_ALL_RECORDS_API_ROUTE = "/records/Ha%20Noi"
 export const FIRST_STATION_GET_LATEST_RECORD_API_ROUTE = "/records/Ha%20Noi/latest"
 export const FREE_API_STATION_GET_LATEST_RECORD_API_ROUTE = "/records/default/latest"
+export const FIRST_STATION_NEW_PUSHING_DATA_INTERVAL = 600
 
 export const TESTING_TOKEN = "testing_token"
 
@@ -60,6 +61,7 @@ export const THIRD_STATION_STATION_KEY = "kjoihasdofijasdfhewoinvasdfav"
 export const ADD_STATION_FETCH_ALIAS = "addStation"
 export const LOGIN_POST_ALIAS = "login"
 export const RESET_PUT_ALIAS = "reset"
+export const CHANGE_PUSHING_DATA_ALIAS = "changePushingData"
 export const CREATE_NEW_STATION_ALIAS = "newStation"
 export const GET_ALL_RECORDS_ALIAS = "allRecords"
 export const ALL_STATION_ALIAS = "allStation"
